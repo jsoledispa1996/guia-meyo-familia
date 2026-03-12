@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soporte y Ayuda – MeYo Familia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .contact-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(16,185,129,.15);
+      transition: all var(--transition);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(16,185,129,.35);
+    }
+    .contact-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--green), #34d399);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(16,185,129,.3);
+      transition: transform var(--transition);
+    }
+    .contact-card:hover .contact-icon { transform: scale(1.1) rotate(-5deg); }
+
+    .contact-info strong { font-size: .97rem; color: var(--text-dark); display: block; }
+    .contact-info span   { font-size: .85rem; color: var(--text-light); }
+    .contact-arrow { margin-left: auto; font-size: .9rem; color: var(--green); font-weight: 700; }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid rgba(168,85,247,.1);
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: background var(--transition);
+    }
+    .faq-question:hover { background: var(--purple-soft); }
+    .faq-item.open .faq-question { background: var(--purple-mist); }
+
+    .faq-q-icon  { font-size: .85rem; color: var(--purple); font-weight: 800; background: var(--purple-mist); padding: 3px 8px; border-radius: 6px; flex-shrink: 0; }
+    .faq-q-text  { font-size: .95rem; font-weight: 700; color: var(--text-dark); flex: 1; }
+    .faq-q-arrow { font-size: .8rem; color: var(--text-light); transition: transform var(--transition); margin-left: auto; }
+    .faq-item.open .faq-q-arrow { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s;
+      padding: 0 20px;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+      padding: 0 20px 18px;
+    }
+    .faq-answer p {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Contact form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: .85rem; font-weight: 700; color: var(--text-mid); }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      border: 1.5px solid var(--purple-mist);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: .9rem;
+      font-family: inherit;
+      color: var(--text-dark);
+      background: var(--white);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--purple-light);
+      box-shadow: 0 0 0 3px rgba(168,85,247,.15);
+    }
+    .form-group textarea { min-height: 100px; }
+
+    .submit-btn {
+      background: linear-gradient(135deg, var(--green), #34d399);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 28px;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--transition);
+      box-shadow: 0 4px 14px rgba(16,185,129,.3);
+      align-self: flex-start;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16,185,129,.4);
+    }
+    .submit-btn:active { transform: scale(.97); }
+    .submit-btn.sent { background: linear-gradient(135deg, var(--purple), var(--purple-light)); }
+
+    .form-success {
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: .93rem;
+      color: #065f46;
+      font-weight: 600;
+      display: none;
+      margin-top: 4px;
+    }
+    .form-success.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="bienvenida.html">Bienvenida</a></li>
+      <li><a href="paso1.html">Crear cuenta</a></li>
+      <li><a href="paso2.html">Unirse</a></li>
+      <li><a href="paso3.html">Funciones</a></li>
+      <li><a href="normas.html">Normas</a></li>
+      <li><a href="soporte.html">Soporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <div class="hero animate-in" style="background: linear-gradient(135deg, #059669 0%, #10b981 60%, #34d399 100%);">
+      <div class="hero-badge">🆘 Soporte y Ayuda</div>
+      <div class="hero-logo"><span>¿Necesitas</span> ayuda?</div>
+      <p>No te preocupes, aquí encontrarás todas las formas<br />
+         de obtener soporte dentro de la familia en MeYo.</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar animate-in">
+      <a href="bienvenida.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Inicio</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso1.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Cuenta</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso2.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Familia</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso3.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Funciones</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="normas.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Normas</span>
+      </a>
+    </div>
+
+    <!-- Vías de contacto -->
+    <div class="card animate-in green">
+      <div class="card-header">
+        <div class="step-badge green">📞</div>
+        <div>
+          <div class="card-title">¿Cómo obtener ayuda?</div>
+          <div class="card-subtitle">Estas son las vías disponibles para contactarnos</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--text-mid);margin-bottom:14px;">Busca a cualquiera de nuestros administradores por su ID en MeYo → Casa → 🔍 Buscar</p>
+
+      <!-- Ashley -->
+      <div class="contact-card" style="border-color:#fbbf24;background:linear-gradient(135deg,#fffbeb,#fef3c7);">
+        <div class="contact-icon" style="background:linear-gradient(135deg,#d97706,#f59e0b);box-shadow:0 4px 12px rgba(217,119,6,.35);">👑</div>
+        <div class="contact-info">
+          <strong style="color:#78350f;">Ashley – Admin</strong>
+          <span style="color:#92400e;">ID: <b style="font-size:1rem;letter-spacing:2px;">37596460</b></span>
+        </div>
+        <button class="copy-btn" data-copy="37596460" style="background:#d97706;flex-shrink:0;">📋 Copiar</button>
+      </div>
+
+      <!-- Angie -->
+      <div class="contact-card" style="border-color:var(--purple-mist);background:var(--purple-soft);">
+        <div class="contact-icon" style="background:linear-gradient(135deg,var(--purple),var(--purple-light));box-shadow:0 4px 12px rgba(124,58,237,.3);">⭐</div>
+        <div class="contact-info">
+          <strong style="color:var(--purple-dark);">Angie – Asistente 1</strong>
+          <span style="color:var(--purple);">ID: <b style="font-size:1rem;letter-spacing:2px;">37617550</b></span>
+        </div>
+        <button class="copy-btn" data-copy="37617550" style="flex-shrink:0;">📋 Copiar</button>
+      </div>
+
+      <!-- Jose -->
+      <div class="contact-card" style="border-color:#bae6fd;background:#f0f9ff;">
+        <div class="contact-icon" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8);box-shadow:0 4px 12px rgba(14,165,233,.3);">💼</div>
+        <div class="contact-info">
+          <strong style="color:#0369a1;">Jose – Asistente 2</strong>
+          <span style="color:#0284c7;">ID: <b style="font-size:1rem;letter-spacing:2px;">30594586</b></span>
+        </div>
+        <button class="copy-btn" data-copy="30594586" style="background:#0284c7;flex-shrink:0;">📋 Copiar</button>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">❓</div>
+        <div>
+          <div class="card-title">Preguntas frecuentes</div>
+          <div class="card-subtitle">Toca una pregunta para ver la respuesta</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">¿Qué hago si olvidé mi contraseña?</span>
+          <span class="faq-q-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>En la pantalla de inicio de sesión, toca <strong>"¿Olvidaste tu contraseña?"</strong>. Ingresa tu correo y recibirás un enlace para restablecerla. Si tienes problemas, contacta a un administrador.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">¿Por qué no puedo ver el grupo familiar?</span>
+          <span class="faq-q-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Puede que tu solicitud de ingreso aún no haya sido aprobada por un administrador. Espera un momento o escríbele directamente al administrador para que revise tu solicitud.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">¿El código de invitación tiene caducidad?</span>
+          <span class="faq-q-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>El código de invitación es <strong style="color:var(--purple);font-size:1.05rem;letter-spacing:2px;">U6EQF3</strong>. Está activo mientras sea válido. Si recibes un mensaje de error al ingresarlo, contacta a Ashley (ID 37596460) o a Angie (ID 37617550) para obtener el código actualizado.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">¿Cómo puedo reportar a un miembro que no respeta las normas?</span>
+          <span class="faq-q-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Ve al perfil del miembro, toca el menú de opciones (tres puntos) y selecciona <strong>"Reportar"</strong>. También puedes escribirle directamente al administrador explicando la situación.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">¿La aplicación MeYo es gratuita?</span>
+          <span class="faq-q-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>MeYo es gratuita para descargar y usar. Algunas funciones especiales o regalos virtuales pueden tener un costo. Consulta dentro de la app para más detalles.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-q-icon">Q</span>
+          <span class="faq-q-text">¿Cómo cambio mi foto o nombre de perfil?</span>
+          <span class="faq-q-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Ve a tu perfil tocando tu foto o nombre en la app, luego selecciona <strong>"Editar perfil"</strong>. Desde ahí puedes cambiar tu foto, nombre, descripción y más.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario de contacto -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge green">✉️</div>
+        <div>
+          <div class="card-title">Enviar mensaje al administrador</div>
+          <div class="card-subtitle">Completa el formulario y te responderemos pronto</div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input type="text" id="form-name" placeholder="¿Cómo te llamas?" />
+        </div>
+        <div class="form-group">
+          <label>Tipo de consulta</label>
+          <select id="form-type">
+            <option value="">-- Selecciona una opción --</option>
+            <option>Problema técnico con la app</option>
+            <option>No puedo unirme a la familia</option>
+            <option>Problema con mi cuenta</option>
+            <option>Reportar un miembro</option>
+            <option>Pregunta general</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Describe tu duda o problema</label>
+          <textarea id="form-message" placeholder="Cuéntanos qué necesitas con el mayor detalle posible..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submit-btn">📨 Enviar mensaje</button>
+        <div class="form-success" id="form-success">
+          ✅ ¡Mensaje enviado! Un administrador revisará tu consulta y te responderá a la brevedad. ¡Gracias!
+        </div>
+      </form>
+    </div>
+
+    <!-- Cierre inspirador -->
+    <div class="card animate-in green" style="text-align:center; padding:36px 24px;">
+      <div style="font-size:2.5rem; margin-bottom:12px;">🎉</div>
+      <h3 style="font-size:1.2rem; color:var(--purple-dark); margin-bottom:10px;">¡Has completado la guía!</h3>
+      <p>Ya conoces todo lo necesario para disfrutar de la familia en MeYo.<br />
+         Recuerda: aquí todos somos familia. ¡Bienvenido/a oficialmente! 💜</p>
+      <div style="margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a href="index.html" class="btn btn-secondary">🏠 Ir al inicio</a>
+        <a href="bienvenida.html" class="btn btn-primary">📖 Releer guía</a>
+      </div>
+    </div>
+
+    <div class="nav-buttons animate-in">
+      <a href="normas.html" class="btn btn-ghost">← Normas</a>
+      <a href="index.html" class="btn btn-primary">🏠 Inicio</a>
+    </div>
+
+    <footer class="page-footer">
+      <p>Guía para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-answer').classList.remove('open');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.classList.add('open');
+        }
+      });
+    });
+
+    // Form submit demo
+    document.getElementById('submit-btn').addEventListener('click', () => {
+      const name    = document.getElementById('form-name').value.trim();
+      const type    = document.getElementById('form-type').value;
+      const message = document.getElementById('form-message').value.trim();
+
+      if (!name || !type || !message) {
+        showToast('⚠️ Por favor completa todos los campos');
+        return;
+      }
+      document.getElementById('form-success').classList.add('show');
+      document.getElementById('submit-btn').textContent = '✅ Enviado';
+      document.getElementById('submit-btn').classList.add('sent');
+      document.getElementById('submit-btn').disabled = true;
+      showToast('📨 ¡Mensaje enviado al administrador!');
+    });
+  </script>
+</body>
+</html>

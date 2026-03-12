@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeYo – Familia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Index-specific styles */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    @media (max-width: 520px) { .hub-grid { grid-template-columns: 1fr; } }
+
+    .hub-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 22px;
+      text-decoration: none;
+      border: 1px solid rgba(168,85,247,.10);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .hub-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--purple-soft), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .hub-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(168,85,247,.3);
+    }
+    .hub-card:hover::before { opacity: 1; }
+
+    .hub-icon {
+      font-size: 2rem;
+      position: relative;
+      transition: transform var(--transition);
+    }
+    .hub-card:hover .hub-icon { transform: scale(1.15) rotate(-5deg); }
+
+    .hub-card-title {
+      font-size: .97rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      position: relative;
+    }
+    .hub-card-desc {
+      font-size: .82rem;
+      color: var(--text-light);
+      line-height: 1.5;
+      position: relative;
+    }
+    .hub-arrow {
+      margin-top: auto;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--purple-light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+      transition: gap var(--transition);
+    }
+    .hub-card:hover .hub-arrow { gap: 8px; }
+
+    .hub-step-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--purple-mist);
+      color: var(--purple);
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--purple-mist), #faf0ff);
+      border-radius: 14px;
+      padding: 24px 26px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border: 1px solid rgba(168,85,247,.2);
+    }
+    .welcome-banner .wicon { font-size: 2.4rem; }
+    .welcome-banner h2 { font-size: 1.1rem; font-weight: 800; color: var(--purple-dark); margin-bottom: 4px; }
+    .welcome-banner p  { font-size: .88rem; color: var(--text-mid); line-height: 1.6; }
+
+    .quick-code {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 24px;
+      border: 1px solid rgba(168,85,247,.12);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .quick-code-label { font-size: .83rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+    .quick-code-number { font-size: 1.8rem; font-weight: 900; letter-spacing: 5px; color: var(--purple-dark); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="bienvenida.html">Bienvenida</a></li>
+      <li><a href="paso1.html">Crear cuenta</a></li>
+      <li><a href="paso2.html">Unirse</a></li>
+      <li><a href="paso3.html">Funciones</a></li>
+      <li><a href="normas.html">Normas</a></li>
+      <li><a href="soporte.html">Soporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <div class="hero animate-in">
+      <div class="hero-badge">🏠 Guía de la Familia</div>
+      <div class="hero-logo">Me<span>Yo</span></div>
+      <p>Tu guía completa para integrarte a la familia en MeYo.<br />
+         Sigue cada sección en orden para empezar sin problemas.</p>
+    </div>
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner animate-in">
+      <div class="wicon">👋</div>
+      <div>
+        <h2>¡Bienvenido/a a la familia!</h2>
+        <p>Esta guía está dividida en secciones para que puedas seguirla paso a paso. Si eres nuevo, empieza desde <strong>Crear cuenta</strong>. Si ya tienes cuenta, ve directo a <strong>Unirse</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Hub Grid -->
+    <div class="hub-grid">
+      <a href="bienvenida.html" class="hub-card animate-in">
+        <div class="hub-icon">🌟</div>
+        <div class="hub-card-title">Bienvenida</div>
+        <div class="hub-card-desc">Conoce de qué trata esta guía y qué esperamos de ti como nuevo integrante.</div>
+        <div class="hub-arrow">Ver sección →</div>
+      </a>
+
+      <a href="paso1.html" class="hub-card animate-in">
+        <div class="hub-step-tag">Nuevo</div>
+        <div class="hub-icon">📱</div>
+        <div class="hub-card-title">Crear tu cuenta</div>
+        <div class="hub-card-desc">Regístrate en MeYo usando el código de invitación de la familia.</div>
+        <div class="hub-arrow">Ver sección →</div>
+      </a>
+
+      <a href="paso2.html" class="hub-card animate-in">
+        <div class="hub-step-tag">Unirse</div>
+        <div class="hub-icon">🏡</div>
+        <div class="hub-card-title">Unirse a la familia</div>
+        <div class="hub-card-desc">Aprende cómo encontrar y unirte al grupo familiar dentro de la app.</div>
+        <div class="hub-arrow">Ver sección →</div>
+      </a>
+
+      <a href="paso3.html" class="hub-card animate-in">
+        <div class="hub-step-tag">Funciones</div>
+        <div class="hub-icon">⚡</div>
+        <div class="hub-card-title">Funcionalidades</div>
+        <div class="hub-card-desc">Descubre las herramientas principales: chat, regalos, salas y más.</div>
+        <div class="hub-arrow">Ver sección →</div>
+      </a>
+
+      <a href="normas.html" class="hub-card animate-in">
+        <div class="hub-icon">📋</div>
+        <div class="hub-card-title">Normas de la familia</div>
+        <div class="hub-card-desc">Reglas básicas para mantener un ambiente positivo y respetuoso.</div>
+        <div class="hub-arrow">Ver sección →</div>
+      </a>
+
+      <a href="soporte.html" class="hub-card animate-in">
+        <div class="hub-icon">🆘</div>
+        <div class="hub-card-title">Soporte y Ayuda</div>
+        <div class="hub-card-desc">¿Tienes dudas? Aquí encontrarás cómo contactar a los administradores.</div>
+        <div class="hub-arrow">Ver sección →</div>
+      </a>
+    </div>
+
+    <!-- Team Contacts -->
+    <div class="card animate-in" style="border-top: 4px solid var(--green);">  
+      <div class="card-header">
+        <div class="step-badge" style="background:linear-gradient(135deg,var(--green),#34d399);">&#x1F465;</div>
+        <div>
+          <div class="card-title">Nuestro equipo</div>
+          <div class="card-subtitle">Búscalos por ID en MeYo para pedir información</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+        <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:12px;padding:14px 16px;">
+          <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#d97706,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">&#x1F451;</div>
+          <div style="flex:1;">
+            <div style="font-size:.95rem;font-weight:800;color:#92400e;">Ashley &mdash; Admin</div>
+            <div style="font-size:.82rem;color:#78350f;">ID: <strong>37596460</strong></div>
+          </div>
+          <button class="copy-btn" data-copy="37596460" style="margin:0;padding:7px 14px;font-size:.8rem;">&#x1F4CB; Copiar ID</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;background:var(--purple-soft);border-radius:12px;padding:14px 16px;">
+          <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--purple-light));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">&#x2B50;</div>
+          <div style="flex:1;">
+            <div style="font-size:.95rem;font-weight:800;color:var(--purple-dark);">Angie &mdash; Asistente 1</div>
+            <div style="font-size:.82rem;color:var(--text-mid);">ID: <strong>37617550</strong></div>
+          </div>
+          <button class="copy-btn" data-copy="37617550" style="margin:0;padding:7px 14px;font-size:.8rem;">&#x1F4CB; Copiar ID</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;background:var(--purple-soft);border-radius:12px;padding:14px 16px;">
+          <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#0ea5e9,#38bdf8);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">&#x1F4BC;</div>
+          <div style="flex:1;">
+            <div style="font-size:.95rem;font-weight:800;color:#0369a1;">Jose &mdash; Asistente 2</div>
+            <div style="font-size:.82rem;color:var(--text-mid);">ID: <strong>30594586</strong></div>
+          </div>
+          <button class="copy-btn" data-copy="30594586" style="margin:0;padding:7px 14px;font-size:.8rem;">&#x1F4CB; Copiar ID</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Code -->
+    <div class="quick-code animate-in">
+      <div>
+        <div class="quick-code-label">🔑 Código de invitación de la familia</div>
+        <div class="quick-code-number" style="font-size:2rem;letter-spacing:4px;">U6EQF3</div>
+      </div>
+      <button class="btn btn-primary" data-copy="U6EQF3">📋 Copiar código</button>
+    </div>
+
+    <footer class="page-footer">
+      <p>Hecho con ❤️ para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

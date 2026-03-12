@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paso 2: Únete a la Familia – MeYo</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .phone-demo {
+      background: #1a1033;
+      border-radius: 24px;
+      padding: 16px;
+      max-width: 300px;
+      margin: 20px auto;
+      box-shadow: 0 12px 40px rgba(0,0,0,.35), 0 0 0 3px rgba(168,85,247,.3);
+    }
+    .phone-topbar {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+    }
+    .phone-topbar span { font-size: .75rem; color: rgba(255,255,255,.6); font-weight: 700; }
+    .phone-section-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 0; margin-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .phone-section-header span { font-size: .85rem; color: white; font-weight: 700; }
+    .phone-search-icon {
+      margin-left: auto; width: 34px; height: 34px;
+      background: rgba(168,85,247,.25); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; cursor: pointer;
+      animation: searchPulse 2s ease-in-out infinite;
+    }
+    @keyframes searchPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(168,85,247,.5); }
+      50%       { box-shadow: 0 0 0 6px rgba(168,85,247,0); }
+    }
+    .phone-user-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .phone-avatar {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      flex-shrink: 0; display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem;
+    }
+    .phone-user-info strong { font-size: .8rem; color: white; display: block; }
+    .phone-user-info span   { font-size: .7rem; color: rgba(255,255,255,.5); }
+    .phone-hi-btn {
+      margin-left: auto; background: rgba(255,100,150,.2);
+      border: 1px solid rgba(255,100,150,.4); border-radius: 999px;
+      color: #ff6496; padding: 4px 12px; font-size: .72rem; font-weight: 700;
+    }
+    .phone-bottomnav {
+      display: flex; justify-content: space-around;
+      padding: 10px 0 4px; border-top: 1px solid rgba(255,255,255,.08); margin-top: 12px;
+    }
+    .phone-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-size: .6rem; color: rgba(255,255,255,.4); cursor: pointer;
+    }
+    .phone-nav-item.active { color: var(--purple-light); }
+    .phone-nav-icon { font-size: 1.1rem; }
+    .active-underline { width: 18px; height: 2px; background: var(--purple-light); border-radius: 2px; }
+
+    .phone-search-screen {
+      background: #12102a; border-radius: 14px; padding: 12px; margin-top: 8px;
+    }
+    .phone-search-bar { display: flex; gap: 8px; align-items: center; }
+    .phone-search-input {
+      flex: 1; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(168,85,247,.3); border-radius: 999px;
+      padding: 8px 14px; color: white; font-size: .82rem;
+      font-family: inherit; outline: none;
+    }
+    .phone-search-input::placeholder { color: rgba(255,255,255,.3); }
+    .phone-search-btn {
+      background: var(--purple); border: none; border-radius: 10px;
+      width: 36px; height: 36px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: .9rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .phone-search-btn:hover { background: var(--purple-dark); transform: scale(1.05); }
+    .phone-result-card {
+      background: rgba(255,255,255,.05); border-radius: 12px; padding: 12px;
+      display: none; margin-top: 12px; border: 1px solid rgba(168,85,247,.2);
+      gap: 12px; align-items: center;
+    }
+    .phone-result-card.show { display: flex; animation: fadeInCard .4s ease; }
+    @keyframes fadeInCard { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    .phone-result-avatar {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    }
+    .phone-result-name { font-size: .9rem; font-weight: 800; color: white; }
+    .phone-result-id   { font-size: .75rem; color: rgba(255,255,255,.5); }
+    .phone-follow-btn  {
+      margin-left: auto; background: var(--purple); color: white;
+      border: none; border-radius: 8px; padding: 7px 14px;
+      font-size: .78rem; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: all var(--transition); flex-shrink: 0;
+    }
+    .phone-follow-btn:hover { background: var(--purple-dark); transform: scale(1.05); }
+    .phone-follow-btn.followed { background: var(--green); }
+
+    .step-flow { display: flex; flex-direction: column; gap: 0; margin-top: 16px; }
+    .step-flow-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding-bottom: 22px; position: relative;
+    }
+    .step-flow-item::after {
+      content: ''; position: absolute; left: 18px; top: 40px; bottom: 0;
+      width: 2px; background: var(--purple-mist);
+    }
+    .step-flow-item:last-child::after { display: none; }
+    .step-flow-item:last-child { padding-bottom: 0; }
+    .flow-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white; font-size: .85rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative; z-index: 1; box-shadow: var(--shadow-sm);
+    }
+    .flow-content { padding-top: 6px; }
+    .flow-content strong { font-size: .95rem; color: var(--text-dark); display: block; margin-bottom: 4px; }
+    .flow-content span   { font-size: .87rem; color: var(--text-mid); line-height: 1.65; display: block; }
+    .flow-tip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--purple-mist); color: var(--purple);
+      padding: 5px 12px; border-radius: 8px; font-size: .8rem; font-weight: 700; margin-top: 8px;
+    }
+
+    .team-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .team-card {
+      display: flex; align-items: center; gap: 14px;
+      border-radius: 14px; padding: 16px 18px;
+      border: 1px solid transparent; transition: all var(--transition); cursor: default;
+    }
+    .team-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+    .team-card.admin  { background: linear-gradient(135deg,#fffbeb,#fef3c7); border-color: #fbbf24; }
+    .team-card.asist1 { background: var(--purple-soft); border-color: var(--purple-mist); }
+    .team-card.asist2 { background: #f0f9ff; border-color: #bae6fd; }
+    .team-avatar {
+      width: 50px; height: 50px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; flex-shrink: 0; box-shadow: var(--shadow-sm);
+    }
+    .team-card.admin  .team-avatar { background: linear-gradient(135deg,#d97706,#f59e0b); }
+    .team-card.asist1 .team-avatar { background: linear-gradient(135deg,var(--purple),var(--purple-light)); }
+    .team-card.asist2 .team-avatar { background: linear-gradient(135deg,#0ea5e9,#38bdf8); }
+    .team-info { flex: 1; }
+    .team-name  { font-size: 1rem; font-weight: 800; margin-bottom: 2px; }
+    .team-role  { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; opacity: .7; margin-bottom: 6px; }
+    .team-id-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .team-id    { font-size: .9rem; font-weight: 900; letter-spacing: 1px; }
+    .team-card.admin  .team-name { color: #78350f; }
+    .team-card.admin  .team-role { color: #92400e; }
+    .team-card.admin  .team-id   { color: #d97706; }
+    .team-card.asist1 .team-name { color: var(--purple-dark); }
+    .team-card.asist1 .team-role { color: var(--purple); }
+    .team-card.asist1 .team-id   { color: var(--purple); }
+    .team-card.asist2 .team-name { color: #0369a1; }
+    .team-card.asist2 .team-role { color: #0284c7; }
+    .team-card.asist2 .team-id   { color: #0284c7; }
+    .mini-copy-btn {
+      background: none; border: 1.5px solid currentColor; border-radius: 6px;
+      padding: 3px 10px; font-size: .75rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: all var(--transition); opacity: .8;
+    }
+    .mini-copy-btn:hover { opacity: 1; transform: scale(1.05); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="bienvenida.html">Bienvenida</a></li>
+      <li><a href="paso1.html">Crear cuenta</a></li>
+      <li><a href="paso2.html">Unirse</a></li>
+      <li><a href="paso3.html">Funciones</a></li>
+      <li><a href="normas.html">Normas</a></li>
+      <li><a href="soporte.html">Soporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <div class="hero animate-in">
+      <div class="hero-badge">🏡 Unirse a la familia</div>
+      <div class="hero-logo">Únete a nuestra <span>familia</span></div>
+      <p>Hay dos formas de unirte. Te explicamos ambas<br />
+         con el proceso exacto dentro de MeYo.</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar animate-in">
+      <a href="bienvenida.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Inicio</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso1.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Cuenta</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso2.html" class="progress-step active">
+        <div class="progress-circle">2</div>
+        <span class="progress-label">Búsqueda</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso3.html" class="progress-step">
+        <div class="progress-circle">3</div>
+        <span class="progress-label">Funciones</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="normas.html" class="progress-step">
+        <div class="progress-circle">📋</div>
+        <span class="progress-label">Normas</span>
+      </a>
+    </div>
+
+    <!-- 2 métodos -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">🔑</div>
+        <div>
+          <div class="card-title">2 formas de unirte</div>
+          <div class="card-subtitle">Elige la que aplique a tu caso</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:14px;">
+        <!-- Método A -->
+        <div style="display:flex;gap:14px;align-items:flex-start;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1.5px solid #fbbf24;border-radius:14px;padding:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#d97706,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">✨</div>
+          <div>
+            <div style="font-size:.78rem;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">Método A – Automático (recomendado)</div>
+            <div style="font-size:.93rem;font-weight:700;color:#78350f;margin-bottom:4px;">Código de invitación durante el registro</div>
+            <div style="font-size:.85rem;color:#92400e;line-height:1.6;">Al crear tu cuenta ingresa el código <strong style="font-size:1rem;letter-spacing:2px;color:#d97706;">U6EQF3</strong> en el campo <em>"código de invitación"</em>. Al tocar <strong>"DE ACUERDO"</strong> quedarás unido/a automáticamente a la familia. 🎉</div>
+          </div>
+        </div>
+        <!-- Método B -->
+        <div style="display:flex;gap:14px;align-items:flex-start;background:var(--purple-soft);border:1.5px solid var(--purple-mist);border-radius:14px;padding:16px;">
+          <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--purple-light));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🔍</div>
+          <div>
+            <div style="font-size:.78rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;">Método B – Buscar en la sección Club</div>
+            <div style="font-size:.93rem;font-weight:700;color:var(--purple-dark);margin-bottom:4px;">Busca la familia con el ID: 2327307</div>
+            <div style="font-size:.85rem;color:var(--text-mid);line-height:1.6;">Si ya tienes cuenta, ve a la sección <strong>Club</strong>, busca el ID <strong style="color:var(--purple);">2327307</strong> y solicita unirte. El proceso completo está explicado abajo. 👇</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paso a paso - Método B Club -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">📱</div>
+        <div>
+          <div class="card-title">Método B: Buscar la familia en Club</div>
+          <div class="card-subtitle">Si ya tienes cuenta, sigue este proceso exacto</div>
+        </div>
+      </div>
+
+      <div class="step-flow">
+
+        <!-- Paso 1 -->
+        <div class="step-flow-item">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <strong>Ve a la sección "Club"</strong>
+            <span>Abre MeYo. En la <strong>barra de navegación inferior</strong>, toca el <strong>tercer ícono</strong> (casa con círculo): <strong>"Club"</strong>.</span>
+            <span class="flow-tip">🏠 "Club" → tercer ícono, centro de la barra inferior</span>
+
+            <div class="phone-demo" style="margin-top:16px;">
+              <div class="phone-topbar">
+                <span>01:46</span><span>🔋34%</span>
+              </div>
+              <div style="background:#1a1033;border-radius:10px;padding:10px;margin-bottom:8px;">
+                <div style="font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:8px;">⭐ HOT</div>
+                <!-- Nuestra familia destacada -->
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;background:linear-gradient(135deg,rgba(124,58,237,.35),rgba(168,85,247,.15));border:1.5px solid rgba(168,85,247,.5);border-radius:10px;padding:6px 8px;">
+                  <div style="width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#db2777,#f472b6);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">💋</div>
+                  <div>
+                    <div style="font-size:.78rem;color:white;font-weight:800;">lovy kardia 🔥</div>
+                    <div style="font-size:.65rem;color:rgba(255,255,255,.4);">Valor: 8308 · 👥 4 · 🇪🇨</div>
+                  </div>
+                  <div style="margin-left:auto;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:8px;padding:4px 8px;font-size:.7rem;color:white;font-weight:700;">→</div>
+                </div>
+                <div style="text-align:center;font-size:.65rem;color:#a78bfa;font-weight:700;letter-spacing:.5px;">👆 ¡Esta es nuestra familia!</div>
+              </div>
+              <div class="phone-bottomnav">
+                <div class="phone-nav-item"><span class="phone-nav-icon">❤️</span><span>Casa</span></div>
+                <div class="phone-nav-item"><span class="phone-nav-icon">🪐</span><span>Momento</span></div>
+                <div class="phone-nav-item active">
+                  <span class="phone-nav-icon">🏠</span>
+                  <span>Club</span>
+                  <div class="active-underline"></div>
+                </div>
+                <div class="phone-nav-item"><span class="phone-nav-icon">💬</span><span>Mensaje</span></div>
+                <div class="phone-nav-item"><span class="phone-nav-icon">👤</span><span>A mí</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div class="step-flow-item">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <strong>Toca el ícono de lupa 🔍 (arriba derecha)</strong>
+            <span>En la pantalla de <strong>Club</strong>, verás en la esquina superior derecha el ícono de <strong>búsqueda (lupa)</strong>. Tócalo para abrir <strong>"Buscar en la familia"</strong>.</span>
+            <span class="flow-tip">🔍 Lupa → esquina superior derecha de Club</span>
+          </div>
+        </div>
+
+        <!-- Paso 3 – demo interactiva -->
+        <div class="step-flow-item">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <strong>Escribe el ID de la familia: 2327307</strong>
+            <span>Aparecerá la pantalla <strong>"Buscar en la familia"</strong>. Escribe el ID <strong style="color:var(--purple);">2327307</strong> en el campo de búsqueda y toca el botón morado.</span>
+            <span class="flow-tip">📋 Prueba la demo abajo → escribe 2327307</span>
+
+            <div class="phone-demo" style="margin-top:16px;">
+              <div class="phone-topbar">
+                <span style="font-weight:800;color:white;">Buscar en la familia</span>
+                <div class="phone-search-icon" style="animation:none;background:rgba(168,85,247,.4);">🔍</div>
+              </div>
+              <div class="phone-search-screen">
+                <div class="phone-search-bar">
+                  <input class="phone-search-input" id="demo-id-input" type="text" placeholder="ID de la familia: 2327307" maxlength="10" />
+                  <button class="phone-search-btn" id="demo-search-btn">🔍</button>
+                </div>
+                <div class="phone-result-card" id="demo-result" style="flex-direction:column;align-items:stretch;gap:8px;">
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <div class="phone-result-avatar" id="demo-avatar" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">🏡</div>
+                    <div>
+                      <div class="phone-result-name" id="demo-name">–</div>
+                      <div class="phone-result-id" id="demo-id-label">–</div>
+                    </div>
+                  </div>
+                  <div id="demo-members" style="font-size:.75rem;color:rgba(255,255,255,.5);display:none;">👥 Miembros de la familia: 4/900</div>
+                  <button class="phone-follow-btn" id="demo-follow-btn" style="width:100%;border-radius:12px;padding:10px;">🏠+ Solicitar ingreso</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 4 -->
+        <div class="step-flow-item">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <strong>Toca el perfil de la familia para abrirlo</strong>
+            <span>Cuando aparezca el resultado, <strong>toca la tarjeta de la familia</strong>. Verás el perfil con el nombre, los miembros actuales y las opciones de acción.</span>
+            <span class="flow-tip">👆 Toca la familia en el resultado de búsqueda</span>
+          </div>
+        </div>
+
+        <!-- Paso 5 -->
+        <div class="step-flow-item">
+          <div class="flow-num">5</div>
+          <div class="flow-content">
+            <strong>Toca el botón morado 🏠+ para solicitar ingreso</strong>
+            <span>Dentro del perfil de la familia verás dos botones al fondo: uno salmón (chat) y el <strong>botón morado con ícono de casa 🏠+</strong>. Toca el <strong>botón morado</strong>.</span>
+            <span class="flow-tip">🏠+ Botón morado → parte inferior derecha del perfil</span>
+
+            <!-- Mockup perfil familia -->
+            <div class="phone-demo" style="margin-top:16px;background:linear-gradient(180deg,#5b21b6 0%,#1a1033 38%);">
+              <div class="phone-topbar">
+                <span style="font-size:1rem;">‹</span>
+                <span style="flex:1;"></span>
+                <span>📍</span>
+              </div>
+              <!-- Header profile card -->
+              <div style="background:rgba(15,10,30,.85);border-radius:14px;padding:12px;margin-bottom:12px;">
+                <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;">
+                  <div style="width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#db2777,#f472b6);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">💋</div>
+                  <div>
+                    <div style="font-size:.88rem;font-weight:800;color:white;">💋lovy kardia 🔥</div>
+                    <div style="font-size:.7rem;color:rgba(255,255,255,.5);">ID: 2327307 🇪🇨 EC</div>
+                    <div style="font-size:.7rem;color:rgba(255,255,255,.4);">Tiempo creado: 2026-03-08</div>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:.7rem;color:rgba(255,255,255,.5);">
+                  <span>🔴 Valor semanal: <strong style="color:white;">8308</strong></span>
+                  <span>Valor total: <strong style="color:white;">8308</strong></span>
+                </div>
+              </div>
+              <!-- Members -->
+              <div style="font-size:.78rem;font-weight:700;color:white;margin-bottom:8px;">Miembro de la familia <span style="color:#a78bfa;">4</span>/900</div>
+              <div style="display:flex;gap:6px;margin-bottom:12px;">
+                <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#7c3aed,#c084fc);display:flex;align-items:center;justify-content:center;font-size:.9rem;position:relative;">👩<span style="position:absolute;bottom:-2px;right:-2px;background:#f97316;border-radius:4px;font-size:.45rem;padding:1px 3px;color:white;font-weight:700;">🏠</span></div>
+                <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#0ea5e9,#38bdf8);display:flex;align-items:center;justify-content:center;font-size:.9rem;position:relative;">🧑<span style="position:absolute;bottom:-2px;right:-2px;background:#f97316;border-radius:4px;font-size:.45rem;padding:1px 3px;color:white;font-weight:700;">🏠</span></div>
+                <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#059669,#34d399);display:flex;align-items:center;justify-content:center;font-size:.9rem;position:relative;">👧<span style="position:absolute;bottom:-2px;right:-2px;background:#f97316;border-radius:4px;font-size:.45rem;padding:1px 3px;color:white;font-weight:700;">🏠</span></div>
+                <div style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;">🧑</div>
+              </div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Introducción familiar</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Reglas familiares</div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:10px;display:flex;justify-content:space-between;">Muro de honor familiar <span>›</span></div>
+              <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:8px;">Atributos familiares</div>
+              <!-- Buttons -->
+              <div style="display:flex;gap:8px;">
+                <div style="flex:1;background:linear-gradient(135deg,#fca5a5,#f87171);border-radius:999px;padding:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">💬</div>
+                <div style="flex:1;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:999px;padding:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:white;box-shadow:0 0 0 3px rgba(168,85,247,.5);animation:searchPulse 2s ease-in-out infinite;">🏠+</div>
+              </div>
+              <div style="text-align:right;font-size:.65rem;color:#a78bfa;font-weight:700;margin-top:6px;">↑ Toca este botón</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 6 -->
+        <div class="step-flow-item">
+          <div class="flow-num">6</div>
+          <div class="flow-content">
+            <strong>Escribe tu mensaje y toca "DE ACUERDO"</strong>
+            <span>Aparecerá la pantalla <strong>"Solicitar"</strong>. Escribe un breve mensaje presentándote y por qué quieres unirte.</span>
+
+            <!-- Mockup solicitar -->
+            <div class="phone-demo" style="margin-top:16px;background:#12102a;">
+              <div class="phone-topbar">
+                <span style="font-size:.9rem;">‹</span>
+                <span style="font-size:.88rem;font-weight:800;color:white;flex:1;text-align:center;">Solicitar</span>
+                <span></span>
+              </div>
+              <div style="background:#2d2a52;border-radius:12px;padding:14px;margin:8px 0 4px;min-height:80px;position:relative;">
+                <span style="font-size:.85rem;color:rgba(255,255,255,.85);">Hola, Soy nuevo y quiero unirme a su familia</span>
+                <span style="display:inline-block;width:2px;height:14px;background:#a78bfa;margin-left:1px;vertical-align:middle;animation:blink 1s step-end infinite;"></span>
+                <div style="position:absolute;bottom:8px;right:10px;width:20px;height:20px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:rgba(255,255,255,.6);">✕</div>
+              </div>
+              <div style="text-align:right;font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:16px;">46/80</div>
+              <div style="background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:999px;padding:14px;text-align:center;font-size:.9rem;font-weight:800;color:white;letter-spacing:.5px;">DE ACUERDO</div>
+            </div>
+            <style>@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }</style>
+
+            <div style="margin-top:12px;background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:1.5px solid #6ee7b7;border-radius:12px;padding:14px;">
+              <div style="font-size:.78rem;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;">✅ ¡Solicitud enviada!</div>
+              <div style="font-size:.85rem;color:#047857;line-height:1.65;">Después de tocar <strong>"DE ACUERDO"</strong> tu solicitud queda pendiente de aprobación. Para que te aprueben <strong>más rápido</strong>, contacta directamente a uno de nuestros administradores. 👇</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Resumen dark card -->
+    <div class="card animate-in" style="background:linear-gradient(135deg,#1a1033,#2d1b69);color:white;border:none;">
+      <div class="card-header" style="margin-bottom:16px;">
+        <div class="step-badge">⚡</div>
+        <div>
+          <div class="card-title" style="color:white;">Resumen – Método B (Club)</div>
+          <div class="card-subtitle" style="color:rgba(255,255,255,.6);">Guía ultra rápida en 6 pasos</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;">
+          <span style="font-size:1.3rem;">🏠</span>
+          <span style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);">Toca <strong style="color:var(--purple-light);">"Club"</strong> → tercer ícono, barra inferior</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;">
+          <span style="font-size:1.3rem;">🔍</span>
+          <span style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);">Toca la <strong style="color:var(--purple-light);">lupa</strong> (arriba derecha)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;">
+          <span style="font-size:1.3rem;">🔢</span>
+          <span style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);">Escribe el ID <strong style="color:#fbbf24;font-size:1rem;letter-spacing:1px;">2327307</strong> y busca</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;">
+          <span style="font-size:1.3rem;">👆</span>
+          <span style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);">Toca el perfil de la familia para <strong style="color:var(--purple-light);">abrirlo</strong></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;">
+          <span style="font-size:1.3rem;">🏠+</span>
+          <span style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);">Toca el <strong style="color:#c084fc;">botón morado</strong> → Solicitar ingreso</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border-radius:10px;padding:12px 14px;">
+          <span style="font-size:1.3rem;">✍️</span>
+          <span style="font-size:.9rem;font-weight:600;color:rgba(255,255,255,.85);">Escribe tu mensaje y toca <strong style="color:#34d399;">"DE ACUERDO"</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDs copia rápida -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">📋</div>
+        <div>
+          <div class="card-title">IDs – copia rápida</div>
+          <div class="card-subtitle">Pega el ID directamente en el buscador de MeYo</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+        <!-- ID Familia -->
+        <div style="display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1e1b4b,#312e81);border-radius:12px;padding:14px 16px;border:1px solid #6366f1;">
+          <div>
+            <div style="font-size:.78rem;font-weight:700;color:#a5b4fc;text-transform:uppercase;letter-spacing:.8px;">🏡 ID de la Familia</div>
+            <div style="font-size:1.6rem;font-weight:900;letter-spacing:3px;color:#e0e7ff;">2327307</div>
+          </div>
+          <button class="copy-btn" data-copy="2327307" style="background:#6366f1;">📋 Copiar</button>
+        </div>
+        <!-- Ashley -->
+        <div style="display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#fffbeb,#fef3c7);border-radius:12px;padding:14px 16px;border:1px solid #fbbf24;">
+          <div>
+            <div style="font-size:.78rem;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.8px;">👑 Admin – Ashley</div>
+            <div style="font-size:1.5rem;font-weight:900;letter-spacing:3px;color:#d97706;">37596460</div>
+          </div>
+          <button class="copy-btn" data-copy="37596460" style="background:#d97706;">📋 Copiar</button>
+        </div>
+        <!-- Angie -->
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--purple-soft);border-radius:12px;padding:14px 16px;border:1px solid var(--purple-mist);">
+          <div>
+            <div style="font-size:.78rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.8px;">⭐ Asistente 1 – Angie</div>
+            <div style="font-size:1.5rem;font-weight:900;letter-spacing:3px;color:var(--purple-dark);">37617550</div>
+          </div>
+          <button class="copy-btn" data-copy="37617550">📋 Copiar</button>
+        </div>
+        <!-- Jose -->
+        <div style="display:flex;align-items:center;justify-content:space-between;background:#f0f9ff;border-radius:12px;padding:14px 16px;border:1px solid #bae6fd;">
+          <div>
+            <div style="font-size:.78rem;font-weight:700;color:#0284c7;text-transform:uppercase;letter-spacing:.8px;">💼 Asistente 2 – Jose</div>
+            <div style="font-size:1.5rem;font-weight:900;letter-spacing:3px;color:#0369a1;">30594586</div>
+          </div>
+          <button class="copy-btn" data-copy="30594586" style="background:#0284c7;">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">✅</div>
+        <div>
+          <div class="card-title">Lista de verificación – Unirse</div>
+          <div class="card-subtitle">Marca cada punto al completarlo</div>
+        </div>
+      </div>
+      <div class="checklist">
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Fui a la sección "Club" (tercer ícono, barra inferior)</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Toqué el ícono de lupa (arriba a la derecha)</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Busqué el ID de la familia: 2327307</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Toqué el botón morado 🏠+ "Solicitar ingreso"</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Escribí mi mensaje y toqué "DE ACUERDO" para enviar la solicitud</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card: Aprobación rápida -->
+    <div class="card animate-in" style="border:1.5px solid rgba(167,139,250,.35);background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(16,12,40,.9));margin-top:32px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <div style="font-size:1.6rem;flex-shrink:0;">⚡</div>
+        <div>
+          <div style="font-size:1rem;font-weight:800;color:white;">¿Quieres que te aprueben rápido?</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.65);margin-top:2px;">Tienes dos opciones</div>
+        </div>
+      </div>
+      <p style="font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:16px;">
+        Puedes <strong style="color:white;">esperar</strong> a que un administrador revise y apruebe tu solicitud, o puedes
+        <strong style="color:#c4b5fd;">escribirles directamente</strong> para que te aprueben más rápido. Menciónales que ya enviaste la solicitud 😊
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+
+        <!-- Ashley -->
+        <div style="background:rgba(0,0,0,.35);border:1.5px solid rgba(255,193,7,.25);border-radius:14px;padding:14px;text-align:center;">
+          <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:#fbbf24;font-weight:700;margin-bottom:6px;">👑 Admin</div>
+          <div style="font-size:1rem;font-weight:800;color:white;margin-bottom:2px;">Ashley</div>
+          <div style="font-family:monospace;font-size:.85rem;color:#fbbf24;margin-bottom:10px;">37596460</div>
+          <button class="copy-btn" data-code="37596460" style="width:100%;font-size:.78rem;padding:8px 0;border-radius:8px;">Copiar ID</button>
+        </div>
+
+        <!-- Angie -->
+        <div style="background:rgba(0,0,0,.35);border:1.5px solid rgba(168,85,247,.25);border-radius:14px;padding:14px;text-align:center;">
+          <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:#a855f7;font-weight:700;margin-bottom:6px;">⭐ Asistente 1</div>
+          <div style="font-size:1rem;font-weight:800;color:white;margin-bottom:2px;">Angie</div>
+          <div style="font-family:monospace;font-size:.85rem;color:#c084fc;margin-bottom:10px;">37617550</div>
+          <button class="copy-btn" data-code="37617550" style="width:100%;font-size:.78rem;padding:8px 0;border-radius:8px;">Copiar ID</button>
+        </div>
+
+        <!-- Jose -->
+        <div style="background:rgba(0,0,0,.35);border:1.5px solid rgba(59,130,246,.25);border-radius:14px;padding:14px;text-align:center;">
+          <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:#60a5fa;font-weight:700;margin-bottom:6px;">💼 Asistente 2</div>
+          <div style="font-size:1rem;font-weight:800;color:white;margin-bottom:2px;">Jose</div>
+          <div style="font-family:monospace;font-size:.85rem;color:#93c5fd;margin-bottom:10px;">30594586</div>
+          <button class="copy-btn" data-code="30594586" style="width:100%;font-size:.78rem;padding:8px 0;border-radius:8px;">Copiar ID</button>
+        </div>
+
+      </div>
+      <div style="margin-top:14px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;font-size:.82rem;color:rgba(255,255,255,.55);text-align:center;">
+        Copia el ID, búscalos en MeYo y escríbeles un mensaje directo 📩
+      </div>
+    </div>
+
+    <div class="nav-buttons animate-in">
+      <a href="paso1.html" class="btn btn-ghost">← Crear cuenta</a>
+      <a href="paso3.html" class="btn btn-primary">Funciones →</a>
+    </div>
+
+    <footer class="page-footer">
+      <p>Guía para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+  <script>
+    const demoInput  = document.getElementById('demo-id-input');
+    const demoBtn    = document.getElementById('demo-search-btn');
+    const demoResult = document.getElementById('demo-result');
+    const demoAvatar = document.getElementById('demo-avatar');
+    const demoName   = document.getElementById('demo-name');
+    const demoIdLbl  = document.getElementById('demo-id-label');
+    const demoFollow = document.getElementById('demo-follow-btn');
+
+    const families = {
+      '2327307': { name: 'lovy kardia 🔥', members: '4/900', avatar: '🏡' },
+    };
+
+    function runSearch() {
+      const val   = demoInput.value.trim();
+      const found = families[val];
+      if (found) {
+        demoAvatar.textContent = found.avatar;
+        demoName.textContent   = found.name;
+        demoIdLbl.textContent  = 'ID: ' + val + ' · 🇪🇨';
+        document.getElementById('demo-members').style.display = 'block';
+        demoFollow.textContent = '🏠+ Solicitar ingreso';
+        demoFollow.classList.remove('followed');
+        demoFollow.disabled = false;
+        demoResult.classList.add('show');
+        showToast('✅ ¡Familia encontrada! Toca "Solicitar ingreso"');
+      } else if (val.length > 0) {
+        demoResult.classList.remove('show');
+        document.getElementById('demo-members').style.display = 'none';
+        showToast('⚠️ Escribe el ID correcto: 2327307');
+      }
+    }
+
+    demoBtn.addEventListener('click', runSearch);
+    demoInput.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+
+    demoFollow.addEventListener('click', () => {
+      if (!demoFollow.disabled) {
+        demoFollow.textContent = '✍️ "Hola, Soy nuevo y quiero unirme a su familia"';
+        demoFollow.style.fontSize = '.72rem';
+        demoFollow.classList.add('followed');
+        demoFollow.disabled = true;
+        showToast('✅ Solicitud enviada – ¡espera la aprobación del admin! 🎉');
+      }
+    });
+  </script>
+</body>
+</html>

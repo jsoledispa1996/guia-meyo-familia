@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Normas de la Familia – MeYo</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .rule-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: #fff7ed;
+      border-radius: 12px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--orange);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .rule-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249,115,22,.05), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .rule-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-sm);
+    }
+    .rule-item:hover::before { opacity: 1; }
+
+    .rule-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform var(--transition);
+    }
+    .rule-item:hover .rule-icon { transform: scale(1.15) rotate(-5deg); }
+
+    .rule-content h4 { font-size: .97rem; font-weight: 800; color: #c2410c; margin-bottom: 4px; }
+    .rule-content p  { font-size: .88rem; color: #78350f; margin: 0 !important; line-height: 1.6 !important; }
+
+    .rules-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .acceptance-box {
+      background: var(--purple-soft);
+      border: 2px solid var(--purple-mist);
+      border-radius: 14px;
+      padding: 24px;
+      margin-top: 24px;
+      text-align: center;
+    }
+    .acceptance-box p {
+      font-size: .9rem;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .acceptance-checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 16px;
+    }
+    .acceptance-checkbox input { display: none; }
+    .acceptance-box-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 2px solid var(--purple-light);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .acceptance-checkbox.checked .acceptance-box-check {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+      font-size: .9rem;
+    }
+    .acceptance-label { font-size: .93rem; font-weight: 700; color: var(--text-mid); }
+
+    .accept-btn {
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 32px;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--transition);
+      box-shadow: 0 4px 14px rgba(124,58,237,.3);
+      opacity: .5;
+      pointer-events: none;
+    }
+    .accept-btn.enabled {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .accept-btn.enabled:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124,58,237,.45);
+    }
+    .accepted-msg {
+      display: none;
+      background: #ecfdf5;
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: #065f46;
+      font-size: .9rem;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+    .accepted-msg.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="bienvenida.html">Bienvenida</a></li>
+      <li><a href="paso1.html">Crear cuenta</a></li>
+      <li><a href="paso2.html">Unirse</a></li>
+      <li><a href="paso3.html">Funciones</a></li>
+      <li><a href="normas.html">Normas</a></li>
+      <li><a href="soporte.html">Soporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <div class="hero animate-in" style="background: linear-gradient(135deg, #ea580c 0%, #f97316 60%, #fbbf24 100%);">
+      <div class="hero-badge">📋 Normas de la Familia</div>
+      <div class="hero-logo">Reglas de <span>Convivencia</span></div>
+      <p>Para que todos estemos cómodos y seguros,<br />
+         te pedimos seguir estas normas básicas.</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar animate-in">
+      <a href="bienvenida.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Inicio</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso1.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Cuenta</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso2.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Familia</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso3.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Funciones</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="normas.html" class="progress-step active">
+        <div class="progress-circle">📋</div>
+        <span class="progress-label">Normas</span>
+      </a>
+    </div>
+
+    <!-- Intro -->
+    <div class="card animate-in orange">
+      <div class="card-header">
+        <div class="step-badge orange">⚖️</div>
+        <div>
+          <div class="card-title">¿Por qué tenemos normas?</div>
+        </div>
+      </div>
+      <p>Las normas no están aquí para limitar, sino para <strong>proteger a todos los miembros</strong> y garantizar que la familia sea un espacio positivo, seguro y agradable. ¡Gracias por respetarlas!</p>
+    </div>
+
+    <!-- Reglas -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge orange">📋</div>
+        <div>
+          <div class="card-title">Normas de la familia</div>
+          <div class="card-subtitle">Pasa el cursor sobre cada norma para más detalles</div>
+        </div>
+      </div>
+
+      <div class="rules-list">
+        <div class="rule-item">
+          <span class="rule-icon">🤝</span>
+          <div class="rule-content">
+            <h4>1. Respeto ante todo</h4>
+            <p>Trata a todos los miembros con amabilidad y respeto, sin importar las diferencias de opinión, edad o forma de ser.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="rule-icon">🚫</span>
+          <div class="rule-content">
+            <h4>2. Sin contenido inapropiado</h4>
+            <p>Está totalmente prohibido compartir imágenes, mensajes o comentarios ofensivos, violentos, discriminatorios o inapropiados de cualquier tipo.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="rule-icon">👑</span>
+          <div class="rule-content">
+            <h4>3. Sigue las instrucciones de los administradores</h4>
+            <p>Los administradores son los responsables de gestionar la familia. Sus indicaciones deben ser respetadas en todo momento.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="rule-icon">📵</span>
+          <div class="rule-content">
+            <h4>4. Sin spam ni publicidad</h4>
+            <p>Evita enviar mensajes repetidos, publicidad no autorizada, enlaces externos sospechosos o contenido irrelevante para el grupo.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="rule-icon">☮️</span>
+          <div class="rule-content">
+            <h4>5. Buena convivencia</h4>
+            <p>Contribuye a mantener un ambiente positivo. Los conflictos deben resolverse de forma tranquila, madura y siempre con respeto.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="rule-icon">🔐</span>
+          <div class="rule-content">
+            <h4>6. Respeto a la privacidad</h4>
+            <p>No compartas información personal, fotos ni datos de otros miembros fuera del grupo sin su consentimiento expreso.</p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <span class="rule-icon">💬</span>
+          <div class="rule-content">
+            <h4>7. Comunicación honesta</h4>
+            <p>Sé honesto/a en tus interacciones. No está permitido el engaño, la suplantación de identidad ni el comportamiento falso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consecuencias -->
+    <div class="card animate-in orange">
+      <div class="card-header">
+        <div class="step-badge orange">⚠️</div>
+        <div>
+          <div class="card-title">Consecuencias del incumplimiento</div>
+        </div>
+      </div>
+      <ul>
+        <li>Primera infracción: advertencia del administrador.</li>
+        <li>Segunda infracción: suspensión temporal del grupo.</li>
+        <li>Tercera infracción o falta grave: expulsión definitiva de la familia.</li>
+      </ul>
+      <div class="info-box" style="border-left-color:var(--orange); background:#fff7ed; color:#9a3412; margin-top:16px;">
+        ⚠️ Los administradores se reservan el derecho de actuar según la gravedad de la situación.
+      </div>
+    </div>
+
+    <!-- Aceptación interactiva -->
+    <div class="acceptance-box animate-in">
+      <p>Al formar parte de esta familia, aceptas cumplir con todas las normas descritas arriba.<br />
+         Marca la casilla para confirmar tu acuerdo:</p>
+
+      <label class="acceptance-checkbox" id="accept-label">
+        <input type="checkbox" id="accept-check" />
+        <div class="acceptance-box-check" id="accept-box">✓</div>
+        <span class="acceptance-label">Acepto las normas de la familia</span>
+      </label>
+
+      <button class="accept-btn" id="accept-btn">✅ Confirmar aceptación</button>
+
+      <div class="accepted-msg" id="accepted-msg">
+        🎉 ¡Gracias! Has aceptado las normas de la familia. ¡Bienvenido/a oficialmente!
+      </div>
+    </div>
+
+    <div class="nav-buttons animate-in">
+      <a href="paso3.html" class="btn btn-ghost">← Funciones</a>
+      <a href="soporte.html" class="btn btn-primary">Soporte →</a>
+    </div>
+
+    <footer class="page-footer">
+      <p>Guía para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+  <script>
+    const acceptLabel = document.getElementById('accept-label');
+    const acceptCheck = document.getElementById('accept-check');
+    const acceptBox   = document.getElementById('accept-box');
+    const acceptBtn   = document.getElementById('accept-btn');
+    const acceptedMsg = document.getElementById('accepted-msg');
+
+    acceptLabel.addEventListener('click', () => {
+      const checked = !acceptLabel.classList.contains('checked');
+      acceptLabel.classList.toggle('checked', checked);
+      acceptBox.textContent = checked ? '✓' : '';
+      acceptBtn.classList.toggle('enabled', checked);
+    });
+
+    acceptBtn.addEventListener('click', () => {
+      acceptedMsg.classList.add('show');
+      acceptBtn.textContent = '✅ ¡Aceptado!';
+      acceptBtn.disabled = true;
+      showToast('🎉 ¡Bienvenido/a oficialmente a la familia!');
+    });
+  </script>
+</body>
+</html>

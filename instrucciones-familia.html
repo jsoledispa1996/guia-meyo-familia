@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instrucciones para nuevos integrantes – Familia MeYo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f0ff;
+      color: #2d2d2d;
+      padding: 30px 16px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: white;
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      margin-bottom: 36px;
+      box-shadow: 0 6px 24px rgba(124, 58, 237, 0.3);
+    }
+
+    header .logo {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    header .logo span {
+      color: #f0c040;
+    }
+
+    header p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .welcome-box {
+      background: #ffffff;
+      border-left: 5px solid #a855f7;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .welcome-box h2 {
+      font-size: 1.2rem;
+      color: #7c3aed;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .welcome-box p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      border-top: 4px solid #a855f7;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .step-number {
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 700;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(124,58,237,0.35);
+    }
+
+    .step-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #3b0764;
+    }
+
+    .step-card p {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .step-card ol,
+    .step-card ul {
+      padding-left: 22px;
+      margin-top: 8px;
+    }
+
+    .step-card ol li,
+    .step-card ul li {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .invite-code-box {
+      background: #faf0ff;
+      border: 2px dashed #a855f7;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .invite-code-box p {
+      font-size: 0.9rem;
+      color: #7c3aed;
+      margin-bottom: 6px !important;
+      font-weight: 600;
+    }
+
+    .invite-code-box .code {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 6px;
+      color: #6d28d9;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 540px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-item {
+      background: #f5f0ff;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .feature-item h4 {
+      font-size: 0.95rem;
+      color: #5b21b6;
+      margin-bottom: 4px;
+    }
+
+    .feature-item p {
+      font-size: 0.87rem !important;
+      color: #666 !important;
+      margin: 0 !important;
+      line-height: 1.5 !important;
+    }
+
+    .rules-card {
+      background: #fff7ed;
+      border-top: 4px solid #f97316;
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .rules-card .step-title {
+      color: #c2410c;
+    }
+
+    .rules-card ol li {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 6px;
+      padding-left: 4px;
+    }
+
+    .support-card {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border-top: 4px solid #10b981;
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .support-card .step-title {
+      color: #065f46;
+    }
+
+    .support-card p {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: #555;
+    }
+
+    .support-card ul li {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 6px;
+      padding-left: 4px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: #999;
+    }
+
+    footer span {
+      color: #a855f7;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Me<span>Yo</span></div>
+    <p>Bienvenido/a a nuestra familia en <strong>MeYo</strong>.<br />
+    Aquí encontrarás todo lo que necesitas saber para comenzar.</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Bienvenida -->
+    <div class="welcome-box">
+      <h2>👋 Bienvenida</h2>
+      <p>
+        Esta página ha sido creada especialmente para los <strong>nuevos integrantes</strong> de nuestra familia dentro de la aplicación <strong>MeYo</strong>.
+        Aquí encontrarás instrucciones paso a paso para crear tu cuenta, unirte a la familia y conocer todas las herramientas que la app tiene para ofrecerte.
+        <br /><br />
+        Léela con calma y, si tienes alguna duda, no dudes en consultar con los administradores. ¡Nos alegra mucho tenerte con nosotros!
+      </p>
+    </div>
+
+    <!-- Paso 1 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <div class="step-title">Crear tu cuenta en MeYo <em style="font-weight:400; font-size:0.9rem; color:#888;">(solo usuarios nuevos)</em></div>
+      </div>
+      <p>Si aún no tienes una cuenta en la aplicación, sigue estos pasos para registrarte:</p>
+      <ol>
+        <li>Descarga la aplicación <strong>MeYo</strong> desde la tienda de tu dispositivo (App Store o Google Play).</li>
+        <li>Abre la app y selecciona la opción <strong>"Registrarse"</strong> o <strong>"Crear cuenta"</strong>.</li>
+        <li>Completa el formulario con tu nombre, correo electrónico y una contraseña segura.</li>
+        <li>Cuando la app te lo pida, ingresa el <strong>código de invitación</strong> de nuestra familia:</li>
+      </ol>
+
+      <div class="invite-code-box">
+        <p>🔑 Código de invitación de la familia</p>
+        <div class="code">123456789</div>
+        <p style="margin-top:8px !important; font-size:0.82rem !important; color:#9333ea !important;">
+          ¡No olvides ingresar este código! Es necesario para unirte correctamente a la familia.
+        </p>
+      </div>
+    </div>
+
+    <!-- Paso 2 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <div class="step-title">Unirse a la familia</div>
+      </div>
+      <p>Una vez que hayas creado tu cuenta, sigue estos pasos para unirte a la familia:</p>
+      <ol>
+        <li>Inicia sesión en la aplicación con tu correo y contraseña.</li>
+        <li>En el menú principal, busca la sección <strong>"Familias"</strong> o <strong>"Grupos"</strong>.</li>
+        <li>Selecciona la opción <strong>"Unirse a una familia"</strong> o <strong>"Buscar familia"</strong>.</li>
+        <li>Ingresa el código de invitación <strong>123456789</strong> si aún no lo has utilizado, o busca el nombre de nuestra familia directamente.</li>
+        <li>Confirma tu solicitud de ingreso y espera la aceptación de un administrador si es necesario.</li>
+        <li>¡Listo! Ya formas parte de la familia. Podrás ver a todos los miembros y participar en las actividades.</li>
+      </ol>
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <div class="step-title">Funcionalidades principales de la aplicación</div>
+      </div>
+      <p>MeYo tiene varias herramientas para que puedas conectarte con los demás miembros de la familia. Aquí te explicamos las más importantes:</p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">💬</div>
+          <div>
+            <h4>Chat con miembros</h4>
+            <p>Puedes enviar mensajes de texto, imágenes y notas de voz a cualquier miembro de la familia. Busca su perfil y toca el botón de mensaje.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">🎁</div>
+          <div>
+            <h4>Envío de regalos</h4>
+            <p>La app permite enviar regalos virtuales y reaccionar con otros miembros. Entra al perfil de alguien y selecciona la opción de regalo.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">🏠</div>
+          <div>
+            <h4>Salas y actividades</h4>
+            <p>Puedes unirte a salas de voz o video donde los miembros se reúnen para charlar o hacer actividades juntos en tiempo real.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">👤</div>
+          <div>
+            <h4>Perfil de usuario</h4>
+            <p>Personaliza tu perfil con foto, nombre y descripción. Un buen perfil ayuda a que los demás miembros te conozcan mejor.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">🤝</div>
+          <div>
+            <h4>Interacción en la familia</h4>
+            <p>Participa en las actividades grupales, responde a publicaciones y apoya a los demás miembros con reacciones y comentarios positivos.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">🔔</div>
+          <div>
+            <h4>Notificaciones</h4>
+            <p>Activa las notificaciones para estar al tanto de los avisos del grupo, mensajes nuevos y eventos importantes de la familia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Normas de la familia -->
+    <div class="rules-card">
+      <div class="step-header">
+        <div class="step-number" style="background: linear-gradient(135deg, #f97316, #fb923c);">📋</div>
+        <div class="step-title">Normas básicas de la familia</div>
+      </div>
+      <p style="font-size:0.97rem; line-height:1.75; color:#555; margin-bottom:12px;">
+        Para mantener un ambiente agradable y seguro para todos, te pedimos seguir estas normas:
+      </p>
+      <ol>
+        <li><strong>Respeto ante todo:</strong> Trata a todos los miembros con amabilidad y respeto, sin importar las diferencias.</li>
+        <li><strong>Sin contenido inapropiado:</strong> Está prohibido compartir imágenes, mensajes o comentarios ofensivos, violentos o inapropiados.</li>
+        <li><strong>Sigue las indicaciones de los administradores:</strong> Los administradores son responsables del grupo. Sus instrucciones deben ser respetadas.</li>
+        <li><strong>No spam:</strong> Evita enviar mensajes repetidos, publicidad no autorizada o contenido irrelevante para la familia.</li>
+        <li><strong>Buena convivencia:</strong> Contribuye a mantener un ambiente positivo. Cualquier conflicto debe resolverse de forma tranquila y respetuosa.</li>
+        <li><strong>Privacidad:</strong> No compartas información personal de otros miembros fuera de la familia sin su consentimiento.</li>
+      </ol>
+    </div>
+
+    <!-- Soporte -->
+    <div class="support-card">
+      <div class="step-header">
+        <div class="step-number" style="background: linear-gradient(135deg, #10b981, #34d399);">❓</div>
+        <div class="step-title">Soporte y ayuda</div>
+      </div>
+      <p>¿Tienes alguna duda o problema con la aplicación? No te preocupes, aquí te decimos cómo obtener ayuda:</p>
+      <ul>
+        <li>Consulta directamente con alguno de los <strong>administradores de la familia</strong> a través del chat de la app.</li>
+        <li>Si tienes un problema técnico con la aplicación, revisa la sección de <strong>Ayuda o Soporte</strong> dentro de MeYo.</li>
+        <li>También puedes preguntar a cualquier miembro con más experiencia en el grupo; todos estamos aquí para ayudarnos.</li>
+      </ul>
+      <p style="margin-top:14px;">
+        Recuerda: ninguna pregunta es tonta. Si algo no queda claro, pregunta con confianza. ¡Estamos para ayudarte! 😊
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Creado con ❤️ para la familia en <span>MeYo</span> · Versión 2026</p>
+  </footer>
+
+</body>
+</html>

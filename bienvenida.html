@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenida – MeYo Familia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .avatar-grid {
+      display: flex;
+      justify-content: center;
+      gap: -10px;
+      margin: 24px 0 8px;
+    }
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      border: 3px solid var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-left: -10px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition);
+    }
+    .avatar:first-child { margin-left: 0; }
+    .avatar:hover { transform: translateY(-6px) scale(1.1); z-index: 2; }
+
+    .highlight-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    @media (max-width: 480px) { .highlight-row { grid-template-columns: 1fr; } }
+
+    .highlight-item {
+      background: var(--purple-soft);
+      border-radius: 12px;
+      padding: 18px 14px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .highlight-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+    .highlight-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .highlight-label { font-size: .85rem; font-weight: 700; color: var(--purple-dark); }
+    .highlight-desc  { font-size: .78rem; color: var(--text-light); margin-top: 3px; }
+
+    .pulse-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,.5); }
+      50%       { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="bienvenida.html">Bienvenida</a></li>
+      <li><a href="paso1.html">Crear cuenta</a></li>
+      <li><a href="paso2.html">Unirse</a></li>
+      <li><a href="paso3.html">Funciones</a></li>
+      <li><a href="normas.html">Normas</a></li>
+      <li><a href="soporte.html">Soporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <div class="hero animate-in">
+      <div class="hero-badge">👋 Bienvenida</div>
+      <div class="hero-logo">Me<span>Yo</span></div>
+      <p>¡Estamos muy contentos de tenerte aquí!<br />
+         Esta guía te ayudará a integrarte fácilmente a la familia.</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-bar animate-in">
+      <a href="bienvenida.html" class="progress-step active">
+        <div class="progress-circle">👋</div>
+        <span class="progress-label">Inicio</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso1.html" class="progress-step">
+        <div class="progress-circle">1</div>
+        <span class="progress-label">Cuenta</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso2.html" class="progress-step">
+        <div class="progress-circle">2</div>
+        <span class="progress-label">Familia</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso3.html" class="progress-step">
+        <div class="progress-circle">3</div>
+        <span class="progress-label">Funciones</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="normas.html" class="progress-step">
+        <div class="progress-circle">📋</div>
+        <span class="progress-label">Normas</span>
+      </a>
+    </div>
+
+    <!-- Card bienvenida -->
+    <div class="card animate-in">
+      <div class="section-badge">🌟 Mensaje de bienvenida</div>
+
+      <div class="avatar-grid">
+        <div class="avatar">👩</div>
+        <div class="avatar">👨</div>
+        <div class="avatar">👧</div>
+        <div class="avatar">👦</div>
+        <div class="avatar">🧑</div>
+      </div>
+
+      <p style="text-align:center; font-size:1rem; font-weight:700; color:var(--purple-dark); margin-top:12px;">
+        <span class="pulse-dot"></span>La familia te está esperando
+      </p>
+
+      <p style="margin-top:20px;">
+        Bienvenido/a a nuestra familia en <strong>MeYo</strong>. Esta página fue creada especialmente para que los nuevos integrantes puedan conocer cómo funciona todo dentro de la aplicación y se sientan cómodos desde el primer día.
+      </p>
+      <p>
+        Aquí encontrarás instrucciones claras y sencillas, organizadas paso a paso. No importa si nunca has usado MeYo antes, esta guía te llevará de la mano en todo el proceso.
+      </p>
+    </div>
+
+    <!-- Highlights -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">🎯</div>
+        <div>
+          <div class="card-title">¿Qué aprenderás aquí?</div>
+          <div class="card-subtitle">Esta guía cubre todo lo que necesitas saber</div>
+        </div>
+      </div>
+
+      <div class="highlight-row">
+        <div class="highlight-item">
+          <div class="highlight-icon">📱</div>
+          <div class="highlight-label">Crear cuenta</div>
+          <div class="highlight-desc">Registro en la app con código de invitación</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🏡</div>
+          <div class="highlight-label">Unirte</div>
+          <div class="highlight-desc">Cómo buscar y unirte a la familia</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">⚡</div>
+          <div class="highlight-label">Funciones</div>
+          <div class="highlight-desc">Chat, regalos, salas y más</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📋</div>
+          <div class="highlight-label">Normas</div>
+          <div class="highlight-desc">Reglas básicas de convivencia</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🆘</div>
+          <div class="highlight-label">Soporte</div>
+          <div class="highlight-desc">Dónde pedir ayuda si la necesitas</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🤝</div>
+          <div class="highlight-label">Comunidad</div>
+          <div class="highlight-desc">Cómo interactuar bien con todos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info card -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">💡</div>
+        <div>
+          <div class="card-title">Consejos antes de empezar</div>
+        </div>
+      </div>
+      <ul>
+        <li>Lee esta guía completa antes de empezar a usar la app.</li>
+        <li>Ten a mano el <strong>código de invitación: U6EQF3</strong> para registrarte.</li>
+        <li>Si tienes alguna duda en cualquier paso, puedes pausar y consultar con los administradores.</li>
+        <li>¡No tengas miedo de participar! La familia está aquí para apoyarte.</li>
+      </ul>
+
+      <div class="info-box" style="margin-top:20px;">
+        💜 Recuerda: todos en la familia fueron nuevos alguna vez. ¡Bienvenido/a!
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons animate-in">
+      <a href="index.html" class="btn btn-ghost">← Volver al inicio</a>
+      <a href="paso1.html" class="btn btn-primary">Crear cuenta →</a>
+    </div>
+
+    <footer class="page-footer">
+      <p>Guía para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

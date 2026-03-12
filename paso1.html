@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paso 1: Crear Cuenta – MeYo Familia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .store-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 700;
+      transition: all var(--transition);
+    }
+    .store-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      background: var(--purple-dark);
+    }
+    .store-btn span.sub { font-size: .7rem; font-weight: 400; display: block; opacity: .8; }
+    .store-icon { font-size: 1.5rem; }
+
+    .code-anim {
+      animation: codePulse 2.5s ease-in-out infinite;
+    }
+    @keyframes codePulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.04); }
+    }
+
+    .step-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 16px;
+    }
+    .step-flow-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 18px;
+      position: relative;
+    }
+    .step-flow-item::after {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 40px;
+      bottom: 0;
+      width: 2px;
+      background: var(--purple-mist);
+    }
+    .step-flow-item:last-child::after { display: none; }
+    .step-flow-item:last-child { padding-bottom: 0; }
+
+    .flow-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white;
+      font-size: .85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: var(--shadow-sm);
+    }
+    .flow-content { padding-top: 6px; }
+    .flow-content strong { font-size: .95rem; color: var(--text-dark); display: block; margin-bottom: 3px; }
+    .flow-content span  { font-size: .87rem; color: var(--text-mid); line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="bienvenida.html">Bienvenida</a></li>
+      <li><a href="paso1.html">Crear cuenta</a></li>
+      <li><a href="paso2.html">Unirse</a></li>
+      <li><a href="paso3.html">Funciones</a></li>
+      <li><a href="normas.html">Normas</a></li>
+      <li><a href="soporte.html">Soporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <div class="hero animate-in">
+      <div class="hero-badge">📱 Crear cuenta</div>
+      <div class="hero-logo">Crear <span>Cuenta</span></div>
+      <p>Solo para usuarios nuevos. Descarga la app y regístrate<br />
+         usando el código de invitación de la familia.</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar animate-in">
+      <a href="bienvenida.html" class="progress-step done">
+        <div class="progress-circle">✓</div>
+        <span class="progress-label">Inicio</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso1.html" class="progress-step active">
+        <div class="progress-circle">1</div>
+        <span class="progress-label">Cuenta</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso2.html" class="progress-step">
+        <div class="progress-circle">2</div>
+        <span class="progress-label">Familia</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="paso3.html" class="progress-step">
+        <div class="progress-circle">3</div>
+        <span class="progress-label">Funciones</span>
+      </a>
+      <div class="progress-line"></div>
+      <a href="normas.html" class="progress-step">
+        <div class="progress-circle">📋</div>
+        <span class="progress-label">Normas</span>
+      </a>
+    </div>
+
+    <!-- Ya tienes cuenta? -->
+    <div class="card animate-in" style="background: linear-gradient(135deg,#ecfdf5,#d1fae5); border:none;">
+      <div class="card-header">
+        <div class="step-badge green">💡</div>
+        <div>
+          <div class="card-title">¿Ya tienes cuenta en MeYo?</div>
+          <div class="card-subtitle">Puedes saltar este paso directamente</div>
+        </div>
+      </div>
+      <p>Si ya tienes una cuenta activa en MeYo, <strong>no necesitas crear una nueva</strong>. Ve directamente a <a href="paso2.html" style="color:var(--green);font-weight:700;">Unirte a la familia</a>.</p>
+    </div>
+
+    <!-- Descargar app -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">📲</div>
+        <div>
+          <div class="card-title">1. Descarga la aplicación</div>
+          <div class="card-subtitle">Disponible en App Store y Google Play</div>
+        </div>
+      </div>
+      <p>Primero, descarga la app <strong>MeYo</strong> en tu dispositivo móvil:</p>
+      <div class="store-buttons">
+        <a href="#" class="store-btn">
+          <span class="store-icon">🍎</span>
+          <div>
+            <span class="sub">Disponible en</span>
+            App Store
+          </div>
+        </a>
+        <a href="#" class="store-btn">
+          <span class="store-icon">▶️</span>
+          <div>
+            <span class="sub">Disponible en</span>
+            Google Play
+          </div>
+        </a>
+      </div>
+      <div class="info-box">
+        📌 Una vez descargada, abre la app y selecciona <strong>"Registrarse"</strong> o <strong>"Crear cuenta"</strong>.
+      </div>
+    </div>
+
+    <!-- Pasos de registro -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">✍️</div>
+        <div>
+          <div class="card-title">2. Completa el registro</div>
+          <div class="card-subtitle">Sigue estos pasos dentro de la app</div>
+        </div>
+      </div>
+
+      <div class="step-flow">
+        <div class="step-flow-item">
+          <div class="flow-num">1</div>
+          <div class="flow-content">
+            <strong>Ingresa tu nombre</strong>
+            <span>Escribe tu nombre real o el nombre con el que quieres que te conozcan en la familia.</span>
+          </div>
+        </div>
+        <div class="step-flow-item">
+          <div class="flow-num">2</div>
+          <div class="flow-content">
+            <strong>Agrega tu correo electrónico</strong>
+            <span>Usa un correo activo al que tengas acceso para verificar tu cuenta.</span>
+          </div>
+        </div>
+        <div class="step-flow-item">
+          <div class="flow-num">3</div>
+          <div class="flow-content">
+            <strong>Crea una contraseña segura</strong>
+            <span>Usa al menos 8 caracteres, combinando letras y números. Guárdala en un lugar seguro.</span>
+          </div>
+        </div>
+        <div class="step-flow-item">
+          <div class="flow-num">4</div>
+          <div class="flow-content">
+            <strong>✅ Ingresa el código de invitación</strong>
+            <span>Cuando la app te lo pida, introduce el código de la familia (ver abajo).</span>
+          </div>
+        </div>
+        <div class="step-flow-item">
+          <div class="flow-num">5</div>
+          <div class="flow-content">
+            <strong>Verifica tu cuenta</strong>
+            <span>Revisa tu correo y haz clic en el enlace de verificación que MeYo te enviará.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Invite Code -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">🔑</div>
+        <div>
+          <div class="card-title">Código de invitación de la familia</div>
+          <div class="card-subtitle">Más que un código — desbloquea el 12% extra en tus ganancias</div>
+        </div>
+      </div>
+
+      <!-- Comparativa de ganancias -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+        <div style="background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(127,29,29,.3));border:1.5px solid rgba(239,68,68,.4);border-radius:14px;padding:14px;text-align:center;">
+          <div style="font-size:1.4rem;margin-bottom:6px;">😔</div>
+          <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.7px;color:#fca5a5;font-weight:700;margin-bottom:6px;">Sin código</div>
+          <div style="font-size:1.4rem;font-weight:900;color:#ef4444;">Mínimo</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px;">Ganancias muy bajas</div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(168,85,247,.15));border:1.5px solid rgba(168,85,247,.6);border-radius:14px;padding:14px;text-align:center;position:relative;">
+          <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:999px;padding:3px 10px;font-size:.68rem;font-weight:800;color:white;white-space:nowrap;">✅ Recomendado</div>
+          <div style="font-size:1.4rem;margin-bottom:6px;">🚀</div>
+          <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.7px;color:#c084fc;font-weight:700;margin-bottom:6px;">Con código U6EQF3</div>
+          <div style="font-size:1.4rem;font-weight:900;color:#a855f7;">+12%</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px;">Ganancias potenciadas</div>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(120,53,15,.25));border:1.5px solid rgba(245,158,11,.4);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:.86rem;color:rgba(255,255,255,.85);line-height:1.7;">
+        💡 <strong style="color:#fbbf24;">¿Por qué importa el 12%?</strong><br/>
+        Al registrarte <strong>con el código</strong>, MeYo te da un <strong style="color:#fbbf24;">bono del 12% sobre tus ganancias</strong> dentro de la app. Sin él, las ganancias serán mínimas y no podrás aprovechar al máximo lo que la plataforma ofrece. <strong>¡No te lo pierdas!</strong>
+      </div>
+
+      <p style="font-size:.88rem;color:rgba(255,255,255,.75);">Ingresa el código al registrarte y toca <strong>"DE ACUERDO"</strong> — quedas unido/a a la familia <strong style="color:#c084fc;">y</strong> activas el bono automáticamente. 🎉</p>
+
+      <div class="invite-box">
+        <div class="invite-label">🔑 Código · Activa el +12% de ganancias</div>
+        <div class="invite-code code-anim">U6EQF3</div>
+        <button class="copy-btn" data-copy="U6EQF3">📋 Copiar código</button>
+      </div>
+
+      <!-- Pantalla de registro (imagen referencia) -->
+      <div style="background:#1a1033;border-radius:18px;padding:18px;margin:16px 0;border:1px solid rgba(168,85,247,.3);">
+        <div style="font-size:.75rem;color:rgba(255,255,255,.5);text-align:center;font-weight:700;margin-bottom:14px;letter-spacing:.8px;text-transform:uppercase;">📱 Pantalla "Información básica"</div>
+        <div style="display:flex;justify-content:center;gap:12px;margin-bottom:14px;">
+          <div style="background:rgba(100,170,255,.15);border:2px solid rgba(100,170,255,.4);border-radius:12px;padding:10px 16px;text-align:center;">
+            <div style="font-size:1.4rem;">🧑</div>
+            <div style="font-size:.7rem;color:#93c5fd;font-weight:700;margin-top:4px;">Masculino</div>
+          </div>
+          <div style="background:rgba(255,100,150,.15);border:2px solid rgba(255,100,150,.4);border-radius:12px;padding:10px 16px;text-align:center;">
+            <div style="font-size:1.4rem;">👩</div>
+            <div style="font-size:.7rem;color:#fda4af;font-weight:700;margin-top:4px;">Mujer</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:.82rem;color:rgba(255,255,255,.7);">📷 Usa tu mejor foto como avatar</div>
+        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:.82rem;color:rgba(255,255,255,.7);">✏️ Apodo: <span style="color:white;font-weight:600;">Tu nombre</span></div>
+        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:.82rem;color:rgba(255,255,255,.7);">🎂 Cumpleaños: <span style="color:white;font-weight:600;">AAAA/MM/DD</span></div>
+        <div style="background:rgba(168,85,247,.2);border:1.5px solid rgba(168,85,247,.5);border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:.82rem;color:rgba(255,255,255,.8);">🔑 código de invitación</span>
+          <span style="font-size:.95rem;font-weight:900;color:#c084fc;letter-spacing:2px;">U6EQF3</span>
+        </div>
+        <div style="background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:12px;padding:12px;text-align:center;font-size:.9rem;font-weight:800;color:white;letter-spacing:.5px;">DE ACUERDO ✓</div>
+        <div style="text-align:center;margin-top:10px;font-size:.75rem;color:#34d399;font-weight:700;">✅ ¡Al tocar "DE ACUERDO" quedas unido/a automáticamente!</div>
+      </div>
+
+      <div class="info-box">
+        ⚠️ Si la app no te pide el código al registrarte, ingrésalo en <strong>Ajustes → Código de familia</strong> después de crear tu cuenta.
+      </div>
+    </div>
+
+    <!-- Aviso cuenta sin código -->
+    <div class="card animate-in" style="border:2px solid rgba(239,68,68,.4);background:linear-gradient(135deg,rgba(127,29,29,.55),rgba(30,10,10,.9));">
+      <div class="card-header" style="margin-bottom:4px;">
+        <div style="font-size:1.6rem;flex-shrink:0;">🚨</div>
+        <div>
+          <div class="card-title" style="color:#fca5a5;">¿Creaste tu cuenta SIN el código?</div>
+          <div class="card-subtitle" style="color:rgba(252,165,165,.7);">Lee esto antes de que sea tarde</div>
+        </div>
+      </div>
+
+      <!-- Línea de tiempo 24h -->
+      <div style="display:flex;align-items:stretch;gap:0;margin:16px 0;">
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ef4444);display:flex;align-items:center;justify-content:center;font-size:1rem;">⏰</div>
+          <div style="width:2px;flex:1;background:linear-gradient(180deg,#ef4444,rgba(239,68,68,.1));margin-top:4px;"></div>
+        </div>
+        <div style="padding:0 0 20px 14px;">
+          <div style="font-size:.85rem;font-weight:800;color:#fbbf24;margin-bottom:4px;">Tienes solo 24 horas</div>
+          <div style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.65;">Desde que creaste tu cuenta, MeYo te da <strong style="color:white;">24 horas</strong> para ingresar el código de invitación y unirte a la familia. Pasado ese tiempo, <strong style="color:#fca5a5;">ya no podrás unirte con esa cuenta</strong>.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;gap:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#dc2626,#7f1d1d);display:flex;align-items:center;justify-content:center;font-size:1rem;">🔒</div>
+          <div style="width:2px;flex:1;background:transparent;margin-top:4px;"></div>
+        </div>
+        <div style="padding:0 0 0 14px;">
+          <div style="font-size:.85rem;font-weight:800;color:#fca5a5;margin-bottom:4px;">Después de 24 h — ¿qué hacer?</div>
+          <div style="font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.65;">Si ya pasó el límite, <strong style="color:white;">necesitarás registrarte de nuevo</strong> con otro correo. Pero no te preocupes — nuestro equipo te puede ayudar con el proceso. 👇</div>
+        </div>
+      </div>
+
+      <!-- Admin contact mini -->
+      <div style="margin-top:16px;border-top:1px solid rgba(239,68,68,.25);padding-top:14px;">
+        <div style="font-size:.78rem;font-weight:800;color:#fca5a5;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px;">Escríbele al equipo para que te ayuden:</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3);border-radius:10px;padding:10px 12px;">
+            <div>
+              <span style="font-size:.72rem;color:#fbbf24;font-weight:700;">👑 Admin · </span>
+              <span style="font-size:.88rem;color:white;font-weight:700;">Ashley</span>
+              <span style="font-family:monospace;font-size:.8rem;color:rgba(255,255,255,.6);margin-left:8px;">37596460</span>
+            </div>
+            <button class="copy-btn" data-code="37596460" style="font-size:.72rem;padding:6px 10px;border-radius:7px;">Copiar</button>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3);border-radius:10px;padding:10px 12px;">
+            <div>
+              <span style="font-size:.72rem;color:#c084fc;font-weight:700;">⭐ Asist · </span>
+              <span style="font-size:.88rem;color:white;font-weight:700;">Angie</span>
+              <span style="font-family:monospace;font-size:.8rem;color:rgba(255,255,255,.6);margin-left:8px;">37617550</span>
+            </div>
+            <button class="copy-btn" data-code="37617550" style="font-size:.72rem;padding:6px 10px;border-radius:7px;">Copiar</button>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3);border-radius:10px;padding:10px 12px;">
+            <div>
+              <span style="font-size:.72rem;color:#60a5fa;font-weight:700;">💼 Asist · </span>
+              <span style="font-size:.88rem;color:white;font-weight:700;">Jose</span>
+              <span style="font-family:monospace;font-size:.8rem;color:rgba(255,255,255,.6);margin-left:8px;">30594586</span>
+            </div>
+            <button class="copy-btn" data-code="30594586" style="font-size:.72rem;padding:6px 10px;border-radius:7px;">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checklist interactivo -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">✅</div>
+        <div>
+          <div class="card-title">Lista de verificación – Crear cuenta</div>
+          <div class="card-subtitle">Marca cada paso al completarlo</div>
+        </div>
+      </div>
+      <div class="checklist">
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Descargué la aplicación MeYo en mi dispositivo</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Completé el formulario de registro con mis datos</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Ingresé el código de invitación: U6EQF3</span>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <span class="check-text">Verifiqué mi cuenta desde el correo electrónico</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-buttons animate-in">
+      <a href="bienvenida.html" class="btn btn-ghost">← Bienvenida</a>
+      <a href="paso2.html" class="btn btn-primary">Unirse a la familia →</a>
+    </div>
+
+    <footer class="page-footer">
+      <p>Guía para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
