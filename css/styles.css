@@ -744,3 +744,295 @@ body {
   color: var(--text-light);
 }
 .page-footer strong { color: var(--purple); }
+
+/* ============================================================
+   ONBOARDING IMPROVEMENTS
+   ============================================================ */
+
+/* ---------- Typing Cursor ---------- */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: rgba(255,255,255,.85);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink .7s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ---------- Hub Card Stagger Entrance ---------- */
+/* Cards slide up one by one – each gets its own delay */
+.hub-card {
+  opacity: 0;
+  transform: translateY(32px);
+  animation: hubCardIn .55s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes hubCardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.hub-grid .hub-card:nth-child(1) { animation-delay: .10s; }
+.hub-grid .hub-card:nth-child(2) { animation-delay: .22s; }
+.hub-grid .hub-card:nth-child(3) { animation-delay: .34s; }
+.hub-grid .hub-card:nth-child(4) { animation-delay: .46s; }
+.hub-grid .hub-card:nth-child(5) { animation-delay: .58s; }
+.hub-grid .hub-card:nth-child(6) { animation-delay: .70s; }
+
+/* ---------- "Empieza Aquí" Glow Badge ---------- */
+.start-here-badge {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, var(--purple), var(--purple-light));
+  color: var(--white);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 0 rgba(168,85,247,.6);
+  animation: startGlow 1.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes startGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(168,85,247,.6); }
+  50%       { box-shadow: 0 0 0 8px rgba(168,85,247,0); }
+}
+
+/* ---------- Animated Progress Line Fill ---------- */
+.progress-line {
+  position: relative;
+  overflow: hidden;
+}
+.progress-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
+  border-radius: 2px;
+  transition: width .8s cubic-bezier(.4,0,.2,1) .4s;
+}
+.progress-line.filled::after { width: 100%; }
+
+/* ---------- Onboarding Modal ---------- */
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,27,75,.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.onboarding-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.onboarding-modal {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px 32px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  transform: scale(.92) translateY(20px);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+  position: relative;
+  overflow: hidden;
+}
+.onboarding-modal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light), var(--gold));
+}
+.onboarding-overlay.visible .onboarding-modal {
+  transform: scale(1) translateY(0);
+}
+
+.onboarding-wave {
+  font-size: 3rem;
+  text-align: center;
+  display: block;
+  margin-bottom: 12px;
+  animation: waveHand .8s ease-in-out 3;
+  transform-origin: 70% 80%;
+}
+@keyframes waveHand {
+  0%, 100% { transform: rotate(0deg); }
+  25%       { transform: rotate(-15deg); }
+  75%       { transform: rotate(15deg); }
+}
+
+.onboarding-modal h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--purple-dark);
+  margin-bottom: 6px;
+}
+.onboarding-modal .onboarding-sub {
+  text-align: center;
+  font-size: .88rem;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+
+.onboarding-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.onboarding-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--purple-soft);
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: background var(--transition), transform var(--transition);
+  border: 1.5px solid transparent;
+}
+.onboarding-step:hover {
+  background: var(--purple-mist);
+  border-color: rgba(168,85,247,.3);
+  transform: translateX(4px);
+}
+.onboarding-step-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.onboarding-step-text strong {
+  display: block;
+  font-size: .92rem;
+  font-weight: 800;
+  color: var(--purple-dark);
+}
+.onboarding-step-text span {
+  font-size: .8rem;
+  color: var(--text-light);
+}
+.onboarding-step-arrow {
+  margin-left: auto;
+  color: var(--purple-light);
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.onboarding-btn-row {
+  display: flex;
+  gap: 10px;
+}
+.onboarding-cta {
+  flex: 1;
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, var(--purple), var(--purple-light));
+  color: var(--white);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: .9rem;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition: all var(--transition);
+  box-shadow: 0 4px 14px rgba(124,58,237,.35);
+}
+.onboarding-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124,58,237,.45);
+}
+.onboarding-dismiss {
+  background: var(--white);
+  border: 2px solid var(--purple-mist);
+  color: var(--text-light);
+  border-radius: 999px;
+  padding: 12px 16px;
+  font-size: .87rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+.onboarding-dismiss:hover {
+  border-color: var(--purple-light);
+  color: var(--purple);
+}
+
+/* ---------- Floating "¿Eres Nuevo?" Button ---------- */
+.float-new-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 20px;
+  z-index: 9980;
+  background: linear-gradient(135deg, var(--purple), var(--purple-light));
+  color: var(--white);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: .85rem;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(124,58,237,.45);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition);
+  animation: floatBtnPulse 3s ease-in-out infinite;
+}
+.float-new-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 28px rgba(124,58,237,.55);
+  animation: none;
+}
+.float-new-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+@keyframes floatBtnPulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(124,58,237,.45); }
+  50%       { box-shadow: 0 6px 32px rgba(124,58,237,.7); }
+}
+
+/* ---------- Confetti Canvas ---------- */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9970;
+}
+
+/* ---------- Hub Card "Empieza Aquí" arrow ---------- */
+.hub-start-arrow {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  animation: bounceArrow .7s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes bounceArrow {
+  from { transform: translateX(-50%) translateY(0); }
+  to   { transform: translateX(-50%) translateY(-6px); }
+}

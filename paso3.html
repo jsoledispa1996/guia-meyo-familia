@@ -61,6 +61,116 @@
     .fch-arrow { font-size: .8rem; color: var(--text-light); transition: transform var(--transition); }
     .feature-card-expand.open .fch-arrow { transform: rotate(180deg); }
 
+    /* ── phone mocks ── */
+    .phone-mocks-row{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+      margin-top:4px;
+    }
+    @media(max-width:620px){.phone-mocks-row{grid-template-columns:1fr;gap:12px;}}
+    .pm-wrap{
+      border-radius:16px;overflow:hidden;
+      border:1.5px solid rgba(124,58,237,.15);
+      background:#f8f4ff;
+    }
+    .pm-label{
+      padding:10px 14px 8px;
+      font-size:.78rem;font-weight:800;color:var(--purple-dark);
+      display:flex;align-items:center;gap:6px;
+    }
+    .pm-label .pml-badge{
+      font-size:.62rem;font-weight:900;background:var(--purple);color:white;
+      border-radius:4px;padding:2px 6px;
+    }
+    .pm-phone{
+      margin:0 10px 10px;
+      background:#12071f;border-radius:12px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .pm-topbar{
+      background:#1c0d33;padding:8px 10px;
+      display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .pm-tab-on{font-size:.72rem;font-weight:800;color:#a855f7;border-bottom:2px solid #a855f7;padding-bottom:2px;}
+    .pm-tab-off{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.3);margin-left:8px;}
+    .pm-icons{display:flex;gap:5px;}
+    .pm-icon{
+      width:24px;height:24px;border-radius:6px;
+      background:rgba(255,255,255,.06);
+      display:flex;align-items:center;justify-content:center;font-size:.75rem;
+    }
+    .pm-icon.hl{background:rgba(124,58,237,.3);border:1.5px solid rgba(168,85,247,.5);}
+    .pm-shortcuts{display:flex;gap:6px;padding:8px 10px 4px;overflow-x:hidden;}
+    .pm-sh{
+      display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;
+    }
+    .pm-sh-icon{
+      width:40px;height:40px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+    }
+    .pm-sh-icon.hl{border:2px solid rgba(168,85,247,.7);box-shadow:0 0 8px rgba(168,85,247,.35);}
+    .pm-sh-label{font-size:.55rem;color:rgba(255,255,255,.4);font-weight:700;}
+    .pm-sh-label.hl{color:#c084fc;}
+    .pm-urow{
+      display:flex;align-items:center;gap:6px;
+      padding:5px 10px;border-bottom:1px solid rgba(255,255,255,.04);
+    }
+    .pm-urow:last-child{border-bottom:none;}
+    .pm-uava{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+    .pm-uname{font-size:.65rem;font-weight:700;color:white;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .pm-hi{background:linear-gradient(135deg,#a855f7,#7c3aed);color:white;font-size:.55rem;font-weight:800;border-radius:20px;padding:3px 7px;flex-shrink:0;}
+    .pm-notif{margin:6px 8px 3px;background:rgba(255,255,255,.05);border-radius:7px;border:1px solid rgba(255,255,255,.07);padding:6px 8px;display:flex;align-items:center;gap:6px;}
+    .pm-notif-text{font-size:.6rem;color:rgba(255,255,255,.4);flex:1;line-height:1.3;}
+    .pm-notif-btn{background:#7c3aed;color:white;font-size:.56rem;font-weight:800;border-radius:6px;padding:3px 6px;flex-shrink:0;}
+    .pm-mrow{
+      display:flex;align-items:center;gap:6px;
+      padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.04);
+    }
+    .pm-mrow:last-child{border-bottom:none;}
+    .pm-mava{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+    .pm-minfo{flex:1;min-width:0;}
+    .pm-mname{font-size:.65rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .pm-mlast{font-size:.58rem;color:rgba(255,255,255,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .pm-mtemp{font-size:.56rem;font-weight:800;color:#f97316;text-align:right;}
+    .pm-mtime{font-size:.55rem;color:rgba(255,255,255,.25);text-align:right;}
+    .pm-ctab{
+      background:#1c0d33;display:flex;align-items:center;
+      border-bottom:1px solid rgba(255,255,255,.07);padding:0 8px;
+    }
+    .pm-ctab-on{font-size:.68rem;font-weight:800;color:#a855f7;padding:7px 8px 5px;border-bottom:2px solid #a855f7;}
+    .pm-ctab-off{font-size:.68rem;font-weight:800;color:rgba(255,255,255,.3);padding:7px 6px 5px;}
+    .pm-evbanner{
+      margin:6px 8px 4px;border-radius:8px;padding:8px 10px;
+      background:linear-gradient(135deg,#78350f,#b45309);
+      position:relative;overflow:hidden;
+    }
+    .pm-evtitle{font-size:.72rem;font-weight:900;color:#fef3c7;line-height:1.2;}
+    .pm-evdate{font-size:.58rem;color:rgba(255,239,186,.7);margin-top:1px;}
+    .pm-chips{display:flex;gap:5px;padding:2px 8px 4px;overflow-x:hidden;}
+    .pm-chip{font-size:.6rem;font-weight:800;color:rgba(255,255,255,.3);padding:2px 8px;border-radius:20px;white-space:nowrap;}
+    .pm-chip.on{background:rgba(124,58,237,.3);color:#c084fc;}
+    .pm-frow{
+      display:flex;align-items:center;gap:6px;
+      padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.04);
+    }
+    .pm-frow:last-child{border-bottom:none;}
+    .pm-frank{width:12px;font-size:.58rem;font-weight:900;color:rgba(255,255,255,.25);text-align:center;flex-shrink:0;}
+    .pm-frank.g{color:#f59e0b;}.pm-frank.s{color:#94a3b8;}.pm-frank.b{color:#b45309;}
+    .pm-fcover{width:32px;height:32px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+    .pm-fname{font-size:.65rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
+    .pm-fval{font-size:.58rem;color:rgba(255,255,255,.3);}
+    .pm-fjoin{background:rgba(124,58,237,.25);color:#c084fc;font-size:.58rem;font-weight:800;border-radius:12px;padding:3px 8px;white-space:nowrap;flex-shrink:0;}
+    .pm-bnav{
+      background:#1c0d33;border-top:1px solid rgba(255,255,255,.07);
+      display:flex;padding:6px 0 4px;
+    }
+    .pm-bn{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;}
+    .pm-bn-ic{font-size:.85rem;}
+    .pm-bn-tx{font-size:.48rem;color:rgba(255,255,255,.25);font-weight:700;}
+    .pm-bn.on .pm-bn-tx{color:#a855f7;}
+    .pm-bn.on .pm-bn-ic{filter:drop-shadow(0 0 4px rgba(168,85,247,.7));}
+    .pm-meyo{width:30px;height:30px;border-radius:8px;background:#f59e0b;display:flex;align-items:center;justify-content:center;font-size:.45rem;font-weight:900;color:#7c2d12;flex-shrink:0;}
+
     .tab-bar {
       display: flex;
       gap: 8px;
@@ -148,6 +258,192 @@
       </a>
     </div>
 
+    <!-- Dónde está cada sección en la app -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">🗺️</div>
+        <div>
+          <div class="card-title">¿Dónde está cada sección?</div>
+          <div class="card-subtitle">Así se ve la app — toca cada lugar para orientarte</div>
+        </div>
+      </div>
+
+      <div class="phone-mocks-row">
+
+        <!-- CASA -->
+        <div class="pm-wrap">
+          <div class="pm-label"><span class="pml-badge">1</span> Casa</div>
+          <div class="pm-phone">
+            <div class="pm-topbar">
+              <div><span class="pm-tab-on">Video</span><span class="pm-tab-off">Cercano</span></div>
+              <div class="pm-icons">
+                <div class="pm-icon">😊</div>
+                <div class="pm-icon hl">🔍</div>
+              </div>
+            </div>
+            <div class="pm-shortcuts">
+              <div class="pm-sh">
+                <div class="pm-sh-icon hl" style="background:linear-gradient(135deg,#7f1d1d,#dc2626);">📺</div>
+                <div class="pm-sh-label hl">Arroyo</div>
+              </div>
+              <div class="pm-sh">
+                <div class="pm-sh-icon hl" style="background:linear-gradient(135deg,#78350f,#d97706);">🎉</div>
+                <div class="pm-sh-label hl">Fiesta</div>
+              </div>
+              <div class="pm-sh">
+                <div class="pm-sh-icon" style="background:rgba(255,255,255,.08);">📹</div>
+                <div class="pm-sh-label">Video</div>
+              </div>
+              <div class="pm-sh">
+                <div class="pm-sh-icon" style="background:rgba(255,255,255,.08);">🏃</div>
+                <div class="pm-sh-label">Ejercicio</div>
+              </div>
+            </div>
+            <div class="pm-urow">
+              <div class="pm-uava" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">👩</div>
+              <div class="pm-uname">SILVIA M. 🎵 <span style="background:#f59e0b;color:#7c2d12;font-size:.48rem;font-weight:900;border-radius:3px;padding:1px 3px;">VIP</span></div>
+              <div class="pm-hi">♡ Hi</div>
+            </div>
+            <div class="pm-urow">
+              <div class="pm-uava" style="background:linear-gradient(135deg,#065f46,#10b981);">💃</div>
+              <div class="pm-uname">💎Yayita💎</div>
+              <div class="pm-hi">♡ Hi</div>
+            </div>
+            <div class="pm-urow">
+              <div class="pm-uava" style="background:linear-gradient(135deg,#1e1b4b,#4338ca);">🌸</div>
+              <div class="pm-uname">linda</div>
+              <div class="pm-hi">♡ Hi</div>
+            </div>
+            <div class="pm-bnav">
+              <div class="pm-bn on"><div class="pm-bn-ic">🏠</div><div class="pm-bn-tx">Casa</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">😊</div><div class="pm-bn-tx">Momento</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">🏛️</div><div class="pm-bn-tx">Club</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">💬</div><div class="pm-bn-tx">Mensaje</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">👤</div><div class="pm-bn-tx">A mí</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MENSAJE -->
+        <div class="pm-wrap">
+          <div class="pm-label"><span class="pml-badge">2</span> Mensaje</div>
+          <div class="pm-phone">
+            <div class="pm-topbar">
+              <div><span class="pm-tab-on">Mensaje</span></div>
+              <div class="pm-icons"><div class="pm-icon">🗑️</div></div>
+            </div>
+            <div class="pm-notif">
+              <div class="pm-notif-text">¡Active las notificaciones para no perder mensajes!</div>
+              <div class="pm-notif-btn">Encender</div>
+            </div>
+            <div class="pm-mrow">
+              <div class="pm-meyo">MeYo</div>
+              <div class="pm-minfo"><div class="pm-mname">MeYo oficial</div><div class="pm-mlast">Cuentas oficiales TT y FB</div></div>
+            </div>
+            <div class="pm-mrow">
+              <div class="pm-mava" style="background:linear-gradient(135deg,#be185d,#db2777);">💬</div>
+              <div class="pm-minfo"><div class="pm-mname">Grupo de chat</div><div class="pm-mlast">Chatear gratis</div></div>
+            </div>
+            <div class="pm-mrow">
+              <div class="pm-mava" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);border-radius:50%;">👩</div>
+              <div class="pm-minfo"><div class="pm-mname">ANAHY 💗</div><div class="pm-mlast">Como se pone el código</div></div>
+              <div><div class="pm-mtemp">40.3°C</div><div class="pm-mtime">10:32</div></div>
+            </div>
+            <div class="pm-mrow">
+              <div class="pm-mava" style="background:linear-gradient(135deg,#065f46,#10b981);border-radius:50%;">👩‍🦱</div>
+              <div class="pm-minfo"><div class="pm-mname">anguie ❤️</div><div class="pm-mlast">[Respuesta para regalo]</div></div>
+              <div style="font-size:.9rem;">💜</div>
+            </div>
+            <div class="pm-mrow">
+              <div class="pm-mava" style="background:linear-gradient(135deg,#7f1d1d,#dc2626);border-radius:50%;">💃</div>
+              <div class="pm-minfo"><div class="pm-mname">Vale ✨💗🔥</div><div class="pm-mlast">ayudalaaa</div></div>
+              <div><div class="pm-mtemp">2001°C</div><div class="pm-mtime">14:47</div></div>
+            </div>
+            <div class="pm-bnav">
+              <div class="pm-bn"><div class="pm-bn-ic">🏠</div><div class="pm-bn-tx">Casa</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">😊</div><div class="pm-bn-tx">Momento</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">🏛️</div><div class="pm-bn-tx">Club</div></div>
+              <div class="pm-bn on"><div class="pm-bn-ic">💬</div><div class="pm-bn-tx">Mensaje</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">👤</div><div class="pm-bn-tx">A mí</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLUB -->
+        <div class="pm-wrap">
+          <div class="pm-label"><span class="pml-badge">3</span> Club</div>
+          <div class="pm-phone">
+            <div class="pm-ctab">
+              <div style="display:flex;flex:1;">
+                <div class="pm-ctab-on">Familia</div>
+                <div class="pm-ctab-off">Fiesta</div>
+                <div class="pm-ctab-off">Arroyo</div>
+              </div>
+              <div class="pm-icons" style="padding:5px 0;"><div class="pm-icon hl">🔍</div></div>
+            </div>
+            <div class="pm-evbanner">
+              <div class="pm-evtitle">Familia<br/>Fraternidad</div>
+              <div class="pm-evdate">13/3 – 16/3</div>
+              <div style="position:absolute;right:8px;top:4px;font-size:1.8rem;opacity:.2;">🛡️</div>
+            </div>
+            <div class="pm-chips">
+              <div class="pm-chip on">Diario</div>
+              <div class="pm-chip">⭐ HOT</div>
+              <div class="pm-chip">Semanal</div>
+            </div>
+            <div class="pm-frow">
+              <div class="pm-frank g">👑</div>
+              <div class="pm-fcover" style="background:linear-gradient(135deg,#78350f,#b45309);">🥁</div>
+              <div style="flex:1;min-width:0;"><div class="pm-fname">🌿 TROPICOQUET@S</div><div class="pm-fval">30,574 · 👤160</div></div>
+              <div class="pm-fjoin">+</div>
+            </div>
+            <div class="pm-frow">
+              <div class="pm-frank s">2</div>
+              <div class="pm-fcover" style="background:linear-gradient(135deg,#064e3b,#065f46);">🌿</div>
+              <div style="flex:1;min-width:0;"><div class="pm-fname">🌿 El Páráíso</div><div class="pm-fval">30,144 · 👤127</div></div>
+              <div class="pm-fjoin">+</div>
+            </div>
+            <div class="pm-frow">
+              <div class="pm-frank b">3</div>
+              <div class="pm-fcover" style="background:linear-gradient(135deg,#1e1b4b,#3730a3);">🦅</div>
+              <div style="flex:1;min-width:0;"><div class="pm-fname">MERAKI</div><div class="pm-fval">18,294 · 👤180</div></div>
+              <div class="pm-fjoin" style="background:rgba(168,85,247,.35);color:#e9d5ff;">✓</div>
+            </div>
+            <div class="pm-frow">
+              <div class="pm-frank">4</div>
+              <div class="pm-fcover" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);">⚔️</div>
+              <div style="flex:1;min-width:0;"><div class="pm-fname">⚙️ La 593 🇪🇨</div><div class="pm-fval">12,792 · 👤223</div></div>
+              <div class="pm-fjoin">+</div>
+            </div>
+            <div class="pm-bnav">
+              <div class="pm-bn"><div class="pm-bn-ic">🏠</div><div class="pm-bn-tx">Casa</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">😊</div><div class="pm-bn-tx">Momento</div></div>
+              <div class="pm-bn on"><div class="pm-bn-ic">🏛️</div><div class="pm-bn-tx">Club</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">💬</div><div class="pm-bn-tx">Mensaje</div></div>
+              <div class="pm-bn"><div class="pm-bn-ic">👤</div><div class="pm-bn-tx">A mí</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /phone-mocks-row -->
+
+      <!-- leyenda rápida -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;">
+        <div style="background:var(--purple-soft);border-radius:10px;padding:10px 12px;">
+          <div style="font-size:.75rem;font-weight:800;color:var(--purple-dark);margin-bottom:4px;">🏠 Casa</div>
+          <div style="font-size:.72rem;color:var(--text-mid);line-height:1.5;">Pestaña 1 · acceso rápido a <strong>Arroyo</strong> y <strong>Fiesta</strong> · usa 🔍 para buscar IDs</div>
+        </div>
+        <div style="background:#f5f5f5;border-radius:10px;padding:10px 12px;">
+          <div style="font-size:.75rem;font-weight:800;color:#1e1b4b;margin-bottom:4px;">💬 Mensaje</div>
+          <div style="font-size:.72rem;color:var(--text-mid);line-height:1.5;">Pestaña 4 · chats directos · responde <strong>todos</strong></div>
+        </div>
+        <div style="background:#ecfdf5;border-radius:10px;padding:10px 12px;">
+          <div style="font-size:.75rem;font-weight:800;color:#065f46;margin-bottom:4px;">🏛️ Club</div>
+          <div style="font-size:.72rem;color:var(--text-mid);line-height:1.5;">Pestaña 3 · sub-tabs <strong>Familia · Fiesta · Arroyo</strong></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Tabs -->
     <div class="card animate-in">
       <div class="card-header">
@@ -159,151 +455,245 @@
       </div>
 
       <div class="tab-bar">
-        <button class="tab-btn active" data-tab="comunicacion">💬 Comunicación</button>
-        <button class="tab-btn" data-tab="interaccion">🎁 Interacción</button>
-        <button class="tab-btn" data-tab="perfil">👤 Perfil</button>
-        <button class="tab-btn" data-tab="actividades">🏠 Actividades</button>
+        <button class="tab-btn active" data-tab="chats">💬 Chats</button>
+        <button class="tab-btn" data-tab="arroyos">🎥 Arroyos</button>
+        <button class="tab-btn" data-tab="fiesta">🎉 Fiesta</button>
+        <button class="tab-btn" data-tab="familia">🏡 Familia</button>
       </div>
 
-      <!-- Tab: Comunicación -->
-      <div class="tab-panel active" id="tab-comunicacion">
+      <!-- Tab: Chats -->
+      <div class="tab-panel active" id="tab-chats">
+
         <div class="feature-card-expand open">
           <div class="feature-card-header">
             <span class="fch-icon">💬</span>
-            <span class="fch-title">Chat con miembros</span>
+            <span class="fch-title">Mensajes directos — todos suman</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail show">
-            <p>El chat te permite comunicarte con cualquier miembro de la familia de forma directa y en tiempo real.</p>
+            <p><strong>Es necesario responder todos los mensajes</strong>, sin excepción. Cada respuesta cuenta para el algoritmo de emparejamiento de la app.</p>
             <ul>
-              <li>Busca el perfil de un miembro y toca el ícono de mensaje.</li>
-              <li>Puedes enviar texto, imágenes, stickers y notas de voz.</li>
-              <li>El chat del grupo familiar es visible para todos los miembros.</li>
-              <li>Respeta las normas al enviar mensajes.</li>
+              <li>📩 Responde todos los mensajes que recibas, aunque sea brevemente.</li>
+              <li>⏰ <strong>Estar activa mínimo 4 o 5 horas</strong> en las primeras semanas ayuda a que MeYo te empareje con más usuarios.</li>
+              <li>🚫 <strong>No sigas a nadie</strong> que no sea el líder o miembros femeninos de nuestra familia — seguir a otros no monetiza y el mensaje no tiene costo.</li>
+              <li>🔐 <strong>No compartas tu información privada</strong> (número de teléfono, redes sociales, ubicación) — es por tu seguridad.</li>
             </ul>
           </div>
         </div>
+
         <div class="feature-card-expand">
           <div class="feature-card-header">
-            <span class="fch-icon">🔔</span>
-            <span class="fch-title">Notificaciones</span>
+            <span class="fch-icon">🔐</span>
+            <span class="fch-title">Privacidad en el chat</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail">
-            <p>Activa las notificaciones para no perderte avisos importantes de la familia.</p>
+            <p>Tu seguridad es lo primero. Mantén siempre el contacto dentro de la app.</p>
             <ul>
-              <li>Ve a Ajustes → Notificaciones para configurarlas.</li>
-              <li>Puedes elegir qué tipo de alertas recibir.</li>
-              <li>Las notificaciones grupales avisan de eventos y anuncios.</li>
+              <li>No compartas número de WhatsApp, Instagram ni otras redes sociales con desconocidos.</li>
+              <li>No respondas solicitudes de reuniones presenciales ni envíos de dinero.</li>
+              <li>Si alguien te molesta o acosa, bloquéalo y repórtalo a un administrador.</li>
+              <li>Recuerda: <strong>la app es el espacio seguro</strong>, todo fuera de ella queda fuera de nuestra responsabilidad.</li>
             </ul>
           </div>
         </div>
+
+        <!-- Tip visual -->
+        <div style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:12px;padding:14px 16px;border-left:4px solid var(--green);margin-top:8px;">
+          <div style="font-size:.8rem;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;">💡 Consejo clave</div>
+          <div style="font-size:.88rem;color:#047857;line-height:1.7;">Cuanto más tiempo al aire y más mensajes respondas en las primeras semanas, <strong>más rápido subirá tu nivel de emparejamiento</strong> y más ingresos generarás.</div>
+        </div>
       </div>
 
-      <!-- Tab: Interacción -->
-      <div class="tab-panel" id="tab-interaccion">
+      <!-- Tab: Arroyos (Lives) -->
+      <div class="tab-panel" id="tab-arroyos">
+
         <div class="feature-card-expand open">
           <div class="feature-card-header">
-            <span class="fch-icon">🎁</span>
-            <span class="fch-title">Envío de regalos</span>
+            <span class="fch-icon">🎥</span>
+            <span class="fch-title">¿Qué son los Arroyos?</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail show">
-            <p>Puedes enviar regalos virtuales y muestras de afecto a otros miembros de la familia.</p>
+            <p>Los <strong>Arroyos</strong> son los <strong>lives (transmisiones en vivo)</strong> de MeYo. Puedes verlos o transmitir el tuyo.</p>
             <ul>
-              <li>Ve al perfil del miembro y selecciona el ícono de regalo.</li>
-              <li>Elige entre distintos tipos de obsequios virtuales disponibles.</li>
-              <li>Los regalos son una forma bonita de mostrar apoyo y cariño.</li>
+              <li>💬 <strong>El chat en arroyos es gratis</strong> — escribe sin costo para interactuar.</li>
+              <li>🤝 <strong>Interactúa con los usuarios</strong> para ganar audiencia y que el algoritmo te recomiende.</li>
+              <li>🏆 <strong>Usa las funciones de arroyo</strong> para cumplir retos y ganar regalos virtuales.</li>
+              <li>🎭 <strong>Conecta con la audiencia</strong> y crea un ambiente divertido — eso atrae más gente y más regalos.</li>
             </ul>
           </div>
         </div>
+
         <div class="feature-card-expand">
           <div class="feature-card-header">
-            <span class="fch-icon">❤️</span>
-            <span class="fch-title">Reacciones y comentarios</span>
+            <span class="fch-icon">🔍</span>
+            <span class="fch-title">Buscar IDs en los lives</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail">
-            <p>Interactúa con el contenido que publican otros miembros de la familia.</p>
+            <p>En muchos lives y salas de fiesta los usuarios <strong>comparten su ID</strong> para que llegue más gente (airdrops, eventos, etc.).</p>
             <ul>
-              <li>Usa los emojis de reacción en publicaciones y mensajes.</li>
-              <li>Deja comentarios positivos y motivadores.</li>
-              <li>Comparte momentos importantes con el grupo.</li>
+              <li>En la pantalla de <strong>Casa</strong>, toca el ícono 🔍 de la esquina superior derecha.</li>
+              <li>Escribe el ID que viste en el live y toca el botón de buscar.</li>
+              <li>Desde el perfil podrás unirte al arroyo, enviar "Hi" o seguir a esa persona.</li>
+              <li>💡 Muchos streamers comparten su ID porque tienen <strong>airdrops</strong> y quieren más audiencia.</li>
             </ul>
+            <!-- Mini mock -->
+            <div style="margin-top:10px;background:#1a0a2e;border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;max-width:300px;">
+              <span style="font-size:.82rem;color:white;font-weight:700;">Video &nbsp;<span style="color:#a855f7;border-bottom:2px solid #a855f7;">Cercano</span></span>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <span style="opacity:.4;font-size:1rem;">📷</span>
+                <span style="opacity:.4;font-size:1rem;">↩️</span>
+                <div style="background:#3b1f6e;border-radius:7px;padding:5px 7px;border:1.5px solid #7c3aed;"><span style="font-size:.95rem;">🔍</span></div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#fef3c7,#fde68a20);border-radius:12px;padding:14px 16px;border-left:4px solid #f59e0b;margin-top:8px;">
+          <div style="font-size:.8rem;font-weight:800;color:#78350f;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;">⭐ Lo que más funciona</div>
+          <div style="font-size:.88rem;color:#92400e;line-height:1.7;">Habla, sé espontánea, usa el nombre de quienes escriben en el chat — eso hace que la gente se quede más tiempo y envíe regalos.</div>
         </div>
       </div>
 
-      <!-- Tab: Perfil -->
-      <div class="tab-panel" id="tab-perfil">
+      <!-- Tab: Fiesta -->
+      <div class="tab-panel" id="tab-fiesta">
+
         <div class="feature-card-expand open">
           <div class="feature-card-header">
-            <span class="fch-icon">👤</span>
-            <span class="fch-title">Tu perfil de usuario</span>
+            <span class="fch-icon">🎉</span>
+            <span class="fch-title">Las salas de Fiesta</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail show">
-            <p>Tu perfil es tu identidad dentro de la familia en MeYo. Personalízalo para que los demás te conozcan mejor.</p>
+            <p>Las <strong>Fiestas</strong> son salas grupales donde puedes socializar, jugar y ganar regalos.</p>
             <ul>
-              <li>Agrega una foto de perfil clara y apropiada.</li>
-              <li>Escribe una descripción breve sobre ti.</li>
-              <li>Puedes elegir un nombre de usuario creativo.</li>
-              <li>Configura tu estado (activo, ocupado, ausente).</li>
+              <li>💬 <strong>El chat es gratis</strong> — escribe sin ningún costo.</li>
+              <li>🎤 <strong>Solicita subir a un micrófono</strong> para poder socializar y realizar tareas o retos.</li>
+              <li>💝 <strong>Puedes enviar regalos especiales</strong> para formar CP (Pareja de Fiesta) con alguien.</li>
+              <li>🎲 <strong>Puedes jugar Ludo</strong> (parchís simple) con otros usuarios de la sala.</li>
             </ul>
           </div>
         </div>
+
         <div class="feature-card-expand">
           <div class="feature-card-header">
-            <span class="fch-icon">🔒</span>
-            <span class="fch-title">Privacidad y seguridad</span>
+            <span class="fch-icon">⚠️</span>
+            <span class="fch-title">Cuidado con los regalos en Fiesta</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail">
-            <p>Controla quién puede ver tu información y cómo interactúan contigo.</p>
+            <p>Los regalos consumen tus monedas. <strong>No los envíes a todos</strong> — elige a quién vale la pena apoyar.</p>
             <ul>
-              <li>Desde Ajustes → Privacidad puedes gestionar tus opciones.</li>
-              <li>Nunca compartas tu contraseña con nadie.</li>
-              <li>Si alguien te molesta, puedes bloquearlo o reportarlo.</li>
+              <li>🎯 Selecciona a personas que interactúan contigo o que te generan buenos retornos.</li>
+              <li>💸 Evita gastar en personas que no te devuelven atención o regalos.</li>
+              <li>💡 Recuerda: los regalos son una inversión social — úsalos con estrategia.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-card-expand">
+          <div class="feature-card-header">
+            <span class="fch-icon">🔍</span>
+            <span class="fch-title">Buscar IDs compartidos en las fiestas</span>
+            <span class="fch-arrow">▼</span>
+          </div>
+          <div class="feature-detail">
+            <p>Al igual que en los arroyos, en las salas de fiesta también se comparten IDs para atraer más participantes.</p>
+            <ul>
+              <li>Desde <strong>Casa</strong> → ícono 🔍 (esquina superior derecha), escribe el ID.</li>
+              <li>Úsalo para entrar a fiestas con <strong>airdrops</strong> (cajitas de regalos aleatorios).</li>
+              <li>Participar en fiestas con airdrops es una buena forma de ganar diamantes sin costo.</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Tab: Actividades -->
-      <div class="tab-panel" id="tab-actividades">
+      <!-- Tab: Familia -->
+      <div class="tab-panel" id="tab-familia">
+
         <div class="feature-card-expand open">
           <div class="feature-card-header">
-            <span class="fch-icon">🏠</span>
-            <span class="fch-title">Salas de la familia</span>
+            <span class="fch-icon">🏡</span>
+            <span class="fch-title">¿Qué es la Familia en MeYo?</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail show">
-            <p>Las salas son espacios virtuales donde los miembros se reúnen en tiempo real.</p>
+            <p>La <strong>Familia</strong> es el grupo central al que perteneces en MeYo — como una comunidad con sus propias reglas, eventos y espacio.</p>
             <ul>
-              <li>Busca las salas activas en la sección de tu familia.</li>
-              <li>Puedes unirte a salas de voz, video o actividades.</li>
-              <li>Respeta el turno de participación y escucha a los demás.</li>
-              <li>Los administradores pueden crear y gestionar las salas.</li>
+              <li>👥 Es un <strong>chat grupal</strong> — sigue siempre las reglas del grupo.</li>
+              <li>💬 <strong>El chat es gratis</strong> — puedes escribir sin ningún costo.</li>
+              <li>🎤 Suelen tener <strong>micrófonos</strong> activos para que puedas socializar con voz.</li>
+              <li>🎊 Tienen <strong>muchos tipos de eventos</strong> — retos, celebraciones, rankings, etc.</li>
+              <li>🔒 <strong>Solo puedes pertenecer a una familia</strong> a la vez.</li>
+              <li>👀 Puedes <strong>visitar otras familias</strong> si tienen el modo visitante activado.</li>
+              <li>🎁 Puedes encontrar <strong>airdrops</strong> (cajitas de regalos aleatorios) dentro de la sala.</li>
             </ul>
           </div>
         </div>
+
         <div class="feature-card-expand">
           <div class="feature-card-header">
-            <span class="fch-icon">🎮</span>
-            <span class="fch-title">Juegos y eventos</span>
+            <span class="fch-icon">⚠️</span>
+            <span class="fch-title">Cuidado con los regalos en la Familia</span>
             <span class="fch-arrow">▼</span>
           </div>
           <div class="feature-detail">
-            <p>La familia puede organizar juegos, concursos y eventos especiales.</p>
+            <p>Al igual que en Fiesta, cada regalo que envías <strong>consume tus monedas</strong>. Sé selectiva.</p>
             <ul>
-              <li>Revisa el calendario de eventos del grupo.</li>
-              <li>Participa activamente en los juegos y actividades.</li>
-              <li>Los eventos son una excelente forma de conocer a todos.</li>
+              <li>🎯 <strong>No envíes regalos a todos</strong> — selecciona a las personas con quienes tienes mejor relación.</li>
+              <li>💰 Los regalos masivos agotan tu saldo rápidamente sin garantizar retorno.</li>
+              <li>📊 Prioriza a quienes te generan interacciones o que también te envían regalos.</li>
             </ul>
+          </div>
+        </div>
+
+        <!-- Alerta importante -->
+        <div style="background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(127,29,29,.08));border:2px solid rgba(239,68,68,.4);border-radius:12px;padding:16px;margin-top:8px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="font-size:1.6rem;flex-shrink:0;">🚨</span>
+            <div>
+              <div style="font-size:.88rem;font-weight:800;color:#dc2626;margin-bottom:6px;">OJO — Muy importante</div>
+              <div style="font-size:.86rem;color:#7f1d1d;line-height:1.7;"><strong>No hables sobre temas de monetización en la sala de la familia.</strong><br/>Preguntas sobre ganancias, diamantes, retiros o estrategias de negocio pueden llamar la atención y provocar expulsiones.<br/><br/>Para esas dudas, <strong>usa nuestro grupo de WhatsApp</strong> — ahí puedes preguntar con total libertad. 💬</div>
+            </div>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <!-- Resumen visual de los 4 espacios -->
+    <div class="card animate-in">
+      <div class="card-header">
+        <div class="step-badge">🗺️</div>
+        <div>
+          <div class="card-title">Resumen rápido de espacios</div>
+          <div class="card-subtitle">Diferencias entre cada sección de la app</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:var(--purple-soft);border-radius:12px;padding:14px;border-top:3px solid var(--purple);">
+          <div style="font-size:1.3rem;margin-bottom:6px;">💬</div>
+          <div style="font-size:.88rem;font-weight:800;color:var(--purple-dark);margin-bottom:4px;">Chats</div>
+          <div style="font-size:.78rem;color:var(--text-mid);line-height:1.6;">Mensajes directos. Responde todo. 4-5 h/día las primeras semanas.</div>
+        </div>
+        <div style="background:#fff7ed;border-radius:12px;padding:14px;border-top:3px solid #f97316;">
+          <div style="font-size:1.3rem;margin-bottom:6px;">🎥</div>
+          <div style="font-size:.88rem;font-weight:800;color:#c2410c;margin-bottom:4px;">Arroyos (Lives)</div>
+          <div style="font-size:.78rem;color:var(--text-mid);line-height:1.6;">Chat gratis. Interactúa, cumple retos, crea ambiente divertido.</div>
+        </div>
+        <div style="background:#fef3c7;border-radius:12px;padding:14px;border-top:3px solid #f59e0b;">
+          <div style="font-size:1.3rem;margin-bottom:6px;">🎉</div>
+          <div style="font-size:.88rem;font-weight:800;color:#92400e;margin-bottom:4px;">Fiesta</div>
+          <div style="font-size:.78rem;color:var(--text-mid);line-height:1.6;">Sal al micrófono, juega Ludo, forma CP. Cuidado con los regalos.</div>
+        </div>
+        <div style="background:#ecfdf5;border-radius:12px;padding:14px;border-top:3px solid var(--green);">
+          <div style="font-size:1.3rem;margin-bottom:6px;">🏡</div>
+          <div style="font-size:.88rem;font-weight:800;color:#065f46;margin-bottom:4px;">Familia</div>
+          <div style="font-size:.78rem;color:var(--text-mid);line-height:1.6;">Chat grupal con reglas. No hables de monetización ahí. Usa WhatsApp.</div>
+        </div>
+      </div>
     </div>
 
     <!-- Tip de interacción -->
@@ -311,16 +701,17 @@
       <div class="card-header">
         <div class="step-badge green">🤝</div>
         <div>
-          <div class="card-title">Cómo interactuar correctamente</div>
-          <div class="card-subtitle">Consejos para una buena convivencia</div>
+          <div class="card-title">Claves generales para tener éxito</div>
+          <div class="card-subtitle">Aplica esto desde el primer día</div>
         </div>
       </div>
       <ul>
-        <li>Sé amable y positivo en todos tus mensajes e interacciones.</li>
-        <li>Participa en las actividades del grupo para conocer a más miembros.</li>
-        <li>Si no entiendes algo, pregunta a los administradores sin miedo.</li>
-        <li>Comparte solo contenido apropiado y relevante para la familia.</li>
-        <li>Apoya a otros miembros con reacciones y comentarios alentadores.</li>
+        <li>Responde <strong>todos</strong> los mensajes que recibas — todos suman al algoritmo.</li>
+        <li>Mantente activa mínimo 4–5 horas diarias las primeras semanas.</li>
+        <li>No sigas a nadie excepto al líder y miembros femeninos de la familia.</li>
+        <li>Nunca compartas información personal (teléfono, redes, ubicación).</li>
+        <li>Sé selectiva con los regalos — no los envíes a todos sin criterio.</li>
+        <li>Usa nuestro grupo de <strong>WhatsApp</strong> para dudas sobre monetización.</li>
       </ul>
     </div>
 

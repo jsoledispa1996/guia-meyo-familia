@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secciones MeYo — Guía Familia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --purple:#7c3aed;--purple-dark:#5b21b6;--purple-light:#a855f7;
+      --purple-soft:#f5f0ff;--gold:#f0c040;--green:#10b981;--orange:#f97316;
+      --nav-bg:#1a0a2e;--card-bg:#22123a;--bg:#130826;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Nunito',sans-serif;
+      background:linear-gradient(160deg,#0f0520 0%,#1e0a40 50%,#0a0f23 100%);
+      min-height:100vh;padding:36px 16px 50px;
+    }
+    .page-header{text-align:center;margin-bottom:36px;}
+    .logo-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,.07);border:1.5px solid rgba(168,85,247,.35);
+      border-radius:50px;padding:7px 18px;margin-bottom:14px;
+    }
+    .logo-badge strong{color:white;font-size:.9rem;letter-spacing:.4px;}
+    .page-header h1{
+      font-size:1.9rem;font-weight:900;
+      background:linear-gradient(90deg,#c084fc,#7c3aed,#38bdf8);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      line-height:1.2;margin-bottom:6px;
+    }
+    .page-header p{color:rgba(255,255,255,.45);font-size:.9rem;}
+    .sec-label{
+      display:flex;align-items:center;gap:10px;
+      color:rgba(255,255,255,.35);font-size:.75rem;font-weight:800;letter-spacing:1px;
+      text-transform:uppercase;margin:32px 0 14px;
+    }
+    .sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08);}
+    .grid-1{display:grid;grid-template-columns:1fr;gap:20px;}
+    .wrap-card{
+      background:rgba(255,255,255,.05);
+      border:1.5px solid rgba(255,255,255,.09);
+      border-radius:20px;overflow:hidden;
+    }
+    .wrap-header{padding:14px 18px 10px;display:flex;align-items:center;gap:12px;}
+    .wrap-icon{
+      width:42px;height:42px;border-radius:13px;
+      display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;
+    }
+    .wrap-title{font-size:1rem;font-weight:800;color:white;}
+    .wrap-sub{font-size:.74rem;color:rgba(255,255,255,.4);margin-top:2px;}
+    .wrap-divider{height:1px;background:rgba(255,255,255,.07);}
+    .phone{
+      margin:14px 16px 0;
+      background:#12071f;border-radius:18px;overflow:hidden;
+      border:1.5px solid rgba(255,255,255,.09);
+      max-width:340px;margin-left:auto;margin-right:auto;
+    }
+    .topbar{
+      background:#1c0d33;padding:9px 12px;
+      display:flex;align-items:center;justify-content:space-between;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .tb-left{display:flex;align-items:center;gap:6px;}
+    .tb-tab{font-size:.82rem;font-weight:800;color:rgba(255,255,255,.4);padding-bottom:2px;}
+    .tb-tab.on{color:#a855f7;border-bottom:2px solid #a855f7;}
+    .tb-right{display:flex;gap:7px;align-items:center;}
+    .tb-btn{
+      width:28px;height:28px;border-radius:8px;
+      background:rgba(255,255,255,.06);
+      display:flex;align-items:center;justify-content:center;font-size:.85rem;
+    }
+    .tb-btn.hl{background:rgba(124,58,237,.3);border:1.5px solid rgba(168,85,247,.5);}
+    .pbody{padding:10px 12px;}
+
+    /* ── BOTTOM NAV ── */
+    .bnav{background:#1c0d33;border-top:1px solid rgba(255,255,255,.07);display:flex;padding:9px 0 5px;}
+    .bn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;}
+    .bn-ic{font-size:1.05rem;position:relative;}
+    .bn-tx{font-size:.58rem;color:rgba(255,255,255,.3);font-weight:700;}
+    .bn.on .bn-tx{color:#a855f7;}
+    .bn.on .bn-ic{filter:drop-shadow(0 0 5px rgba(168,85,247,.7));}
+    .bn-badge{position:absolute;top:-4px;right:-6px;background:#f97316;color:white;font-size:.5rem;font-weight:900;border-radius:20px;padding:1px 4px;min-width:14px;text-align:center;}
+    /* tips */
+    .tips{padding:10px 16px 14px;display:flex;flex-direction:column;gap:6px;}
+    .tip{display:flex;gap:8px;font-size:.79rem;color:rgba(255,255,255,.7);line-height:1.5;align-items:flex-start;}
+    .tip .em{flex-shrink:0;}
+    .tip strong{color:white;}
+    /* shortcuts */
+    .shortcuts{display:flex;gap:8px;padding:10px 12px 8px;overflow-x:auto;}
+    .sh{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}
+    .sh-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+    .sh-label{font-size:.62rem;color:rgba(255,255,255,.5);font-weight:700;}
+    .sh.hl .sh-icon{border:2px solid rgba(168,85,247,.7);box-shadow:0 0 12px rgba(168,85,247,.4);}
+    .sh.hl .sh-label{color:#c084fc;}
+    /* user rows */
+    .urow{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .urow:last-child{border-bottom:none;}
+    .uava{width:44px;height:44px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+    .uinfo{flex:1;min-width:0;}
+    .uname{font-size:.78rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .udesc{font-size:.68rem;color:rgba(255,255,255,.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .hi-btn{background:linear-gradient(135deg,#a855f7,#7c3aed);color:white;font-size:.68rem;font-weight:800;border-radius:20px;padding:5px 10px;white-space:nowrap;flex-shrink:0;}
+    .vip-tag{background:#f59e0b;color:#7c2d12;font-size:.55rem;font-weight:900;border-radius:3px;padding:1px 4px;margin-left:4px;}
+    /* mensaje screen */
+    .notif-banner{margin:8px 10px 4px;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08);padding:9px 10px;display:flex;align-items:center;gap:8px;}
+    .notif-text{font-size:.68rem;color:rgba(255,255,255,.5);flex:1;line-height:1.4;}
+    .notif-btn{background:#7c3aed;color:white;font-size:.65rem;font-weight:800;border-radius:8px;padding:5px 9px;white-space:nowrap;flex-shrink:0;}
+    .msg-row{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .msg-row:last-child{border-bottom:none;}
+    .msg-ava{width:42px;height:42px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;position:relative;}
+    .msg-online{position:absolute;bottom:1px;right:1px;width:9px;height:9px;border-radius:50%;background:#10b981;border:1.5px solid #12071f;}
+    .msg-info{flex:1;min-width:0;}
+    .msg-name{font-size:.78rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .msg-last{font-size:.68rem;color:rgba(255,255,255,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .msg-meta{text-align:right;flex-shrink:0;}
+    .msg-time{font-size:.62rem;color:rgba(255,255,255,.3);}
+    .msg-temp{font-size:.65rem;font-weight:800;color:#f97316;}
+    .meyo-logo{width:42px;height:42px;border-radius:14px;background:#f59e0b;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:900;color:#7c2d12;flex-shrink:0;}
+    /* club screen */
+    .club-tab{font-size:.82rem;font-weight:800;color:rgba(255,255,255,.35);padding:9px 12px 7px;border-bottom:2px solid transparent;flex-shrink:0;}
+    .club-tab.on{color:#a855f7;border-color:#a855f7;}
+    .event-banner{margin:10px 10px 6px;border-radius:12px;overflow:hidden;height:72px;background:linear-gradient(135deg,#78350f,#b45309,#92400e);display:flex;align-items:center;padding:0 16px;position:relative;}
+    .event-banner-text{font-size:.9rem;font-weight:900;color:#fef3c7;text-shadow:0 1px 4px rgba(0,0,0,.6);z-index:1;line-height:1.3;}
+    .event-chips{display:flex;gap:8px;padding:4px 10px 6px;overflow-x:auto;}
+    .event-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:7px 10px;min-width:150px;flex-shrink:0;}
+    .ec-badge{font-size:.58rem;font-weight:900;background:#10b981;color:white;border-radius:4px;padding:2px 6px;display:inline-block;margin-bottom:3px;}
+    .ec-title{font-size:.72rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ec-time,.ec-members{font-size:.62rem;color:rgba(255,255,255,.35);}
+    .tab-chips{display:flex;gap:8px;padding:8px 12px 4px;overflow-x:auto;}
+    .chip{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.4);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+    .chip.on{background:rgba(124,58,237,.3);color:#c084fc;}
+    .fam-row{display:flex;align-items:center;gap:9px;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);}
+    .fam-row:last-child{border-bottom:none;}
+    .fam-rank{font-size:.65rem;font-weight:900;color:rgba(255,255,255,.25);width:16px;text-align:center;flex-shrink:0;}
+    .fam-rank.gold{color:#f59e0b;}.fam-rank.silver{color:#94a3b8;}.fam-rank.bronze{color:#b45309;}
+    .fam-cover{width:46px;height:46px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+    .fam-info{flex:1;min-width:0;}
+    .fam-name{font-size:.78rem;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .fam-val{font-size:.65rem;color:rgba(255,255,255,.35);}
+    .fam-members{font-size:.6rem;background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);border-radius:4px;padding:1px 5px;display:inline-block;margin-left:4px;}
+    .fam-join{background:rgba(124,58,237,.25);color:#c084fc;font-size:.68rem;font-weight:800;border-radius:20px;padding:5px 12px;white-space:nowrap;flex-shrink:0;border:1px solid rgba(124,58,237,.4);}
+    /* themes */
+    .theme-casa .wrap-header{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(217,119,6,.05));}
+    .theme-casa .wrap-icon{background:rgba(245,158,11,.2);}
+    .theme-msg  .wrap-header{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(91,33,182,.05));}
+    .theme-msg  .wrap-icon{background:rgba(124,58,237,.25);}
+    .theme-club .wrap-header{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(5,150,105,.05));}
+    .theme-club .wrap-icon{background:rgba(16,185,129,.2);}
+    /* section label */
+    .sec-label{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.35);font-size:.75rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:32px 0 14px;}
+    .sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08);}
+    .page-footer{text-align:center;margin-top:40px;color:rgba(255,255,255,.2);font-size:.75rem;}
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div class="logo-badge"><strong>✨ Guía Familia MeYo</strong></div>
+    <h1>Secciones principales de la app</h1>
+    <p>Dónde está cada cosa y cómo moverte</p>
+  </div>
+
+  <!-- ═══ 1 — CASA ═══ -->
+  <div class="sec-label">🏠 Pantalla Casa — accesos rápidos a Arroyo y Fiesta</div>
+  <div class="grid-1">
+    <div class="wrap-card theme-casa">
+      <div class="wrap-header">
+        <div class="wrap-icon">🏠</div>
+        <div>
+          <div class="wrap-title">Casa — pantalla principal</div>
+          <div class="wrap-sub">1.ª pestaña · aquí están los íconos de Arroyo y Fiesta</div>
+        </div>
+      </div>
+      <div class="wrap-divider"></div>
+      <div class="phone">
+        <div class="topbar">
+          <div class="tb-left">
+            <span class="tb-tab on">Video</span>
+            <span class="tb-tab" style="margin-left:10px;">Cercano</span>
+          </div>
+          <div class="tb-right">
+            <div class="tb-btn">😊</div>
+            <div class="tb-btn">🌐</div>
+            <div class="tb-btn hl">🔍</div>
+          </div>
+        </div>
+        <!-- shortcut row -->
+        <div class="shortcuts">
+          <div class="sh hl">
+            <div class="sh-icon" style="background:linear-gradient(135deg,#7f1d1d,#dc2626);">📺</div>
+            <div class="sh-label" style="color:#c084fc;">Arroyo</div>
+          </div>
+          <div class="sh hl">
+            <div class="sh-icon" style="background:linear-gradient(135deg,#78350f,#d97706);">🎉</div>
+            <div class="sh-label" style="color:#c084fc;">Fiesta</div>
+          </div>
+          <div class="sh">
+            <div class="sh-icon" style="background:rgba(255,255,255,.06);">📹</div>
+            <div class="sh-label">Video</div>
+          </div>
+          <div class="sh">
+            <div class="sh-icon" style="background:rgba(255,255,255,.06);">🏃</div>
+            <div class="sh-label">Ejercicio</div>
+          </div>
+          <div class="sh">
+            <div class="sh-icon" style="background:rgba(255,255,255,.06);">✅</div>
+            <div class="sh-label">Aprobar</div>
+          </div>
+        </div>
+        <!-- user list -->
+        <div class="pbody" style="padding-top:4px;">
+          <div class="urow">
+            <div class="uava" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">👩</div>
+            <div class="uinfo">
+              <div class="uname">😊 SILVIA M.🎵 <span class="vip-tag">VIP</span></div>
+              <div class="udesc">Secreto · 39 años · hola cómo estás 😘</div>
+            </div>
+            <div class="hi-btn">♡ Hi</div>
+          </div>
+          <div class="urow">
+            <div class="uava" style="background:linear-gradient(135deg,#065f46,#10b981);">💃</div>
+            <div class="uinfo">
+              <div class="uname">💎Yayita💎</div>
+              <div class="udesc">145 km · 40 años · Trato como me traten 😄</div>
+            </div>
+            <div class="hi-btn">♡ Hi</div>
+          </div>
+          <div class="urow">
+            <div class="uava" style="background:linear-gradient(135deg,#1e1b4b,#4338ca);">🌸</div>
+            <div class="uinfo">
+              <div class="uname">linda</div>
+              <div class="udesc">109 km · 35 años</div>
+            </div>
+            <div class="hi-btn">♡ Hi</div>
+          </div>
+        </div>
+        <div class="bnav">
+          <div class="bn on"><div class="bn-ic">🏠</div><div class="bn-tx">Casa</div></div>
+          <div class="bn"><div class="bn-ic">😊</div><div class="bn-tx">Momento</div></div>
+          <div class="bn"><div class="bn-ic">🏛️</div><div class="bn-tx">Club</div></div>
+          <div class="bn"><div class="bn-ic">💬</div><div class="bn-tx">Mensaje</div></div>
+          <div class="bn"><div class="bn-ic">👤</div><div class="bn-tx">A mí</div></div>
+        </div>
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="em">📺</span><span>El ícono <strong>Arroyo</strong> arriba a la izquierda te lleva a los lives en vivo.</span></div>
+        <div class="tip"><span class="em">🎉</span><span>El ícono <strong>Fiesta</strong> te lleva a las salas grupales.</span></div>
+        <div class="tip"><span class="em">🔍</span><span>El <strong>🔍 de la esquina superior derecha</strong> — busca IDs compartidos en lives para airdrops.</span></div>
+        <div class="tip"><span class="em">♡ Hi</span><span>Toca <strong>Hi</strong> en perfiles cercanos para iniciar conversación.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 2 — MENSAJE ═══ -->
+  <div class="sec-label">💬 Pestaña Mensaje — conversaciones privadas</div>
+  <div class="grid-1">
+    <div class="wrap-card theme-msg">
+      <div class="wrap-header">
+        <div class="wrap-icon">💬</div>
+        <div>
+          <div class="wrap-title">Mensaje — tus chats directos</div>
+          <div class="wrap-sub">4.ª pestaña del menú inferior · todos los mensajes suman</div>
+        </div>
+      </div>
+      <div class="wrap-divider"></div>
+      <div class="phone">
+        <div class="topbar">
+          <div class="tb-left">
+            <span class="tb-tab on">Mensaje</span>
+            <span class="tb-tab" style="margin-left:8px;font-size:.72rem;">Registros de llamadas</span>
+          </div>
+          <div class="tb-right"><div class="tb-btn">🗑️</div></div>
+        </div>
+        <!-- notification banner -->
+        <div class="notif-banner">
+          <div class="notif-text">¡Active las notificaciones de mensajes para no perderse ningún mensaje privado!</div>
+          <div class="notif-btn">Encender</div>
+        </div>
+        <div class="pbody" style="padding:4px 10px;">
+          <div class="msg-row">
+            <div class="meyo-logo">MeYo</div>
+            <div class="msg-info"><div class="msg-name">MeYo oficial</div><div class="msg-last">Siga las cuentas oficiales de MeYo TT y FB</div></div>
+            <div class="msg-meta"><span style="font-size:.75rem;color:rgba(255,255,255,.2);">›</span></div>
+          </div>
+          <div class="msg-row">
+            <div class="msg-ava" style="background:linear-gradient(135deg,#be185d,#db2777);">💬</div>
+            <div class="msg-info"><div class="msg-name">Grupo de chat</div><div class="msg-last">Chatear gratis</div></div>
+            <div class="msg-meta"><span style="font-size:.75rem;color:rgba(255,255,255,.2);">›</span></div>
+          </div>
+          <div class="msg-row">
+            <div class="msg-ava" style="background:linear-gradient(135deg,#c2410c,#ea580c);position:relative;">
+              🎁
+              <div style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;background:#ef4444;border:1.5px solid #12071f;"></div>
+            </div>
+            <div class="msg-info"><div class="msg-name">Centro de recompensas</div><div class="msg-last">[Tareas diarias]</div></div>
+            <div class="msg-meta"><div class="msg-time">13:29</div></div>
+          </div>
+          <div class="msg-row">
+            <div class="msg-ava" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);border-radius:50%;">👩</div>
+            <div class="msg-info"><div class="msg-name">ANAHY 💗</div><div class="msg-last">Como se pone el código</div></div>
+            <div class="msg-meta"><div class="msg-temp">40.3°C</div><div class="msg-time">10:32</div></div>
+          </div>
+          <div class="msg-row">
+            <div class="msg-ava" style="background:linear-gradient(135deg,#065f46,#10b981);border-radius:50%;">
+              👩‍🦱
+              <div class="msg-online"></div>
+            </div>
+            <div class="msg-info"><div class="msg-name">anguie ❤️</div><div class="msg-last">[Respuesta para obtener un regalo]</div></div>
+            <div class="msg-meta"><div style="font-size:1.1rem;">💜</div><div class="msg-time">16:56</div></div>
+          </div>
+          <div class="msg-row">
+            <div class="msg-ava" style="background:linear-gradient(135deg,#7f1d1d,#dc2626);border-radius:50%;">💃</div>
+            <div class="msg-info"><div class="msg-name">Vale ✨💗🔥</div><div class="msg-last">ayudalaaa</div></div>
+            <div class="msg-meta"><div class="msg-temp">2001.7°C</div><div class="msg-time">14:47</div></div>
+          </div>
+        </div>
+        <div class="bnav">
+          <div class="bn"><div class="bn-ic">🏠</div><div class="bn-tx">Casa</div></div>
+          <div class="bn"><div class="bn-ic">😊</div><div class="bn-tx">Momento</div></div>
+          <div class="bn"><div class="bn-ic">🏛️</div><div class="bn-tx">Club</div></div>
+          <div class="bn on"><div class="bn-ic" style="position:relative;">💬<span class="bn-badge">79</span></div><div class="bn-tx">Mensaje</div></div>
+          <div class="bn"><div class="bn-ic">👤</div><div class="bn-tx">A mí</div></div>
+        </div>
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="em">📩</span><span>Responde <strong>todos</strong> los mensajes, sin excepción. Todos suman.</span></div>
+        <div class="tip"><span class="em">⏰</span><span>Estar activa <strong>4–5 horas</strong> diarias multiplica los emparejamientos.</span></div>
+        <div class="tip"><span class="em">🔔</span><span>Activa las <strong>notificaciones</strong> para no perderte ningún mensaje.</span></div>
+        <div class="tip"><span class="em">🌡️</span><span>El número naranja es la <strong>"temperatura"</strong> del usuario — indica su nivel de actividad.</span></div>
+        <div class="tip"><span class="em">🚫</span><span>Nunca compartas información personal (teléfono, redes, ubicación).</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 3 — CLUB (Familia · Fiesta · Arroyo) ═══ -->
+  <div class="sec-label">🏛️ Pestaña Club — Familia · Fiesta · Arroyo</div>
+  <div class="grid-1">
+    <div class="wrap-card theme-club">
+      <div class="wrap-header">
+        <div class="wrap-icon">🏛️</div>
+        <div>
+          <div class="wrap-title">Club — tu espacio grupal</div>
+          <div class="wrap-sub">3.ª pestaña · sub-tabs: Familia · Fiesta · Arroyo</div>
+        </div>
+      </div>
+      <div class="wrap-divider"></div>
+      <div class="phone">
+        <!-- sub-nav Familia / Fiesta / Arroyo -->
+        <div style="background:#1c0d33;display:flex;align-items:center;padding:0 10px;border-bottom:1px solid rgba(255,255,255,.07);">
+          <div style="display:flex;flex:1;">
+            <div class="club-tab on">Familia</div>
+            <div class="club-tab">Fiesta</div>
+            <div class="club-tab">Arroyo</div>
+          </div>
+          <div style="display:flex;gap:6px;padding:7px 0;">
+            <div class="tb-btn" style="width:26px;height:26px;font-size:.75rem;">📊</div>
+            <div class="tb-btn" style="width:26px;height:26px;font-size:.75rem;">👤</div>
+            <div class="tb-btn" style="width:26px;height:26px;font-size:.75rem;">🌐</div>
+            <div class="tb-btn hl" style="width:26px;height:26px;font-size:.75rem;">🔍</div>
+          </div>
+        </div>
+        <!-- event banner -->
+        <div class="event-banner">
+          <div>
+            <div class="event-banner-text">Familia<br/>Fraternidad</div>
+            <div style="font-size:.62rem;color:rgba(255,239,186,.7);margin-top:2px;">13/3 – 16/3 (GMT+4)</div>
+          </div>
+          <div style="position:absolute;right:14px;font-size:2.8rem;opacity:.25;">🛡️</div>
+        </div>
+        <!-- events in progress -->
+        <div class="event-chips">
+          <div class="event-chip">
+            <div><span class="ec-badge">En curso</span></div>
+            <div class="ec-title">🐊 Cocodrilo de desafío</div>
+            <div class="ec-time">⏰ 12/03 16:00–18:00</div>
+            <div class="ec-members">👥 461</div>
+          </div>
+          <div class="event-chip">
+            <div><span class="ec-badge">En curso</span></div>
+            <div class="ec-title">⭐ All Stars Smash</div>
+            <div class="ec-time">⏰ 12/03 16:00–19:00</div>
+            <div class="ec-members">👥 280</div>
+          </div>
+        </div>
+        <!-- ranking tabs -->
+        <div class="tab-chips">
+          <div class="chip on">Diario</div>
+          <div class="chip">⭐ HOT</div>
+          <div class="chip">Semanalmente</div>
+          <div class="chip">General</div>
+        </div>
+        <!-- family ranking -->
+        <div style="padding:2px 0 4px;">
+          <div class="fam-row">
+            <div class="fam-rank gold">👑</div>
+            <div class="fam-cover" style="background:linear-gradient(135deg,#78350f,#b45309);">🥁</div>
+            <div class="fam-info">
+              <div class="fam-name">🌿 TROPICOQUET@S 🌿</div>
+              <div class="fam-val">Valor diario: 30,574 <span class="fam-members">👤 160</span></div>
+            </div>
+            <div class="fam-join">+</div>
+          </div>
+          <div class="fam-row">
+            <div class="fam-rank silver">2</div>
+            <div class="fam-cover" style="background:linear-gradient(135deg,#064e3b,#065f46);">🌿</div>
+            <div class="fam-info">
+              <div class="fam-name">🌿 El Páráíso 🌿</div>
+              <div class="fam-val">Valor diario: 30,144 <span class="fam-members">👤 127</span></div>
+            </div>
+            <div class="fam-join">+</div>
+          </div>
+          <div class="fam-row">
+            <div class="fam-rank bronze">3</div>
+            <div class="fam-cover" style="background:linear-gradient(135deg,#1e1b4b,#3730a3);">🦅</div>
+            <div class="fam-info">
+              <div class="fam-name">MERAKI</div>
+              <div class="fam-val">Valor diario: 18,294 <span class="fam-members">👤 180</span></div>
+            </div>
+            <div class="fam-join" style="background:rgba(168,85,247,.35);color:#e9d5ff;border-color:rgba(168,85,247,.6);">✓</div>
+          </div>
+          <div class="fam-row">
+            <div class="fam-rank">4</div>
+            <div class="fam-cover" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);">⚔️</div>
+            <div class="fam-info">
+              <div class="fam-name">⚙️ La 593 🇪🇨 ⚙️</div>
+              <div class="fam-val">Valor diario: 12,792 <span class="fam-members">👤 223</span></div>
+            </div>
+            <div class="fam-join">+</div>
+          </div>
+        </div>
+        <div class="bnav">
+          <div class="bn"><div class="bn-ic">🏠</div><div class="bn-tx">Casa</div></div>
+          <div class="bn"><div class="bn-ic">😊</div><div class="bn-tx">Momento</div></div>
+          <div class="bn on"><div class="bn-ic">🏛️</div><div class="bn-tx">Club</div></div>
+          <div class="bn"><div class="bn-ic" style="position:relative;">💬<span class="bn-badge">79</span></div><div class="bn-tx">Mensaje</div></div>
+          <div class="bn"><div class="bn-ic">👤</div><div class="bn-tx">A mí</div></div>
+        </div>
+      </div>
+      <div class="tips">
+        <div class="tip"><span class="em">🏠</span><span><strong>Familia</strong> — tu sala principal. Sigue siempre las normas del grupo.</span></div>
+        <div class="tip"><span class="em">🎉</span><span>Sub-tab <strong>Fiesta</strong> — salas con micrófonos, Ludo y regalos CP.</span></div>
+        <div class="tip"><span class="em">📺</span><span>Sub-tab <strong>Arroyo</strong> — todos los lives activos en este momento.</span></div>
+        <div class="tip"><span class="em">🏆</span><span>El <strong>valor diario</strong> del ranking sube siendo activa en tu familia.</span></div>
+        <div class="tip"><span class="em">🎁</span><span>Airdrops en la sala — cajitas de regalos aleatorios gratuitos.</span></div>
+        <div class="tip"><span class="em">🚨</span><span>Nunca hables de <strong>monetización</strong> en la sala — usa el grupo de WhatsApp.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">Guía Familia MeYo · preview-secciones.html</div>
+
+</body>
+</html>

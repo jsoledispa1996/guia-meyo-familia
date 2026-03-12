@@ -149,8 +149,7 @@
     <div class="hero animate-in">
       <div class="hero-badge">🏠 Guía de la Familia</div>
       <div class="hero-logo">Me<span>Yo</span></div>
-      <p>Tu guía completa para integrarte a la familia en MeYo.<br />
-         Sigue cada sección en orden para empezar sin problemas.</p>
+      <p id="typing-target" data-lines='["Tu guía para integrarte a la familia en MeYo.","Sigue cada paso y empieza sin problemas.","¡Bienvenido/a! La familia te espera."]'></p>
     </div>
 
     <!-- Welcome Banner -->
@@ -164,14 +163,16 @@
 
     <!-- Hub Grid -->
     <div class="hub-grid">
-      <a href="bienvenida.html" class="hub-card animate-in">
+      <a href="bienvenida.html" class="hub-card" style="border: 2px solid rgba(168,85,247,.35);">
+        <div class="hub-start-arrow">👇</div>
         <div class="hub-icon">🌟</div>
         <div class="hub-card-title">Bienvenida</div>
         <div class="hub-card-desc">Conoce de qué trata esta guía y qué esperamos de ti como nuevo integrante.</div>
         <div class="hub-arrow">Ver sección →</div>
+        <span class="start-here-badge">✨ Empieza aquí</span>
       </a>
 
-      <a href="paso1.html" class="hub-card animate-in">
+      <a href="paso1.html" class="hub-card">
         <div class="hub-step-tag">Nuevo</div>
         <div class="hub-icon">📱</div>
         <div class="hub-card-title">Crear tu cuenta</div>
@@ -179,7 +180,7 @@
         <div class="hub-arrow">Ver sección →</div>
       </a>
 
-      <a href="paso2.html" class="hub-card animate-in">
+      <a href="paso2.html" class="hub-card">
         <div class="hub-step-tag">Unirse</div>
         <div class="hub-icon">🏡</div>
         <div class="hub-card-title">Unirse a la familia</div>
@@ -187,7 +188,7 @@
         <div class="hub-arrow">Ver sección →</div>
       </a>
 
-      <a href="paso3.html" class="hub-card animate-in">
+      <a href="paso3.html" class="hub-card">
         <div class="hub-step-tag">Funciones</div>
         <div class="hub-icon">⚡</div>
         <div class="hub-card-title">Funcionalidades</div>
@@ -195,14 +196,14 @@
         <div class="hub-arrow">Ver sección →</div>
       </a>
 
-      <a href="normas.html" class="hub-card animate-in">
+      <a href="normas.html" class="hub-card">
         <div class="hub-icon">📋</div>
         <div class="hub-card-title">Normas de la familia</div>
         <div class="hub-card-desc">Reglas básicas para mantener un ambiente positivo y respetuoso.</div>
         <div class="hub-arrow">Ver sección →</div>
       </a>
 
-      <a href="soporte.html" class="hub-card animate-in">
+      <a href="soporte.html" class="hub-card">
         <div class="hub-icon">🆘</div>
         <div class="hub-card-title">Soporte y Ayuda</div>
         <div class="hub-card-desc">¿Tienes dudas? Aquí encontrarás cómo contactar a los administradores.</div>
@@ -263,6 +264,61 @@
   </div>
 
   <div id="toast" class="toast"></div>
+
+  <!-- Floating "¿Eres nuevo?" Button -->
+  <button class="float-new-btn hidden" id="float-new-btn" aria-label="¿Eres nuevo?">
+    👋 ¿Eres nuevo?
+  </button>
+
+  <!-- Onboarding Modal -->
+  <div class="onboarding-overlay" id="onboarding-overlay" role="dialog" aria-modal="true" aria-label="Bienvenida">
+    <div class="onboarding-modal">
+      <span class="onboarding-wave">👋</span>
+      <h2>¡Bienvenido/a a la familia!</h2>
+      <p class="onboarding-sub">¿Es tu primera vez en MeYo? Sigue estos pasos en orden:</p>
+
+      <div class="onboarding-steps">
+        <a href="bienvenida.html" class="onboarding-step">
+          <span class="onboarding-step-icon">🌟</span>
+          <div class="onboarding-step-text">
+            <strong>Bienvenida</strong>
+            <span>Conoce cómo funciona la guía</span>
+          </div>
+          <span class="onboarding-step-arrow">→</span>
+        </a>
+        <a href="paso1.html" class="onboarding-step">
+          <span class="onboarding-step-icon">📱</span>
+          <div class="onboarding-step-text">
+            <strong>Crear tu cuenta</strong>
+            <span>Descarga la app y regístrate</span>
+          </div>
+          <span class="onboarding-step-arrow">→</span>
+        </a>
+        <a href="paso2.html" class="onboarding-step">
+          <span class="onboarding-step-icon">🏡</span>
+          <div class="onboarding-step-text">
+            <strong>Unirse a la familia</strong>
+            <span>Busca y únete al grupo familiar</span>
+          </div>
+          <span class="onboarding-step-arrow">→</span>
+        </a>
+        <a href="paso3.html" class="onboarding-step">
+          <span class="onboarding-step-icon">⚡</span>
+          <div class="onboarding-step-text">
+            <strong>Explorar funciones</strong>
+            <span>Chat, regalos, salas y más</span>
+          </div>
+          <span class="onboarding-step-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="onboarding-btn-row">
+        <button class="onboarding-dismiss">Ya sé cómo funciona</button>
+        <a href="bienvenida.html" class="onboarding-cta">¡Empezar ahora! 🚀</a>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
 </body>
 </html>
