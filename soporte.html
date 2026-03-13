@@ -40,9 +40,30 @@
     }
     .contact-card:hover .contact-icon { transform: scale(1.1) rotate(-5deg); }
 
-    .contact-info strong { font-size: .97rem; color: var(--text-dark); display: block; }
-    .contact-info span   { font-size: .85rem; color: var(--text-light); }
+    .contact-info {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .contact-info strong { font-size: .95rem; color: var(--text-dark); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .contact-info span   { font-size: .82rem; color: var(--text-light); }
+    .contact-info b      { font-size: .95rem !important; letter-spacing: 1.5px !important; }
     .contact-arrow { margin-left: auto; font-size: .9rem; color: var(--green); font-weight: 700; }
+
+    @media (max-width: 480px) {
+      .contact-card {
+        flex-wrap: wrap;
+        padding: 16px;
+        gap: 12px;
+      }
+      .contact-card .copy-btn {
+        width: 100%;
+        margin: 0 !important;
+        padding: 10px 0 !important;
+        text-align: center;
+        font-size: .9rem !important;
+      }
+    }
 
     /* FAQ */
     .faq-item {
@@ -155,6 +176,52 @@
       margin-top: 4px;
     }
     .form-success.show { display: block; }
+
+    /* ── Step Flow (used in search-by-ID guide) ── */
+    .step-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 16px;
+    }
+    .step-flow-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 18px;
+      position: relative;
+    }
+    .step-flow-item::after {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 40px;
+      bottom: 0;
+      width: 2px;
+      background: var(--purple-mist);
+    }
+    .step-flow-item:last-child::after { display: none; }
+    .step-flow-item:last-child { padding-bottom: 0; }
+
+    .flow-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white;
+      font-size: .85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: var(--shadow-sm);
+    }
+    .flow-content { padding-top: 6px; flex: 1; min-width: 0; }
+    .flow-content strong { font-size: .95rem; color: var(--text-dark); display: block; margin-bottom: 3px; }
+    .flow-content span  { font-size: .87rem; color: var(--text-mid); line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -170,12 +237,11 @@
     </button>
     <ul class="navbar-links" id="nav-links">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="bienvenida.html">Bienvenida</a></li>
-      <li><a href="paso1.html">Crear cuenta</a></li>
-      <li><a href="paso2.html">Unirse</a></li>
-      <li><a href="paso3.html">Funciones</a></li>
-      <li><a href="normas.html">Normas</a></li>
-      <li><a href="soporte.html">Soporte</a></li>
+      <li><a href="paso1.html">Creación de Cuenta</a></li>
+      <li><a href="paso3.html">Guía de MeYo</a></li>
+      <li><a href="familia-actividades.html">Eventos de la Familia</a></li>
+      <li><a href="monetizar.html">Monetizar</a></li>
+      <li><a href="concurso-semanal.html">Concurso Semanal</a></li>
     </ul>
   </nav>
 

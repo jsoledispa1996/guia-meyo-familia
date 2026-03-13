@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividades en la Familia – MeYo</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+
+    /* ───────────────────────────────── HERO ── */
+    .fam-hero {
+      text-align: center;
+      padding: 40px 20px 28px;
+      background: linear-gradient(135deg, #3b0764 0%, #5b21b6 50%, #2e1065 100%);
+      border-radius: 20px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .fam-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(168,85,247,.3) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 30%, rgba(99,102,241,.2) 0%, transparent 50%);
+    }
+    .fam-hero-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.2);
+      border-radius: 50px; padding: 6px 16px; margin-bottom: 16px;
+      font-size: .8rem; font-weight: 800; color: rgba(255,255,255,.9);
+      position: relative; z-index: 1;
+    }
+    .fam-hero h1 {
+      font-size: 2rem; font-weight: 900; color: white;
+      position: relative; z-index: 1; margin-bottom: 8px;
+    }
+    .fam-hero p {
+      font-size: .9rem; color: rgba(255,255,255,.65);
+      position: relative; z-index: 1; line-height: 1.6; max-width: 480px; margin: 0 auto;
+    }
+
+    /* ─────────────────────────── SECTION DIVIDER ── */
+    .sec-divider {
+      display: flex; align-items: center; gap: 14px;
+      margin: 32px 0 18px;
+    }
+    .sec-divider-line { flex: 1; height: 1px; background: rgba(124,58,237,.2); }
+    .sec-divider-label {
+      font-size: .82rem; font-weight: 900; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--purple-light);
+      display: flex; align-items: center; gap: 8px;
+      white-space: nowrap;
+    }
+
+    /* ─────────────────────────── INFO CARD ── */
+    .info-card {
+      background: white; border-radius: 16px; overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(168,85,247,.12);
+      margin-bottom: 20px;
+    }
+    .info-card-header {
+      background: linear-gradient(135deg, var(--purple) 0%, #5b21b6 100%);
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .info-card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; flex-shrink: 0;
+    }
+    .info-card-title { font-size: 1.15rem; font-weight: 900; color: white; }
+    .info-card-sub   { font-size: .78rem; color: rgba(255,255,255,.65); margin-top: 2px; }
+
+    .info-card-body  { padding: 20px; }
+    .info-card-body p {
+      font-size: .88rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 10px;
+    }
+    .info-card-body p:last-child { margin-bottom: 0; }
+
+    /* highlight box inside card */
+    .highlight-box {
+      background: var(--purple-soft); border-radius: 12px;
+      border-left: 4px solid var(--purple-light);
+      padding: 12px 16px; margin-top: 14px;
+    }
+    .highlight-box .hb-label {
+      font-size: .72rem; font-weight: 900; color: var(--purple-dark);
+      text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px;
+    }
+    .highlight-box p {
+      font-size: .84rem !important; color: var(--purple-dark) !important; margin: 0 !important;
+    }
+
+    @keyframes bounce { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(-4px); } }
+
+    /* ─────────────────────────── LOGIN CARD ── */
+    .login-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start;
+    }
+    @media (max-width: 580px) { .login-layout { grid-template-columns: 1fr; } }
+
+    .mock-phone {
+      background: #12071f; border-radius: 18px; overflow: hidden;
+      border: 1.5px solid rgba(168,85,247,.2);
+    }
+    .mp-topbar {
+      background: #1c0d33; padding: 10px 14px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .mp-title { font-size: .82rem; font-weight: 800; color: #c084fc; }
+    .mp-icons { display: flex; gap: 6px; }
+    .mp-icon  {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: rgba(255,255,255,.06);
+      display: flex; align-items: center; justify-content: center; font-size: .8rem;
+    }
+    .mp-body { padding: 10px 12px; }
+
+    /* family info mock */
+    .fam-banner {
+      border-radius: 12px; overflow: hidden;
+      background: linear-gradient(135deg,#1e0a40,#3b0764);
+      padding: 12px;
+      border: 1px solid rgba(168,85,247,.2);
+    }
+    .fb-row    { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .fb-cover  { width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(135deg,#6d28d9,#a855f7); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .fb-name   { font-size: .82rem; font-weight: 900; color: white; }
+    .fb-id     { font-size: .65rem; color: rgba(255,255,255,.4); }
+    .fb-stats  { display: flex; gap: 8px; margin-bottom: 8px; }
+    .fb-stat   { flex: 1; background: rgba(255,255,255,.06); border-radius: 8px; padding: 6px; text-align: center; }
+    .fb-stat-val { font-size: .82rem; font-weight: 900; color: white; }
+    .fb-stat-lbl { font-size: .58rem; color: rgba(255,255,255,.3); }
+    .fb-progress { height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); margin-bottom: 4px; }
+    .fb-progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg,#a855f7,#7c3aed); width: 70%; }
+    .fb-prog-lbl { font-size: .6rem; color: rgba(255,255,255,.35); }
+
+    /* calendar mock */
+    .cal-wrap  { background: #1c0d33; border-radius: 12px; padding: 10px; border: 1px solid rgba(255,255,255,.06); }
+    .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .cal-month { font-size: .78rem; font-weight: 900; color: #c084fc; }
+    .cal-streak { background: rgba(240,192,64,.15); border: 1px solid rgba(240,192,64,.3); border-radius: 20px; padding: 2px 8px; font-size: .62rem; font-weight: 800; color: #f0c040; }
+    .cal-grid  { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .cal-day-hdr { text-align: center; font-size: .55rem; font-weight: 800; color: rgba(255,255,255,.3); padding: 2px 0; }
+    .cal-day   { height: 22px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
+    .cal-day span { font-size: .62rem; font-weight: 700; color: rgba(255,255,255,.35); }
+    .cal-day.done    { background: rgba(16,185,129,.15); }
+    .cal-day.done span { color: #34d399; }
+    .cal-day.miss    { background: rgba(239,68,68,.1); }
+    .cal-day.miss span { color: rgba(239,68,68,.5); }
+    .cal-day.today   { background: rgba(168,85,247,.25); border: 1.5px solid rgba(168,85,247,.6); }
+    .cal-day.today span { color: #c084fc; font-weight: 900; }
+    .cal-day.reward  { background: rgba(240,192,64,.2); border: 1px solid rgba(240,192,64,.4); }
+    .cal-day.reward span { color: #f0c040; }
+    .cal-label { font-size: .65rem; color: rgba(255,255,255,.4); text-align: center; margin-top: 8px; line-height: 1.4; padding: 0 4px; }
+    .cal-coins { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 6px; background: rgba(240,192,64,.1); border-radius: 8px; padding: 5px; }
+    .cal-coins span { font-size: .72rem; font-weight: 800; color: #f0c040; }
+
+    /* ──────────────────────────── EVENTS SECTION ── */
+    .event-featured {
+      border-radius: 18px; overflow: hidden; background: white;
+      box-shadow: var(--shadow-md); border: 1px solid rgba(168,85,247,.12);
+      margin-bottom: 20px;
+    }
+    .ef-visual {
+      background: linear-gradient(135deg,#064e3b 0%,#065f46 40%,#0891b2 100%);
+      padding: 24px 24px 20px;
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    @media (max-width: 560px) { .ef-visual { flex-direction: column; align-items: flex-start; } }
+    .ef-game {
+      width: 140px; height: 120px; flex-shrink: 0;
+      border-radius: 14px; overflow: hidden;
+      background: linear-gradient(135deg,#0d5e3f,#16a34a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4.5rem; position: relative;
+      border: 2px solid rgba(255,255,255,.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,.4);
+    }
+    @media (max-width: 560px) { .ef-game { width: 100%; height: 100px; font-size: 3.5rem; } }
+    .ef-game-badge {
+      position: absolute; bottom: 6px; left: 0; right: 0;
+      text-align: center; font-size: .55rem; font-weight: 800;
+      color: rgba(255,255,255,.8); letter-spacing: .5px;
+    }
+    .ef-intro { flex: 1; min-width: 200px; }
+    .ef-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,.15); border-radius: 20px; padding: 3px 10px; font-size: .68rem; font-weight: 800; color: rgba(255,255,255,.9); margin-bottom: 8px; }
+    .ef-title { font-size: 1.4rem; font-weight: 900; color: white; margin-bottom: 4px; }
+    .ef-sub   { font-size: .82rem; color: rgba(255,255,255,.65); line-height: 1.5; }
+
+    .ef-body  { padding: 20px; }
+    .ef-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+    .ef-step  { display: flex; gap: 12px; align-items: flex-start; }
+    .ef-step-num {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--purple); color: white;
+      font-size: .75rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ef-step-text { font-size: .86rem; color: var(--text-mid); line-height: 1.65; padding-top: 3px; }
+    .ef-step-text strong { color: var(--text-dark); }
+
+    /* hands comparison */
+    .hands-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0;
+    }
+    .hand-card {
+      border-radius: 12px; padding: 14px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .hand-card.white { background: linear-gradient(135deg,#f8fafc,#e2e8f0); border: 1.5px solid #cbd5e1; }
+    .hand-card.color { background: linear-gradient(135deg,#fef3c7,#fde68a30); border: 1.5px solid #f59e0b; }
+    .hand-icon  { font-size: 1.8rem; }
+    .hand-name  { font-size: .82rem; font-weight: 900; color: var(--text-dark); }
+    .hand-how   { font-size: .74rem; color: var(--text-mid); line-height: 1.5; }
+    .hand-reward{ display: inline-flex; align-items: center; gap: 5px; border-radius: 20px; padding: 3px 10px; font-size: .72rem; font-weight: 900; margin-top: 2px; }
+    .hand-card.white .hand-reward { background: rgba(100,116,139,.15); color: var(--text-dark); }
+    .hand-card.color .hand-reward { background: rgba(245,158,11,.2); color: #92400e; }
+
+    .ef-tip {
+      background: linear-gradient(135deg,#ecfdf5,#d1fae5);
+      border-radius: 12px; padding: 14px 16px;
+      border-left: 4px solid var(--green);
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .ef-tip p { font-size: .85rem; color: #065f46; line-height: 1.65; margin: 0; }
+
+    /* event mini cards grid */
+    .events-mini-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px; margin-bottom: 8px;
+    }
+    .event-mini {
+      background: white; border-radius: 16px; overflow: hidden;
+      box-shadow: var(--shadow-sm); border: 1px solid rgba(168,85,247,.1);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .event-mini:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .event-mini-visual {
+      height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; position: relative;
+    }
+    .event-mini-body { padding: 14px 16px 16px; }
+    .event-mini-title { font-size: .95rem; font-weight: 900; color: var(--text-dark); margin-bottom: 6px; }
+    .event-mini-desc  { font-size: .8rem; color: var(--text-mid); line-height: 1.65; }
+    .event-mini-tags  { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .event-mini-tag   {
+      font-size: .68rem; font-weight: 800; border-radius: 20px;
+      padding: 3px 10px; white-space: nowrap;
+    }
+
+    /* bottom tips box */
+    .tips-box {
+      background: var(--purple-soft);
+      border-radius: 16px; padding: 20px;
+      border: 1px solid rgba(168,85,247,.2);
+      margin-top: 8px;
+    }
+    .tips-box-title {
+      font-size: .85rem; font-weight: 900; color: var(--purple-dark);
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .tips-box ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .tips-box ul li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: .84rem; color: var(--text-mid); line-height: 1.65;
+    }
+    .tips-box ul li .ti { flex-shrink: 0; }
+    .tips-box ul li strong { color: var(--text-dark); }
+
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="paso1.html">Creación de Cuenta</a></li>
+      <li><a href="paso3.html">Guía de MeYo</a></li>
+      <li><a href="familia-actividades.html">Eventos de la Familia</a></li>
+      <li><a href="monetizar.html">Monetizar</a></li>
+      <li><a href="concurso-semanal.html">Concurso Semanal</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- HERO -->
+    <div class="fam-hero animate-in">
+      <div class="fam-hero-tag">🏡 Guía interna</div>
+      <h1>✨ Familia 🧚</h1>
+      <p>Todo lo que puedes hacer dentro de la sala de la familia — actividades diarias, eventos y cómo sacarles el máximo provecho.</p>
+    </div>
+
+    <!-- ═══════════════ INICIAR SESIÓN ═══════════════ -->
+    <div class="sec-divider">
+      <div class="sec-divider-line"></div>
+      <div class="sec-divider-label">🔐 Actividad diaria</div>
+      <div class="sec-divider-line"></div>
+    </div>
+
+    <div class="info-card animate-in">
+      <div class="info-card-header">
+        <div class="info-card-icon">🏠</div>
+        <div>
+          <div class="info-card-title">Iniciar sesión en la familia</div>
+          <div class="info-card-sub">Hazlo todos los días — suma monedas al cofre familiar</div>
+        </div>
+      </div>
+      <div class="info-card-body">
+        <div class="login-layout">
+
+          <!-- Mock 1: Sala de la familia — diseño real -->
+          <div class="mock-phone" style="overflow:hidden;padding:0;">
+            <!-- Barra superior -->
+            <div style="background:#1e0a3c;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);">
+              <span style="font-size:1rem;color:rgba(255,255,255,.7);">‹</span>
+              <span style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);">•••</span>
+            </div>
+            <!-- Banner morado de portada -->
+            <div style="height:52px;background:linear-gradient(135deg,#6d28d9,#7c3aed,#a855f7,#c084fc);position:relative;">
+              <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%2260%22><circle cx=%2230%22 cy=%2230%22 r=%2240%22 fill=%22rgba(255,255,255,.06)%22/><circle cx=%22160%22 cy=%2220%22 r=%2230%22 fill=%22rgba(255,255,255,.04)%22/></svg>');"></div>
+            </div>
+            <!-- Tarjeta del líder sobresaliendo del banner -->
+            <div style="background:#140730;padding:0 10px 10px;">
+              <div style="background:#1e0a3c;border-radius:12px;padding:10px 12px;margin-top:-18px;border:1px solid rgba(168,85,247,.2);position:relative;">
+                <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+                  <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#be185d,#f43f5e);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border:2px solid rgba(255,255,255,.15);">💋</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:.76rem;font-weight:900;color:white;">lovy kardia 🔥</div>
+                    <div style="font-size:.58rem;color:rgba(255,255,255,.4);">ID: 2327307 &nbsp;🇪🇨</div>
+                    <div style="font-size:.56rem;color:rgba(255,255,255,.3);">Tiempo creado: 2026-03-08</div>
+                  </div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;"></div>
+                </div>
+                <div style="display:flex;gap:6px;">
+                  <div style="flex:1;text-align:center;background:rgba(255,255,255,.05);border-radius:7px;padding:5px 4px;">
+                    <div style="font-size:.72rem;font-weight:900;color:white;">9530</div>
+                    <div style="font-size:.52rem;color:rgba(255,255,255,.35);">Valor semanal</div>
+                  </div>
+                  <div style="flex:1;text-align:center;background:rgba(255,255,255,.05);border-radius:7px;padding:5px 4px;">
+                    <div style="font-size:.72rem;font-weight:900;color:white;">9530</div>
+                    <div style="font-size:.52rem;color:rgba(255,255,255,.35);">Valor total</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Miembro -->
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 2px 4px;">
+                <div style="font-size:.68rem;font-weight:800;color:rgba(255,255,255,.7);">Miembro de la familia <span style="color:#a855f7;">12/900</span> ❓</div>
+                <span style="font-size:.8rem;color:rgba(255,255,255,.3);">›</span>
+              </div>
+              <!-- Avatares de miembros -->
+              <div style="display:flex;gap:5px;padding:0 2px 8px;overflow:hidden;">
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:.8rem;border:1.5px solid #140730;">👩</div>
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#065f46,#10b981);display:flex;align-items:center;justify-content:center;font-size:.8rem;border:1.5px solid #140730;">👩</div>
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#92400e,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:.8rem;border:1.5px solid #140730;">👩‍🦱</div>
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1e1b4b,#4338ca);display:flex;align-items:center;justify-content:center;font-size:.8rem;border:1.5px solid #140730;">🧑</div>
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#be185d,#db2777);display:flex;align-items:center;justify-content:center;font-size:.8rem;border:1.5px solid #140730;">👩</div>
+                <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:rgba(255,255,255,.4);border:1.5px dashed rgba(255,255,255,.15);">+</div>
+              </div>
+              <!-- Menú sala -->
+              <div style="display:flex;flex-direction:column;gap:1px;">
+                <div style="font-size:.68rem;color:rgba(255,255,255,.55);padding:6px 2px;border-bottom:1px solid rgba(255,255,255,.05);">Introducción familiar</div>
+                <div style="font-size:.68rem;color:rgba(255,255,255,.55);padding:6px 2px;border-bottom:1px solid rgba(255,255,255,.05);">Reglas familiares</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 2px;border-bottom:1px solid rgba(255,255,255,.05);">
+                  <span style="font-size:.68rem;color:rgba(255,255,255,.55);">Muro de honor familiar</span>
+                  <span style="font-size:.7rem;color:rgba(255,255,255,.3);">›</span>
+                </div>
+                <div style="font-size:.68rem;color:rgba(255,255,255,.55);padding:6px 2px;">Atributos familiares</div>
+              </div>
+            </div>
+
+            <!-- ★ BARRA INFERIOR — el botón de sesión está aquí ★ -->
+            <div style="background:#1e0a3c;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;padding:6px 10px;gap:6px;">
+              <!-- chat -->
+              <div style="flex:1;background:linear-gradient(135deg,#f472b6,#ec4899);border-radius:20px;height:32px;display:flex;align-items:center;justify-content:center;font-size:.85rem;">💬</div>
+              <!-- calendario -->
+              <div style="width:38px;height:32px;background:rgba(255,255,255,.07);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.9rem;">📅</div>
+              <!-- ★ SESIÓN / COFRE — resaltado con borde -->
+              <div style="position:relative;flex:1;">
+                <div style="background:linear-gradient(135deg,#78350f,#b45309,#d97706);border-radius:12px;height:36px;display:flex;align-items:center;justify-content:center;gap:4px;border:2px solid #fbbf24;box-shadow:0 0 12px rgba(251,191,36,.5);">
+                  <span style="font-size:1rem;">🏆</span>
+                  <div>
+                    <div style="font-size:.48rem;color:rgba(255,239,186,.7);font-weight:700;line-height:1;">Valor día</div>
+                    <div style="display:flex;align-items:center;gap:2px;"><span style="font-size:.55rem;">🪙</span><span style="font-size:.65rem;font-weight:900;color:#fef3c7;">742</span></div>
+                  </div>
+                </div>
+                <!-- flecha indicadora -->
+                <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:.9rem;animation:bounce .8s infinite alternate;">👇</div>
+              </div>
+              <!-- agregar -->
+              <div style="width:38px;height:32px;background:linear-gradient(135deg,#f472b6,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.9rem;">👤➕</div>
+            </div>
+            <div style="background:#1e0a3c;text-align:center;padding:4px 0 6px;">
+              <span style="font-size:.55rem;font-weight:800;color:#f59e0b;letter-spacing:.5px;">↑ TOCA AQUÍ PARA INICIAR SESIÓN ↑</span>
+            </div>
+          </div>
+
+          <!-- Mock 2: Calendario de sesiones -->
+          <div class="mock-phone">
+            <div class="mp-topbar">
+              <div class="mp-title">📅 Sesiones familiares</div>
+            </div>
+            <div class="mp-body">
+              <div class="cal-wrap">
+                <div class="cal-header">
+                  <div class="cal-month">Marzo 2026</div>
+                  <div class="cal-streak">🔥 8 días seguidos</div>
+                </div>
+                <div class="cal-grid">
+                  <!-- Headers -->
+                  <div class="cal-day-hdr">D</div>
+                  <div class="cal-day-hdr">L</div>
+                  <div class="cal-day-hdr">M</div>
+                  <div class="cal-day-hdr">X</div>
+                  <div class="cal-day-hdr">J</div>
+                  <div class="cal-day-hdr">V</div>
+                  <div class="cal-day-hdr">S</div>
+                  <!-- Week 1 -->
+                  <div class="cal-day"><span></span></div>
+                  <div class="cal-day"><span></span></div>
+                  <div class="cal-day"><span></span></div>
+                  <div class="cal-day"><span></span></div>
+                  <div class="cal-day"><span></span></div>
+                  <div class="cal-day miss"><span>✗</span></div>
+                  <div class="cal-day done"><span>✓</span></div>
+                  <!-- Week 2 -->
+                  <div class="cal-day done"><span>✓</span></div>
+                  <div class="cal-day miss"><span>✗</span></div>
+                  <div class="cal-day done"><span>✓</span></div>
+                  <div class="cal-day done"><span>✓</span></div>
+                  <div class="cal-day done"><span>✓</span></div>
+                  <div class="cal-day done"><span>✓</span></div>
+                  <div class="cal-day done"><span>✓</span></div>
+                  <!-- Week 3 -->
+                  <div class="cal-day done"><span>✓</span></div>
+                  <div class="cal-day done"><span>✓</span></div>
+                  <div class="cal-day today"><span>12</span></div>
+                  <div class="cal-day"><span>13</span></div>
+                  <div class="cal-day"><span>14</span></div>
+                  <div class="cal-day"><span>15</span></div>
+                  <div class="cal-day reward"><span>🎁</span></div>
+                  <!-- Week 4 -->
+                  <div class="cal-day"><span>17</span></div>
+                  <div class="cal-day"><span>18</span></div>
+                  <div class="cal-day"><span>19</span></div>
+                  <div class="cal-day"><span>20</span></div>
+                  <div class="cal-day"><span>21</span></div>
+                  <div class="cal-day"><span>22</span></div>
+                  <div class="cal-day reward"><span>🎂</span></div>
+                </div>
+                <div class="cal-label">Inicia sesión cada día después de las 19:00</div>
+                <div class="cal-coins">
+                  <span>🪙 +50 monedas al cofre hoy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /login-layout -->
+
+        <!-- Explicación -->
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--purple-soft);border-radius:12px;">
+            <span style="font-size:1.6rem;flex-shrink:0;">🪙</span>
+            <div>
+              <div style="font-size:.88rem;font-weight:800;color:var(--purple-dark);margin-bottom:4px;">¿Dónde está el botón?</div>
+              <div style="font-size:.84rem;color:var(--text-mid);line-height:1.7;">En la <strong>barra inferior de la sala familiar</strong> hay 4 botones. El <strong>3er botón</strong> — el que muestra el cofre con monedas (🪙 742 aprox.) — es el de iniciar sesión. Tócalo una vez al día para <strong>sumar monedas al cofre familiar</strong>.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;padding:14px;background:linear-gradient(135deg,#fef3c720,#fde68a10);border-radius:12px;border:1.5px solid rgba(245,158,11,.25);">
+            <span style="font-size:1.6rem;flex-shrink:0;">🎂</span>
+            <div>
+              <div style="font-size:.88rem;font-weight:800;color:#92400e;margin-bottom:4px;">Cumpleaños familiar</div>
+              <div style="font-size:.84rem;color:var(--text-mid);line-height:1.7;">El día del <strong>cumpleaños de la familia</strong> (aniversario de creación) todos los miembros que iniciaron sesión ese día pueden <strong>reclamar moneditas extra</strong> del cofre como recompensa de lealtad.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ EVENTOS ═══════════════ -->
+    <div class="sec-divider">
+      <div class="sec-divider-line"></div>
+      <div class="sec-divider-label">🏆 Eventos</div>
+      <div class="sec-divider-line"></div>
+    </div>
+
+    <!-- COCODRILO DE DESAFÍO — EVENTO DESTACADO -->
+    <div class="event-featured animate-in">
+      <div class="ef-visual">
+        <div class="ef-game">
+          🐊
+          <div class="ef-game-badge">EVENTO EN CURSO</div>
+        </div>
+        <div class="ef-intro">
+          <div class="ef-badge">🌟 Evento destacado</div>
+          <div class="ef-title">Cocodrilo de desafío</div>
+          <div class="ef-sub">El mejor evento para recargar — las manos de color duplican las monedas.</div>
+        </div>
+      </div>
+      <div class="ef-body">
+        <div style="font-size:.88rem;font-weight:900;color:var(--text-dark);margin-bottom:12px;">¿Cómo funciona?</div>
+        <div class="ef-steps">
+          <div class="ef-step">
+            <div class="ef-step-num">1</div>
+            <div class="ef-step-text">El cocodrilo tiene <strong>7 dientes buenos</strong> y <strong>1 diente malo</strong>. Debes presionar un diente por turno.</div>
+          </div>
+          <div class="ef-step">
+            <div class="ef-step-num">2</div>
+            <div class="ef-step-text">Si presionas los 7 dientes buenos seguidos <strong>completas una ronda</strong> y ganas monedas. Si tocas el malo, la ronda <strong>se reinicia desde cero</strong>.</div>
+          </div>
+          <div class="ef-step">
+            <div class="ef-step-num">3</div>
+            <div class="ef-step-text">Para presionar dientes necesitas <strong>manos</strong>. Hay dos tipos, con recompensas diferentes.</div>
+          </div>
+        </div>
+
+        <!-- Manos -->
+        <div style="font-size:.88rem;font-weight:900;color:var(--text-dark);margin:16px 0 10px;">🖐️ Tipos de manos</div>
+        <div class="hands-grid">
+          <div class="hand-card white">
+            <div class="hand-icon">🤍</div>
+            <div class="hand-name">Mano blanca</div>
+            <div class="hand-how">Se obtiene al <strong>dar o recibir regalos</strong> dentro de la app. No requiere pago.</div>
+            <div class="hand-reward" style="background:rgba(100,116,139,.15);color:#475569;">🪙 50 monedas / ronda</div>
+          </div>
+          <div class="hand-card color">
+            <div class="hand-icon">🌈</div>
+            <div class="hand-name">Mano de colores</div>
+            <div class="hand-how">Se obtiene recargando <strong>$2.99</strong> en la app durante el evento.</div>
+            <div class="hand-reward" style="background:rgba(245,158,11,.2);color:#92400e;">🪙 100 monedas / ronda</div>
+          </div>
+        </div>
+
+        <div class="ef-tip">
+          <span style="font-size:1.4rem;flex-shrink:0;">💡</span>
+          <p>Si vas a recargar, <strong>hazlo durante el evento</strong> — obtienes manos de colores que dan el doble de monedas por ronda y maximizan el retorno de tu inversión.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTROS EVENTOS -->
+    <div style="font-size:.82rem;font-weight:900;color:var(--text-mid);text-transform:uppercase;letter-spacing:1px;margin:24px 0 14px;">Otros eventos disponibles</div>
+    <div class="events-mini-grid animate-in">
+
+      <!-- Fiesta de Cupido -->
+      <div class="event-mini">
+        <div class="event-mini-visual" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">💝</div>
+        <div class="event-mini-body">
+          <div class="event-mini-title">Fiesta de Cupido</div>
+          <div class="event-mini-desc">Socializa en la sala especial de Cupido. Puedes conseguir efectos exclusivos que personalizan tu perfil y tu experiencia en la app.</div>
+          <div class="event-mini-tags">
+            <span class="event-mini-tag" style="background:#fce7f3;color:#be185d;">💑 Estampilla de pareja</span>
+            <span class="event-mini-tag" style="background:#fce7f3;color:#be185d;">🎤 Ondas de micrófono</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estampilla -->
+      <div class="event-mini">
+        <div class="event-mini-visual" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">📮</div>
+        <div class="event-mini-body">
+          <div class="event-mini-title">Estampilla</div>
+          <div class="event-mini-desc">Consigue estampillas especiales que muestran el nivel de relación con otras personas. Son insignias de reconocimiento social.</div>
+          <div class="event-mini-tags">
+            <span class="event-mini-tag" style="background:var(--purple-mist);color:var(--purple-dark);">👫 Amigo</span>
+            <span class="event-mini-tag" style="background:var(--purple-mist);color:var(--purple-dark);">💛 Mejor amigo</span>
+            <span class="event-mini-tag" style="background:var(--purple-mist);color:var(--purple-dark);">💞 Almas gemelas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evento de ranking -->
+      <div class="event-mini">
+        <div class="event-mini-visual" style="background:linear-gradient(135deg,#fef9c3,#fef08a);">🏆</div>
+        <div class="event-mini-body">
+          <div class="event-mini-title">Fraternidad familiar</div>
+          <div class="event-mini-desc">Evento de ranking entre familias. Acumula puntos siendo activa para subir en la clasificación y ganar recompensas colectivas.</div>
+          <div class="event-mini-tags">
+            <span class="event-mini-tag" style="background:#fef9c3;color:#a16207;">🥇 Ranking global</span>
+            <span class="event-mini-tag" style="background:#fef9c3;color:#a16207;">🎁 Recompensas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Stars Smash -->
+      <div class="event-mini">
+        <div class="event-mini-visual" style="background:linear-gradient(135deg,#fef3c7,#fed7aa);">⭐</div>
+        <div class="event-mini-body">
+          <div class="event-mini-title">All Stars Smash</div>
+          <div class="event-mini-desc">Evento competitivo tipo torneo. Compite con otros usuarios para destacar, ganar regalos y subir tu perfil de visibilidad en la app.</div>
+          <div class="event-mini-tags">
+            <span class="event-mini-tag" style="background:#fef3c7;color:#b45309;">⚡ Competencia</span>
+            <span class="event-mini-tag" style="background:#fef3c7;color:#b45309;">🏅 Premios</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOX DE CONSEJOS FINALES -->
+    <div class="tips-box animate-in">
+      <div class="tips-box-title">✅ Claves para aprovechar al máximo</div>
+      <ul>
+        <li><span class="ti">🔐</span><span>Inicia sesión en la familia <strong>todos los días</strong> después de las 19:00 para sumar monedas al cofre.</span></li>
+        <li><span class="ti">🐊</span><span>En el Cocodrilo, usa <strong>manos de color</strong> si recargas — dan el doble de monedas por ronda.</span></li>
+        <li><span class="ti">🤍</span><span>Las <strong>manos blancas</strong> son gratuitas: consíguelas dando o recibiendo regalos diariamente.</span></li>
+        <li><span class="ti">💝</span><span>En Fiesta de Cupido prioriza socializar — los efectos y estampillas mejoran tu perfil sin costo.</span></li>
+        <li><span class="ti">🏆</span><span>La actividad en la familia sube el <strong>valor diario del ranking</strong> — eso beneficia a todos los miembros.</span></li>
+        <li><span class="ti">🚨</span><span>Habla de monetización <strong>solo en el grupo de WhatsApp</strong>, nunca en la sala de la familia.</span></li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons animate-in">
+      <a href="paso3.html" class="btn btn-ghost">← Funciones</a>
+      <a href="normas.html" class="btn btn-primary">Ver Normas →</a>
+    </div>
+
+    <footer class="page-footer">
+      <p>Guía para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monetizar – MeYo Familia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .mon-hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #3b0764 50%, #5b21b6 100%);
+      border-radius: 20px;
+      padding: 36px 28px 32px;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mon-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .mon-hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .mon-hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.75);
+      position: relative;
+    }
+
+    .mon-section {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(168,85,247,.12);
+      box-shadow: var(--shadow-sm);
+    }
+    .mon-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--purple-soft);
+    }
+    .mon-section-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .mon-section-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .mon-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .mon-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .92rem;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+    .mon-list li .licon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .mon-list li strong {
+      color: var(--text-dark);
+    }
+
+    .mon-alert {
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .mon-alert-red {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #991b1b;
+    }
+    .mon-alert-green {
+      background: #ecfdf5;
+      border-left: 4px solid var(--green);
+      color: #065f46;
+    }
+    .mon-alert-gold {
+      background: #fffbeb;
+      border-left: 4px solid var(--gold);
+      color: #78350f;
+    }
+    .mon-alert-blue {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      color: #1e40af;
+    }
+
+    .mon-numbered {
+      counter-reset: mon-counter;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .mon-numbered-item {
+      counter-increment: mon-counter;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .mon-numbered-item::before {
+      content: counter(mon-counter);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white;
+      font-weight: 800;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mon-numbered-item p {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .mon-pill-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mon-pill {
+      background: var(--purple-soft);
+      border-radius: 12px;
+      padding: 14px 16px;
+      border: 1px solid rgba(168,85,247,.15);
+    }
+    .mon-pill-title {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 4px;
+    }
+    .mon-pill-text {
+      font-size: .88rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .pay-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .pay-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--purple-soft);
+      border: 1.5px solid rgba(168,85,247,.2);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--purple-dark);
+    }
+
+    @media (max-width: 480px) {
+      .mon-hero-title { font-size: 1.7rem; }
+      .mon-pill-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="paso1.html">Creación de Cuenta</a></li>
+      <li><a href="paso3.html">Guía de MeYo</a></li>
+      <li><a href="familia-actividades.html">Eventos de la Familia</a></li>
+      <li><a href="monetizar.html" class="active">Monetizar</a></li>
+      <li><a href="concurso-semanal.html">Concurso Semanal</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <div class="mon-hero animate-in">
+      <div class="mon-hero-title">✨ Monetizar 🧚</div>
+      <div class="mon-hero-sub">Todo lo que necesitas saber para ganar y retirar en MeYo</div>
+    </div>
+
+    <!-- Cómo obtener diamantes -->
+    <div class="mon-section animate-in">
+      <div class="mon-section-header">
+        <div class="mon-section-icon" style="background: linear-gradient(135deg,#a855f7,#7c3aed);">💎</div>
+        <div class="mon-section-title">Cómo obtener diamantes</div>
+      </div>
+      <ul class="mon-list">
+        <li>
+          <span class="licon">💬</span>
+          <span><strong>Contestar mensajes.</strong></span>
+        </li>
+        <li>
+          <span class="licon">📞</span>
+          <span><strong>Llamadas y videollamadas</strong> — el contenido a realizar depende de ti, alarga las llamadas lo más que puedas.</span>
+        </li>
+        <li>
+          <span class="licon">🎁</span>
+          <span><strong>Regalos</strong> — en chats, live, salas de fiesta y eventos en la familia.</span>
+        </li>
+        <li>
+          <span class="licon">🎥</span>
+          <span><strong>Tareas de Live (Arroyos).</strong></span>
+        </li>
+        <li>
+          <span class="licon">🎉</span>
+          <span><strong>Tareas de Salas de fiesta.</strong></span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Cómo retirar -->
+    <div class="mon-section animate-in">
+      <div class="mon-section-header">
+        <div class="mon-section-icon" style="background: linear-gradient(135deg,#10b981,#34d399);">💰</div>
+        <div class="mon-section-title">Cómo retirar</div>
+      </div>
+      <div class="mon-alert mon-alert-gold" style="margin-bottom:16px;">
+        📅 <strong>Los retiros se hacen los sábados y domingos.</strong>
+      </div>
+      <p style="font-size:.92rem;color:var(--text-mid);margin-bottom:14px;">Plataformas disponibles para recibir tu dinero:</p>
+      <div class="pay-grid">
+        <div class="pay-badge">💳 PayPal</div>
+        <div class="pay-badge">🪙 Digifinex</div>
+        <div class="pay-badge">🏢 Agencia</div>
+      </div>
+    </div>
+
+    <!-- Importante -->
+    <div class="mon-section animate-in" style="border-left: 4px solid #ef4444;">
+      <div class="mon-section-header">
+        <div class="mon-section-icon" style="background: linear-gradient(135deg,#ef4444,#f87171);">⚠️</div>
+        <div class="mon-section-title">Importante</div>
+      </div>
+      <div class="mon-alert mon-alert-red" style="margin-bottom:14px;">
+        Antes de realizar tus retiros, debes cumplir <strong>estas 2 condiciones</strong>:
+      </div>
+      <div class="mon-numbered">
+        <div class="mon-numbered-item">
+          <p>Debes tener al menos <strong>30 minutos en línea todos los días</strong> y enviar al menos <strong>30 mensajes privados</strong> a través de chats a otros usuarios de la semana.</p>
+        </div>
+        <div class="mon-numbered-item">
+          <p>La ganancia de tus diamantes <strong>no debe superar en un 25% los diamantes ganados gratis</strong>, ya que esto se considera un subsidio de la plataforma (algo que te regala); busca ganar diamantes de múltiples formas.</p>
+        </div>
+      </div>
+      <div class="mon-alert mon-alert-blue" style="margin-top:16px;">
+        💡 Debes tener presente esas dos condiciones a la hora de retirar. Si por alguna razón no las cumples, la plataforma no te dejará hacer la solicitud.<br/><br/>
+        Pero <strong>OJO</strong>: los diamantes no caducan, puedes seguir trabajando en aumentar tu ingreso y la plataforma te dejará retirar sin ningún problema en la próxima ocasión.
+      </div>
+    </div>
+
+    <!-- Agencia -->
+    <div class="mon-section animate-in">
+      <div class="mon-section-header">
+        <div class="mon-section-icon" style="background: linear-gradient(135deg,#f97316,#fb923c);">🏢</div>
+        <div class="mon-section-title">Agencia <span style="font-size:.85rem;font-weight:600;color:var(--text-light);">(Para Streamer)</span></div>
+      </div>
+      <p style="font-size:.92rem;color:var(--text-mid);margin-bottom:16px;line-height:1.6;">
+        Para pertenecer a una agencia se debe ingresar un <strong>código de invitación al momento de crear una cuenta</strong>. Este código debe estar registrado como agencia para tener los siguientes beneficios:
+      </p>
+      <div class="mon-pill-grid">
+        <div class="mon-pill">
+          <div class="mon-pill-title">🎥 Lives y Salas</div>
+          <div class="mon-pill-text">Poder hacer live (arroyos) y salas de fiesta cuando quieras, sin los requisitos que se piden normalmente.</div>
+        </div>
+        <div class="mon-pill">
+          <div class="mon-pill-title">💎 Más Diamantes</div>
+          <div class="mon-pill-text">Tareas adicionales de Streamers para generar más ingresos.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ajustes -->
+    <div class="mon-section animate-in">
+      <div class="mon-section-header">
+        <div class="mon-section-icon" style="background: linear-gradient(135deg,#6366f1,#818cf8);">⚙️</div>
+        <div class="mon-section-title">Ajustes útiles</div>
+      </div>
+      <p style="font-size:.9rem;color:var(--text-mid);margin-bottom:16px;">Dentro de ajustes encontrarás varias opciones muy útiles.</p>
+      <ul class="mon-list">
+        <li>
+          <span class="licon">💵</span>
+          <span><strong>Configuración de costos:</strong> Aquí podrás desactivar las llamadas, o aumentar los precios de mensajes o llamadas.</span>
+        </li>
+        <li>
+          <span class="licon">🌊</span>
+          <span><strong>Modo fluido:</strong> Esta opción deshabilita las animaciones de los regalos y los efectos de entrada; actívala si tu dispositivo es de bajos recursos.</span>
+        </li>
+        <li>
+          <span class="licon">🗑️</span>
+          <span><strong>Limpiar caché:</strong> Limpia la caché si notas que tu aplicación está muy lenta.</span>
+        </li>
+        <li>
+          <span class="licon">❌</span>
+          <span><strong>Borrar cuenta:</strong> Si no te gustó la aplicación o quieres eliminar tu cuenta para volver a crearla con un código de agencia, este proceso lleva <strong>7 días</strong> para eliminar tu cuenta y no podrás registrarte de nuevo hasta después de <strong>40 días</strong>.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p>Hecho con ❤️ para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>

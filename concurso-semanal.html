@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concurso Semanal – MeYo Familia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Hero ── */
+    .cs-hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #6d28d9 60%, #f59e0b 160%);
+      border-radius: 20px;
+      padding: 40px 28px 36px;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -24px; right: -24px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba(245,158,11,.20);
+      filter: blur(30px);
+    }
+    .cs-hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 30px;
+      padding: 4px 16px;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .cs-hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .cs-hero-sub {
+      font-size: .95rem;
+      color: rgba(255,255,255,.8);
+      position: relative;
+    }
+
+    /* ── Event Banner ── */
+    .cs-event-banner {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border: 2px solid #f59e0b;
+      border-radius: 18px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .cs-event-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+    .cs-event-days {
+      font-size: .9rem;
+      color: #78350f;
+      line-height: 1.6;
+    }
+
+    /* ── Section card ── */
+    .cs-section {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(168,85,247,.12);
+      box-shadow: var(--shadow-sm);
+    }
+    .cs-section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── Points table ── */
+    .cs-points {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cs-point-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+    .cs-point-row.gold   { background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 4px solid #f59e0b; }
+    .cs-point-row.silver { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); border-left: 4px solid #94a3b8; }
+    .cs-point-row.bronze { background: linear-gradient(135deg, #fef0e6, #fde3c8); border-left: 4px solid #ea580c; }
+    .cs-point-row.fourth { background: var(--purple-soft); border-left: 4px solid var(--purple-light); }
+    .cs-point-row.special { background: #f0fdf4; border-left: 4px solid var(--green); }
+
+    .cs-point-medal { font-size: 1.5rem; flex-shrink: 0; }
+    .cs-point-label {
+      flex: 1;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .cs-point-value {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--purple-dark);
+    }
+    .cs-point-unit {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-left: 2px;
+    }
+
+    /* ── Info chips ── */
+    .cs-info-chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .cs-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--purple-soft);
+      border: 1.5px solid rgba(168,85,247,.2);
+      border-radius: 30px;
+      padding: 8px 14px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--purple-dark);
+    }
+
+    /* ── Prize cards ── */
+    .cs-prize-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .cs-prize-card {
+      border-radius: 16px;
+      padding: 18px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .cs-prize-card.p1 { background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; }
+    .cs-prize-card.p2 { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); border: 2px solid #94a3b8; }
+    .cs-prize-card.p3 { background: linear-gradient(135deg, #fef0e6, #fdd5b3); border: 2px solid #ea580c; }
+
+    .cs-prize-medal { font-size: 2rem; }
+    .cs-prize-place { font-size: .75rem; font-weight: 700; color: var(--text-mid); text-transform: uppercase; letter-spacing: .5px; }
+    .cs-prize-value { font-size: 1.6rem; font-weight: 900; color: var(--text-dark); }
+    .cs-prize-unit   { font-size: .78rem; color: var(--text-light); font-weight: 600; }
+
+    /* ── Motivational box ── */
+    .cs-motto {
+      background: linear-gradient(135deg, #1e1b4b, #5b21b6);
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .cs-motto p:first-child {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .cs-motto p:last-child {
+      font-size: .9rem;
+      color: rgba(255,255,255,.8);
+    }
+
+    /* ── FAQ items ── */
+    .cs-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cs-faq-item {
+      background: var(--purple-soft);
+      border-radius: 14px;
+      padding: 16px 20px;
+      border-left: 4px solid var(--purple-light);
+    }
+    .cs-faq-q { font-size: .95rem; font-weight: 800; color: var(--purple-dark); margin-bottom: 6px; }
+    .cs-faq-a { font-size: .88rem; color: var(--text-mid); line-height: 1.6; }
+
+    @media (max-width: 480px) {
+      .cs-hero-title { font-size: 1.7rem; }
+      .cs-prize-grid { grid-template-columns: 1fr; }
+      .cs-prize-grid .cs-prize-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 14px 16px;
+        justify-content: flex-start;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="paso1.html">Creación de Cuenta</a></li>
+      <li><a href="paso3.html">Guía de MeYo</a></li>
+      <li><a href="familia-actividades.html">Eventos de la Familia</a></li>
+      <li><a href="monetizar.html">Monetizar</a></li>
+      <li><a href="concurso-semanal.html" class="active">Concurso Semanal</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <div class="cs-hero animate-in">
+      <div class="cs-hero-tag">🏆 Evento Semanal</div>
+      <div class="cs-hero-title">✨ Hada de Oro 🧚</div>
+      <div class="cs-hero-sub">Compite cada semana y gana premios increíbles</div>
+    </div>
+
+    <!-- Event Banner -->
+    <div class="cs-event-banner animate-in">
+      <div class="cs-event-title">✨ ¡NUESTRO EVENTO SEMANAL DE PUNTOS! 🎤</div>
+      <div class="cs-event-days">
+        Desde el <strong>lunes</strong> hasta el <strong>viernes</strong> todos tienen la oportunidad de ganar 👥
+      </div>
+    </div>
+
+    <!-- Points per position -->
+    <div class="cs-section animate-in">
+      <div class="cs-section-title">📊 Puntos por posición diaria</div>
+      <p style="font-size:.88rem;color:var(--text-light);margin-bottom:14px;">Cada día sumas puntos según tu posición en el ranking:</p>
+      <div class="cs-points">
+        <div class="cs-point-row gold">
+          <span class="cs-point-medal">🥇</span>
+          <span class="cs-point-label">1er lugar</span>
+          <span class="cs-point-value">5 <span class="cs-point-unit">pts</span></span>
+        </div>
+        <div class="cs-point-row silver">
+          <span class="cs-point-medal">🥈</span>
+          <span class="cs-point-label">2do lugar</span>
+          <span class="cs-point-value">4 <span class="cs-point-unit">pts</span></span>
+        </div>
+        <div class="cs-point-row bronze">
+          <span class="cs-point-medal">🥉</span>
+          <span class="cs-point-label">3er lugar</span>
+          <span class="cs-point-value">3 <span class="cs-point-unit">pts</span></span>
+        </div>
+        <div class="cs-point-row fourth">
+          <span class="cs-point-medal">🏅</span>
+          <span class="cs-point-label">4to lugar</span>
+          <span class="cs-point-value">2 <span class="cs-point-unit">pts</span></span>
+        </div>
+        <div class="cs-point-row special">
+          <span class="cs-point-medal">✨</span>
+          <span class="cs-point-label">Participar también suma</span>
+          <span class="cs-point-value" style="color:var(--green);">+1 <span class="cs-point-unit">pt</span></span>
+        </div>
+      </div>
+      <div class="cs-info-chips">
+        <div class="cs-chip">📅 Los puntos se acumulan toda la semana</div>
+        <div class="cs-chip">👑 El viernes conoceremos a las ganadoras</div>
+      </div>
+    </div>
+
+    <!-- Motivational -->
+    <div class="cs-motto animate-in">
+      <p>¡Constancia + esfuerzo = premio!</p>
+      <p>¿Quiénes serán las campeonas de la semana? ☀️</p>
+    </div>
+
+    <!-- Prizes -->
+    <div class="cs-section animate-in">
+      <div class="cs-section-title">🎁 Premios</div>
+      <p style="font-size:.88rem;color:var(--text-mid);margin-bottom:16px;line-height:1.6;">
+        Los premios serán <strong>regalos de la misma aplicación</strong>, solo para los 3 primeros lugares de la semana. Estos dependerán de cada semana (siempre hay regalos nuevos), pero el valor en <strong>oros</strong> será:
+      </p>
+      <div class="cs-prize-grid">
+        <div class="cs-prize-card p1">
+          <span class="cs-prize-medal">🥇</span>
+          <span class="cs-prize-place">1er lugar</span>
+          <span class="cs-prize-value">300</span>
+          <span class="cs-prize-unit">oros en regalos</span>
+        </div>
+        <div class="cs-prize-card p2">
+          <span class="cs-prize-medal">🥈</span>
+          <span class="cs-prize-place">2do lugar</span>
+          <span class="cs-prize-value">200</span>
+          <span class="cs-prize-unit">oros en regalos</span>
+        </div>
+        <div class="cs-prize-card p3">
+          <span class="cs-prize-medal">🥉</span>
+          <span class="cs-prize-place">3er lugar</span>
+          <span class="cs-prize-value">100</span>
+          <span class="cs-prize-unit">oros en regalos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="cs-section animate-in">
+      <div class="cs-section-title">❓ Preguntas frecuentes</div>
+      <div class="cs-faq">
+        <div class="cs-faq-item">
+          <div class="cs-faq-q">¿Cómo sé mi lugar?</div>
+          <div class="cs-faq-a">Los lugares los tomaremos del <strong>ranking diario de ingresos de la familia</strong> dentro de la app MeYo.</div>
+        </div>
+        <div class="cs-faq-item">
+          <div class="cs-faq-q">¿Cuándo se entregan los premios?</div>
+          <div class="cs-faq-a">El <strong>viernes</strong> se anuncian las ganadoras y se entregan los premios correspondientes.</div>
+        </div>
+        <div class="cs-faq-item">
+          <div class="cs-faq-q">¿Cómo genero más ingresos para subir en el ranking?</div>
+          <div class="cs-faq-a">Responde mensajes, alarga tus llamadas, recibe regalos en chats y salas de fiesta, y participa activamente en los eventos de la familia.</div>
+        </div>
+        <div class="cs-faq-item">
+          <div class="cs-faq-q">¿El evento es todos los días?</div>
+          <div class="cs-faq-a">Sí, de <strong>lunes a viernes</strong>. Cada día cuenta por separado para sumar puntos, así que estar activa todos los días es clave.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p>Hecho con ❤️ para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
