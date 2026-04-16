@@ -1,0 +1,15 @@
+Coloca aquí las imágenes de los eventos de la familia.
+
+Imágenes esperadas:
+- fiesta-cupido.jpg
+- estampilla.jpg
+- cumpleanos.jpg
+- all-stars.jpg
+- mejora-armas.jpg
+- caza-mistica.jpg
+- crear-rapido.jpg
+- crear-normal.jpg
+- recompensa-patrocinador.jpg
+- recompensa-premio.jpg
+- recompensa-tarea.jpg
+- cocodrilo.jpg

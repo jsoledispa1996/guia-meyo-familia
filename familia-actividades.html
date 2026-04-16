@@ -273,6 +273,54 @@
     .tips-box ul li .ti { flex-shrink: 0; }
     .tips-box ul li strong { color: var(--text-dark); }
 
+    /* ── Single image slot ── */
+    .section-img-single {
+      width: 100%;
+      border-radius: 12px;
+      border: 1.5px solid rgba(168,85,247,.15);
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+      margin-top: 12px;
+      display: block;
+    }
+
+    /* ── Reward sub-block ── */
+    .reward-sub {
+      margin-bottom: 22px;
+    }
+    .reward-sub-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .reward-sub-icon {
+      width: 34px; height: 34px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .reward-sub-title {
+      font-size: .98rem; font-weight: 900; color: var(--text-dark);
+    }
+    .reward-sub-divider {
+      height: 1px; background: var(--purple-soft); margin: 20px 0;
+    }
+
+    /* ── Modes grid ── */
+    .modes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .mode-label {
+      font-size: .82rem; font-weight: 900; color: var(--purple-dark);
+      margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+    }
+    .mode-label span {
+      background: var(--purple-mist); border-radius: 6px; padding: 2px 8px;
+    }
+    @media (max-width: 480px) {
+      .modes-grid { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -488,6 +536,18 @@
             </div>
           </div>
         </div>
+
+        <!-- Referencias visuales -->
+        <div class="modes-grid" style="margin-top:18px;">
+          <div>
+            <div class="mode-label"><span>📍 Iniciar sesión</span></div>
+            <img src="imagenes/eventos/sesion-1.jpg" alt="Iniciar sesión en la familia – referencia 1" class="section-img-single" loading="lazy" />
+          </div>
+          <div>
+            <div class="mode-label"><span>🪙 Cofre familiar</span></div>
+            <img src="imagenes/eventos/sesion-2.jpg" alt="Iniciar sesión en la familia – referencia 2" class="section-img-single" loading="lazy" />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -549,6 +609,8 @@
           <span style="font-size:1.4rem;flex-shrink:0;">💡</span>
           <p>Si vas a recargar, <strong>hazlo durante el evento</strong> — obtienes manos de colores que dan el doble de monedas por ronda y maximizan el retorno de tu inversión.</p>
         </div>
+
+        <img src="imagenes/eventos/cocodrilo.jpg" alt="Cocodrilo de desafío" class="section-img-single" loading="lazy" />
       </div>
     </div>
 
@@ -561,11 +623,12 @@
         <div class="event-mini-visual" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">💝</div>
         <div class="event-mini-body">
           <div class="event-mini-title">Fiesta de Cupido</div>
-          <div class="event-mini-desc">Socializa en la sala especial de Cupido. Puedes conseguir efectos exclusivos que personalizan tu perfil y tu experiencia en la app.</div>
+          <div class="event-mini-desc">En este evento puedes conseguir efectos, como la estampilla de pareja o las ondas de micrófono.</div>
           <div class="event-mini-tags">
             <span class="event-mini-tag" style="background:#fce7f3;color:#be185d;">💑 Estampilla de pareja</span>
             <span class="event-mini-tag" style="background:#fce7f3;color:#be185d;">🎤 Ondas de micrófono</span>
           </div>
+          <img src="imagenes/eventos/fiesta-cupido.jpg" alt="Fiesta de Cupido" class="section-img-single" loading="lazy" />
         </div>
       </div>
 
@@ -574,41 +637,179 @@
         <div class="event-mini-visual" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">📮</div>
         <div class="event-mini-body">
           <div class="event-mini-title">Estampilla</div>
-          <div class="event-mini-desc">Consigue estampillas especiales que muestran el nivel de relación con otras personas. Son insignias de reconocimiento social.</div>
+          <div class="event-mini-desc">En este evento puedes conseguir las estampillas de amigo, mejor amigo, almas gemelas.</div>
           <div class="event-mini-tags">
             <span class="event-mini-tag" style="background:var(--purple-mist);color:var(--purple-dark);">👫 Amigo</span>
             <span class="event-mini-tag" style="background:var(--purple-mist);color:var(--purple-dark);">💛 Mejor amigo</span>
             <span class="event-mini-tag" style="background:var(--purple-mist);color:var(--purple-dark);">💞 Almas gemelas</span>
           </div>
+          <img src="imagenes/eventos/estampilla.jpg" alt="Estampilla" class="section-img-single" loading="lazy" />
         </div>
       </div>
 
-      <!-- Evento de ranking -->
+      <!-- Cumpleaños Familiar -->
       <div class="event-mini">
-        <div class="event-mini-visual" style="background:linear-gradient(135deg,#fef9c3,#fef08a);">🏆</div>
+        <div class="event-mini-visual" style="background:linear-gradient(135deg,#fef9c3,#fde68a);">🎂</div>
         <div class="event-mini-body">
-          <div class="event-mini-title">Fraternidad familiar</div>
-          <div class="event-mini-desc">Evento de ranking entre familias. Acumula puntos siendo activa para subir en la clasificación y ganar recompensas colectivas.</div>
+          <div class="event-mini-title">Cumpleaños Familiar</div>
+          <div class="event-mini-desc">Evento para celebrar un mes más de la creación de la familia. Los miembros activos pueden reclamar moneditas ese día.</div>
           <div class="event-mini-tags">
-            <span class="event-mini-tag" style="background:#fef9c3;color:#a16207;">🥇 Ranking global</span>
-            <span class="event-mini-tag" style="background:#fef9c3;color:#a16207;">🎁 Recompensas</span>
+            <span class="event-mini-tag" style="background:#fef9c3;color:#a16207;">🪙 Moneditas</span>
+            <span class="event-mini-tag" style="background:#fef9c3;color:#a16207;">🎉 Celebración</span>
           </div>
+          <img src="imagenes/eventos/cumpleanos.jpg" alt="Cumpleaños Familiar" class="section-img-single" loading="lazy" />
         </div>
       </div>
 
-      <!-- All Stars Smash -->
+      <!-- All Stars -->
       <div class="event-mini">
         <div class="event-mini-visual" style="background:linear-gradient(135deg,#fef3c7,#fed7aa);">⭐</div>
         <div class="event-mini-body">
-          <div class="event-mini-title">All Stars Smash</div>
-          <div class="event-mini-desc">Evento competitivo tipo torneo. Compite con otros usuarios para destacar, ganar regalos y subir tu perfil de visibilidad en la app.</div>
+          <div class="event-mini-title">All Stars</div>
+          <div class="event-mini-desc">En este evento puedes conseguir cartas que luego puedes intercambiar por recompensas como monedas, efecto de entrada o marcos.</div>
           <div class="event-mini-tags">
-            <span class="event-mini-tag" style="background:#fef3c7;color:#b45309;">⚡ Competencia</span>
-            <span class="event-mini-tag" style="background:#fef3c7;color:#b45309;">🏅 Premios</span>
+            <span class="event-mini-tag" style="background:#fef3c7;color:#b45309;">🃏 Cartas</span>
+            <span class="event-mini-tag" style="background:#fef3c7;color:#b45309;">🖼️ Marcos</span>
+            <span class="event-mini-tag" style="background:#fef3c7;color:#b45309;">✨ Efectos</span>
           </div>
+          <img src="imagenes/eventos/all-stars.jpg" alt="All Stars" class="section-img-single" loading="lazy" />
         </div>
       </div>
 
+      <!-- Mejora de Armas -->
+      <div class="event-mini">
+        <div class="event-mini-visual" style="background:linear-gradient(135deg,#fef2f2,#fecaca);">⚔️</div>
+        <div class="event-mini-body">
+          <div class="event-mini-title">Mejora de Armas</div>
+          <div class="event-mini-desc">En este evento mejoran armas para obtener recompensas de las minas de otras familias.</div>
+          <div class="event-mini-tags">
+            <span class="event-mini-tag" style="background:#fef2f2;color:#991b1b;">⚔️ Armas</span>
+            <span class="event-mini-tag" style="background:#fef2f2;color:#991b1b;">⛏️ Minas</span>
+          </div>
+          <img src="imagenes/eventos/mejora-armas.jpg" alt="Mejora de Armas" class="section-img-single" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Caza Mística -->
+      <div class="event-mini">
+        <div class="event-mini-visual" style="background:linear-gradient(135deg,#f0fdf4,#bbf7d0);">🐉</div>
+        <div class="event-mini-body">
+          <div class="event-mini-title">Caza Mística</div>
+          <div class="event-mini-desc">En este evento pueden derrotar monstruos para reclamar recompensas especiales.</div>
+          <div class="event-mini-tags">
+            <span class="event-mini-tag" style="background:#f0fdf4;color:#166534;">🐉 Monstruos</span>
+            <span class="event-mini-tag" style="background:#f0fdf4;color:#166534;">🎁 Recompensas</span>
+          </div>
+          <img src="imagenes/eventos/caza-mistica.jpg" alt="Caza Mística" class="section-img-single" loading="lazy" />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════ CREAR EVENTOS FAMILIARES ═══════════════ -->
+    <div class="sec-divider">
+      <div class="sec-divider-line"></div>
+      <div class="sec-divider-label">🎉 Crear eventos</div>
+      <div class="sec-divider-line"></div>
+    </div>
+
+    <div class="info-card animate-in">
+      <div class="info-card-header">
+        <div class="info-card-icon">🎉</div>
+        <div>
+          <div class="info-card-title">Crear eventos familiares</div>
+          <div class="info-card-sub">Solicita permisos antes de crear un evento</div>
+        </div>
+      </div>
+      <div class="info-card-body">
+        <div style="background:#fef2f2;border-left:4px solid #ef4444;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:.88rem;color:#991b1b;">
+          ⚠️ <strong>Asegúrate de solicitar permisos antes</strong> de crear un evento familiar.
+        </div>
+        <p>Los eventos se crean en la familia, en la parte de arriba, tocando el icono de <strong>🎉</strong>. Solo selecciona el tipo de evento, valida que estén activadas las <strong>recompensas de patrocinio</strong> y coloca la hora en la que deseas realizarlo.</p>
+
+        <div class="mode-label" style="margin-top:14px;"><span>📍 ¿Dónde está el botón?</span></div>
+        <img src="imagenes/eventos/crear-ubicacion.jpg" alt="Ubicación del botón para crear eventos" class="section-img-single" loading="lazy" />
+
+        <p style="margin-top:16px;">Si quieres darle un poco más de personalización, puedes usar el <strong>modo normal</strong> en lugar del modo rápido.</p>
+        <div class="modes-grid">
+          <div>
+            <div class="mode-label"><span>⚡ Rápido</span></div>
+            <img src="imagenes/eventos/crear-rapido.jpg" alt="Crear evento – Modo Rápido" class="section-img-single" loading="lazy" />
+          </div>
+          <div>
+            <div class="mode-label"><span>⚙️ Normal</span></div>
+            <img src="imagenes/eventos/crear-normal.jpg" alt="Crear evento – Modo Normal" class="section-img-single" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ RECOMPENSAS DE EVENTOS FAMILIARES ═══════════════ -->
+    <div class="sec-divider">
+      <div class="sec-divider-line"></div>
+      <div class="sec-divider-label">🏆 Recompensas</div>
+      <div class="sec-divider-line"></div>
+    </div>
+
+    <div class="info-card animate-in">
+      <div class="info-card-header">
+        <div class="info-card-icon">🎈</div>
+        <div>
+          <div class="info-card-title">Recompensas de eventos familiares</div>
+          <div class="info-card-sub">Patrocinador · Premio · Tarea</div>
+        </div>
+      </div>
+      <div class="info-card-body">
+
+        <!-- Recompensas del patrocinador -->
+        <div class="reward-sub">
+          <div class="reward-sub-header">
+            <div class="reward-sub-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">🎈</div>
+            <div class="reward-sub-title">Recompensas del patrocinador</div>
+          </div>
+          <p>Si creaste el evento y activaste el patrocinio, puedes revisar tus recompensas arriba en el icono de <strong>🎈</strong>.</p>
+          <div style="background:var(--purple-soft);border-radius:12px;padding:14px 16px;margin:12px 0;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--text-mid);line-height:1.6;">
+              <span style="font-size:1.1rem;flex-shrink:0;">🎒</span>
+              <span>Si <strong>10 personas envían regalos</strong> y los puntos llegan a <strong>3.300</strong>, recibirás <strong>3 regalos de mochila gratis</strong>.</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--text-mid);line-height:1.6;">
+              <span style="font-size:1.1rem;flex-shrink:0;">🪙</span>
+              <span>Si los puntos llegan a <strong>6.800</strong>, recibirás adicionalmente <strong>500 oros</strong>.</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--text-mid);line-height:1.6;">
+              <span style="font-size:1.1rem;flex-shrink:0;">💡</span>
+              <span>Los puntos de evento suman con <strong>todos los regalos</strong> que se envíen durante el evento.</span>
+            </div>
+          </div>
+          <img src="imagenes/eventos/recompensa-patrocinador.jpg" alt="Recompensas del patrocinador" class="section-img-single" loading="lazy" />
+        </div>
+
+        <div class="reward-sub-divider"></div>
+
+        <!-- Premio -->
+        <div class="reward-sub">
+          <div class="reward-sub-header">
+            <div class="reward-sub-icon" style="background:linear-gradient(135deg,#10b981,#34d399);">🏅</div>
+            <div class="reward-sub-title">Premio</div>
+          </div>
+          <p>Si enviamos regalos durante el evento, podremos reclamar <strong>moneditas</strong> en esta parte cuando termine el evento.</p>
+          <img src="imagenes/eventos/recompensa-premio.jpg" alt="Premio del evento" class="section-img-single" loading="lazy" />
+        </div>
+
+        <div class="reward-sub-divider"></div>
+
+        <!-- Tarea -->
+        <div class="reward-sub" style="margin-bottom:0;">
+          <div class="reward-sub-header">
+            <div class="reward-sub-icon" style="background:linear-gradient(135deg,#6366f1,#818cf8);">📋</div>
+            <div class="reward-sub-title">Tarea</div>
+          </div>
+          <p>Si enviamos regalos y somos miembros de la familia, podremos reclamar <strong>moneditas</strong> en esta parte también.</p>
+          <img src="imagenes/eventos/recompensa-tarea.jpg" alt="Tarea del evento" class="section-img-single" loading="lazy" />
+        </div>
+
+      </div>
     </div>
 
     <!-- BOX DE CONSEJOS FINALES -->
@@ -619,6 +820,7 @@
         <li><span class="ti">🐊</span><span>En el Cocodrilo, usa <strong>manos de color</strong> si recargas — dan el doble de monedas por ronda.</span></li>
         <li><span class="ti">🤍</span><span>Las <strong>manos blancas</strong> son gratuitas: consíguelas dando o recibiendo regalos diariamente.</span></li>
         <li><span class="ti">💝</span><span>En Fiesta de Cupido prioriza socializar — los efectos y estampillas mejoran tu perfil sin costo.</span></li>
+        <li><span class="ti">🎉</span><span>Solicita permisos antes de crear un evento y activa siempre las <strong>recompensas de patrocinio</strong>.</span></li>
         <li><span class="ti">🏆</span><span>La actividad en la familia sube el <strong>valor diario del ranking</strong> — eso beneficia a todos los miembros.</span></li>
         <li><span class="ti">🚨</span><span>Habla de monetización <strong>solo en el grupo de WhatsApp</strong>, nunca en la sala de la familia.</span></li>
       </ul>

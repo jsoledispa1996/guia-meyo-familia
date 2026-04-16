@@ -197,6 +197,24 @@
       .mon-hero-title { font-size: 1.7rem; }
       .mon-pill-grid { grid-template-columns: 1fr; }
     }
+
+    .mon-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .mon-img-grid img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1.5px solid rgba(168,85,247,.15);
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 480px) {
+      .mon-img-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -258,6 +276,11 @@
           <span><strong>Tareas de Salas de fiesta.</strong></span>
         </li>
       </ul>
+
+      <div class="mon-img-grid">
+        <img src="imagenes/monetizar/diamantes-1.jpg" alt="Cómo obtener diamantes – referencia 1" loading="lazy" />
+        <img src="imagenes/monetizar/diamantes-2.jpg" alt="Cómo obtener diamantes – referencia 2" loading="lazy" />
+      </div>
     </div>
 
     <!-- Cómo retirar -->
@@ -275,6 +298,17 @@
         <div class="pay-badge">🪙 Digifinex</div>
         <div class="pay-badge">🏢 Agencia</div>
       </div>
+
+      <a href="retiros.html" style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:18px;padding:16px 20px;background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:14px;border:1.5px solid rgba(16,185,129,.3);text-decoration:none;transition:all .25s;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:1.6rem;">💸</span>
+          <div>
+            <div style="font-size:.92rem;font-weight:900;color:#065f46;">Ver guía completa de Retiros</div>
+            <div style="font-size:.78rem;color:#10b981;margin-top:2px;">Método USDT · Horarios · Tasas de cambio · Condiciones</div>
+          </div>
+        </div>
+        <span style="font-size:1.1rem;color:#10b981;font-weight:900;">→</span>
+      </a>
     </div>
 
     <!-- Importante -->
