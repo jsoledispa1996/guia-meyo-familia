@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retiros – MeYo Familia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Hero ── */
+    .ret-hero {
+      background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #10b981 100%);
+      border-radius: 20px;
+      padding: 36px 28px 32px;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ret-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .ret-hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #fff;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .ret-hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.75);
+      position: relative;
+    }
+
+    /* ── Section card ── */
+    .ret-section {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(16,185,129,.15);
+      box-shadow: var(--shadow-sm);
+    }
+    .ret-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #ecfdf5;
+    }
+    .ret-section-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .ret-section-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    /* ── USDT ID block ── */
+    .usdt-block {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      border: 1.5px solid rgba(16,185,129,.3);
+      margin-bottom: 14px;
+    }
+    .usdt-label { font-size: .78rem; font-weight: 700; color: #065f46; text-transform: uppercase; letter-spacing: 1px; }
+    .usdt-id    { font-size: 1.6rem; font-weight: 900; letter-spacing: 4px; color: #065f46; }
+
+    /* ── Steps ── */
+    .ret-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .ret-step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding-bottom: 18px;
+      position: relative;
+    }
+    .ret-step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 40px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(16,185,129,.4), transparent);
+    }
+    .ret-step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), #34d399);
+      color: #fff;
+      font-weight: 800;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(16,185,129,.35);
+    }
+    .ret-step-body { font-size: .92rem; color: var(--text-mid); line-height: 1.6; padding-top: 6px; }
+    .ret-step-body strong { color: var(--text-dark); }
+
+    /* ── Alert banners ── */
+    .ret-alert {
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-size: .9rem;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .ret-alert-green {
+      background: #ecfdf5;
+      border-left: 4px solid var(--green);
+      color: #065f46;
+    }
+    .ret-alert-gold {
+      background: #fffbeb;
+      border-left: 4px solid var(--gold);
+      color: #78350f;
+    }
+    .ret-alert-red {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #991b1b;
+    }
+    .ret-alert-blue {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      color: #1e40af;
+    }
+
+    /* ── Exchange rate rows ── */
+    .rate-table {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .rate-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--purple-soft);
+      border-radius: 12px;
+      padding: 14px 18px;
+      border: 1px solid rgba(168,85,247,.12);
+      flex-wrap: wrap;
+    }
+    .rate-amount {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
+    .rate-detail {
+      font-size: .83rem;
+      color: var(--text-mid);
+      flex: 1;
+      text-align: center;
+      min-width: 120px;
+    }
+    .rate-net {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    /* ── Inform section image gallery ── */
+    .ret-img-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .ret-img-gallery img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1.5px solid rgba(16,185,129,.2);
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+    }
+
+    /* ── Numbered conditions ── */
+    .ret-numbered {
+      counter-reset: ret-counter;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ret-numbered-item {
+      counter-increment: ret-counter;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .ret-numbered-item::before {
+      content: counter(ret-counter);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: white;
+      font-weight: 800;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ret-numbered-item p {
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 480px) {
+      .ret-hero-title { font-size: 1.7rem; }
+      .rate-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .rate-detail { text-align: left; }
+      .ret-img-gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo">Me<span>Yo</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="navbar-links" id="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="paso1.html">Creación de Cuenta</a></li>
+      <li><a href="paso3.html">Guía de MeYo</a></li>
+      <li><a href="familia-actividades.html">Eventos de la Familia</a></li>
+      <li><a href="monetizar.html">Monetizar</a></li>
+      <li><a href="concurso-semanal.html">Concurso Semanal</a></li>
+      <li><a href="retiros.html" class="active">Retiros</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <div class="ret-hero animate-in">
+      <div class="ret-hero-title">✨ Retiros 🧚🏻‍♀️</div>
+      <div class="ret-hero-sub">Todo lo que necesitas saber para retirar tus ganancias en MeYo</div>
+    </div>
+
+    <!-- Configurar método de retiro -->
+    <div class="ret-section animate-in">
+      <div class="ret-section-header">
+        <div class="ret-section-icon" style="background: linear-gradient(135deg,#10b981,#34d399);">⚙️</div>
+        <div class="ret-section-title">Configurar método de retiro</div>
+      </div>
+
+      <p style="font-size:.92rem;color:var(--text-mid);margin-bottom:16px;line-height:1.6;">
+        Tu método de retiro está configurado como <strong>USDT</strong>. Usa el siguiente ID al momento de configurar tu billetera en la aplicación:
+      </p>
+
+      <div class="usdt-block">
+        <div>
+          <div class="usdt-label">🪙 Método – USDT</div>
+          <div class="usdt-id">1640442153</div>
+        </div>
+        <button class="copy-btn" data-copy="1640442153" style="margin:0;padding:10px 20px;font-size:.88rem;">
+          📋 Copiar ID
+        </button>
+      </div>
+
+      <!-- Imágenes de configuración -->
+      <div class="ret-img-gallery">
+        <img src="imagenes/retiros/retiros-1.png" alt="Configurar método de retiro – paso 1" loading="lazy" />
+        <img src="imagenes/retiros/retiros-2.png" alt="Configurar método de retiro – paso 2" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- Cuándo puedo retirar -->
+    <div class="ret-section animate-in">
+      <div class="ret-section-header">
+        <div class="ret-section-icon" style="background: linear-gradient(135deg,#f59e0b,#fbbf24);">📅</div>
+        <div class="ret-section-title">¿Cuándo puedo retirar?</div>
+      </div>
+
+      <div class="ret-alert ret-alert-gold" style="margin-bottom:18px;">
+        🗓️ Los retiros están disponibles en la aplicación:<br/>
+        <strong>Desde sábado 19:00 hasta domingo 19:00.</strong>
+      </div>
+
+      <p style="font-size:.92rem;color:var(--text-mid);margin-bottom:16px;font-weight:700;">Si es tu primer retiro, sigue estos pasos:</p>
+
+      <div class="ret-steps">
+        <div class="ret-step-item">
+          <div class="ret-step-num">1</div>
+          <div class="ret-step-body">
+            <strong>Valida tu correo electrónico</strong> desde los ajustes de tu cuenta en la aplicación.
+          </div>
+        </div>
+        <div class="ret-step-item">
+          <div class="ret-step-num">2</div>
+          <div class="ret-step-body">
+            <strong>Crea una clave de retiro</strong> que utilizarás de ahora en adelante para todas tus solicitudes.
+          </div>
+        </div>
+        <div class="ret-step-item">
+          <div class="ret-step-num">3</div>
+          <div class="ret-step-body">
+            La aplicación te solicitará tu <strong>documento de identificación</strong> y tendrás que <strong>firmar digitalmente</strong>. Esto se realiza <em>únicamente la primera vez</em>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infórmanos -->
+    <div class="ret-section animate-in">
+      <div class="ret-section-header">
+        <div class="ret-section-icon" style="background: linear-gradient(135deg,#8b5cf6,#a78bfa);">📢</div>
+        <div class="ret-section-title">Infórmanos</div>
+      </div>
+
+      <div class="ret-alert ret-alert-green">
+        📸 Envíanos la captura de tu retiro. Los retiros serán efectuados todos los <strong>martes de cada semana</strong>.
+      </div>
+
+      <!-- Galería de imágenes de referencia -->
+      <div class="ret-img-gallery">
+        <img src="imagenes/evidencia/evidencia-1.png" alt="Captura de retiro – ejemplo 1" loading="lazy" />
+        <img src="imagenes/evidencia/evidencia-2.png" alt="Captura de retiro – ejemplo 2" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- Tasas de cambio -->
+    <div class="ret-section animate-in">
+      <div class="ret-section-header">
+        <div class="ret-section-icon" style="background: linear-gradient(135deg,#0ea5e9,#38bdf8);">💱</div>
+        <div class="ret-section-title">Tasas de cambio</div>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--text-light);margin-bottom:14px;">Monto solicitado → descuento de MeYo + tarifa de servicio → lo que recibes</p>
+
+      <div class="rate-table">
+        <div class="rate-row">
+          <div class="rate-amount">🔸 $300</div>
+          <div class="rate-detail">Meyo descuenta $17 + $1 de servicio</div>
+          <div class="rate-net">Recibes $282 🟢</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-amount">🔸 $70</div>
+          <div class="rate-detail">Meyo descuenta $5 + $1 de servicio</div>
+          <div class="rate-net">Recibes $64 🟢</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-amount">🔸 $30</div>
+          <div class="rate-detail">Meyo descuenta $2 + $1 de servicio</div>
+          <div class="rate-net">Recibes $27 🟢</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-amount">🔸 $15</div>
+          <div class="rate-detail">Meyo descuenta $1 + $1 de servicio</div>
+          <div class="rate-net">Recibes $13 🟢</div>
+        </div>
+        <div class="rate-row">
+          <div class="rate-amount">🔸 $10</div>
+          <div class="rate-detail">Meyo descuenta $1 + $1 de servicio</div>
+          <div class="rate-net">Recibes $8 🟢</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Importante -->
+    <div class="ret-section animate-in" style="border-left: 4px solid #ef4444;">
+      <div class="ret-section-header">
+        <div class="ret-section-icon" style="background: linear-gradient(135deg,#ef4444,#f87171);">⚠️</div>
+        <div class="ret-section-title">Importante</div>
+      </div>
+
+      <div class="ret-alert ret-alert-red" style="margin-bottom:18px;">
+        Antes de realizar tus retiros debes cumplir <strong>estas 2 condiciones</strong>:
+      </div>
+
+      <div class="ret-numbered" style="margin-bottom:18px;">
+        <div class="ret-numbered-item">
+          <p>Debes tener al menos <strong>30 minutos en línea todos los días</strong> y enviar al menos <strong>30 mensajes privados</strong> a través de chats a otros usuarios en la semana.</p>
+        </div>
+        <div class="ret-numbered-item">
+          <p>La ganancia de tus diamantes <strong>no debe superar en un 50% los diamantes ganados gratis</strong>, ya que esto se considera un subsidio de la plataforma (algo que te regala). Busca ganar diamantes de múltiples formas y date a conocer.</p>
+        </div>
+      </div>
+
+      <div class="ret-alert ret-alert-blue">
+        💡 Debes tener presentes esas dos condiciones a la hora de retirar. Si por alguna razón no las cumples, la plataforma no te dejará hacer la solicitud de retiro.<br/><br/>
+        Pero <strong>OJO</strong>: los diamantes <strong>no caducan</strong>. Puedes seguir trabajando en aumentar tu ingreso y la plataforma te dejará retirar sin ningún problema en la próxima ocasión.
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p>Hecho con ❤️ para la familia en <strong>MeYo</strong> · 2026</p>
+    </footer>
+
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
